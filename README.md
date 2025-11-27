@@ -7,7 +7,7 @@ A modern, responsive website built with Mustache.js templates and a custom stati
 
 Check out a live demo of the portfolio website:
 
-[Live Demo](https://acspt.github.io/mustache-website/output)
+[Live Demo](https://acspt.github.io/Mustache-website/)
 
 ---
 
