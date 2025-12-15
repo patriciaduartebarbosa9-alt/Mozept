@@ -1,5 +1,5 @@
 {
-  "siteUrl": "https://acspt.github.io/Mustache-website/",
+  "siteUrl": "http://localhost/Mustache-website/",
   "mustache.compiler": {
     "templates": "templates/pages",
     "layouts": "templates/layouts",

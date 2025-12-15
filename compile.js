@@ -3,7 +3,7 @@ const path = require('path');
 const Mustache = require('mustache');
 const { exit } = require('process');
 
-const VERSION = '1.0.0'; // Update as needed
+const VERSION = '1.0.1'; // Update as needed
 const AUTHOR = 'Arlindo Santos'; // Update as needed
 
 // Load settings
@@ -120,8 +120,8 @@ console.log('Debug: outputBasePath:', outputBasePath);
 // Global variables
 let partials = {};
 let data = {};
-let templateCache = {};
-let layoutCache = {};
+//let templateCache = {};
+//et layoutCache = {};
 
 // Enhanced Mustache configuration for all tag types
 Mustache.escape = function (text) {
@@ -331,6 +331,7 @@ function loadGlobalData() {
         const globalDataContent = fs.readFileSync(globalDataPath, 'utf8');
         data = JSON.parse(globalDataContent);
         console.log('✓ Global data loaded successfully');
+         console.log(data);
     } catch (error) {
         console.error('Error loading global data:', error.message);
         process.exit(1);
@@ -394,7 +395,7 @@ function loadPageData(templateInfo) {
             if (siteUrl) {
                 globalData = convertRelativeToAbsolute(globalData);
             }
-
+            console.log(globalData);  
             return globalData;
         }
     } catch (error) {
@@ -663,12 +664,12 @@ function loadLayoutForTemplate(templateInfo) {
         }
 
         // Create a cache key that includes template-specific overrides
-        const cacheKey = `${layoutName}-${templateInfo.template}`;
+      //  const cacheKey = `${layoutName}-${templateInfo.template}`;
 
         // Check if this specific template-layout combination is already cached
-        if (layoutCache[cacheKey]) {
-            return layoutCache[cacheKey];
-        }
+       // if (layoutCache[cacheKey]) {
+        //    return layoutCache[cacheKey];
+        // }
 
         // Try to find the layout file
         let layoutPath;
