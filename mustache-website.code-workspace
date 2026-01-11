@@ -4,8 +4,5 @@
 			"path": "."
 		}
 	],
-	"settings": {
-		"sftp.debug": true,
-		"sftp.printDebugLog": true
-	}
+	"settings": {}
 }

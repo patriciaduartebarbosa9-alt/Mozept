@@ -3,7 +3,7 @@ const path = require('path');
 const Mustache = require('mustache');
 const { exit } = require('process');
 
-const VERSION = '1.0.1'; // Update as needed
+const VERSION = '1.0.2'; // Update as needed
 const AUTHOR = 'Arlindo Santos'; // Update as needed
 
 // Load settings
@@ -266,13 +266,19 @@ class EnhancedMustacheRenderer {
     // Load partials with full Mustache support
     loadPartials() {
         try {
-            const partialFiles = fs.readdirSync(partialsDir);
+            const partialFiles = getAllFiles(partialsDir);
 
             partialFiles.forEach(file => {
+                console.log(file)
                 if (file.endsWith('.mustache')) {
-                    const partialName = path.basename(file, '.mustache');
-                    const partialPath = path.join(partialsDir, file);
-                    let partialContent = fs.readFileSync(partialPath, 'utf8');
+                    const subPath = path.relative(partialsDir, file);
+                  
+                    var partialName = subPath.replace(/\.mustache$/, '');
+                    partialName = partialName.replace(/\\/g, '/');
+
+                  //  console.log(partialName)
+            
+                    let partialContent = fs.readFileSync(file, 'utf8');
 
                     // Partials don't use template inheritance, load as-is
                     this.partials[partialName] = partialContent;
@@ -895,7 +901,7 @@ function renderPageContent(templateInfo, data) {
         // The actual rendering will be handled in compileTemplate
         return '';
     } catch (error) {
-        console.estatrror(`Error rendering content for ${templateInfo.template}:`, error.message);
+        console.error(`Error rendering content for ${templateInfo.template}:`, error.message);
         return '';
     }
 }
@@ -1123,4 +1129,21 @@ function showVersionInfo() {
         console.log(`  ${key}: ${JSON.stringify(value)}`);
     });
     console.log('-----------------------------');
+}
+function getAllFiles(dir) {
+  let results = [];
+  const list = fs.readdirSync(dir);
+
+  list.forEach((file) => {
+    const fullPath = path.join(dir, file);
+    const stat = fs.statSync(fullPath);
+    if (stat.isDirectory()) {
+      // Recurse into subdirectory
+      results = results.concat(getAllFiles(fullPath));
+    } else {
+      results.push(fullPath);
+    }
+  });
+
+  return results;
 }
