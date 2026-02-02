@@ -1,0 +1,20 @@
+platform: win32
+arch: x64
+
+[Error]
+message: Need workspace
+
+[Stack Trace]
+Error: Need workspace
+	at c:\Users\Mónica\.vscode\extensions\fftp.ftp-kr-1.4.1\out\vsutil\vsutil.js:106:24
+	at new Promise (<anonymous>)
+	at Object.selectWorkspace ([ftp-kr]\out\vsutil\vsutil.js:100:16)
+	at Object.<anonymous> ([ftp-kr]\out\cmd\ftpsync.js:235:56)
+	at Generator.next (<anonymous>)
+	at c:\Users\Mónica\.vscode\extensions\fftp.ftp-kr-1.4.1\out\cmd\ftpsync.js:7:71
+	at new Promise (<anonymous>)
+	at __awaiter ([ftp-kr]\out\cmd\ftpsync.js:3:12)
+	at ftpkr.downloadAll ([ftp-kr]\out\cmd\ftpsync.js:233:16)
+	at c:\Users\Mónica\.vscode\extensions\fftp.ftp-kr-1.4.1\out\vsutil\cmd.js:63:33
+	at Generator.next (<anonymous>)
+	at fulfilled ([ftp-kr]\out\vsutil\cmd.js:4:58)
