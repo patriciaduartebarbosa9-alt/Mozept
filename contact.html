@@ -26,46 +26,39 @@
     
   </head>
 <body>
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
     <header class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost/Mustache-website/index.html">Arlindo Santos</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="http://localhost/Mustache-website/index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/projects.html">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/about/index.html">About</a>
-            </li>
+        <div class="logo">Moze</div>
     
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/gallery.html">Gallery</a>
-            </li>
-       
-       <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/products.html">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/clients/insert.html">Clients</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        
+        <nav class="nav">
+            <a href="index.html">Página Final</a>
+            <a href="reserva.html">Reservar</a>
+            <a href="mensagens.html">Mensagens</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">Sobre Nós</a>
+        </nav>
+    
+        <div class="profile-menu-container">
+            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil">
+                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            </button>
+    
+            <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="login.html">🔐 Fazer Login</a>
+                    <a href="registar-cliente.html">📝 Registar Cliente</a>
+                    <a href="registar-fotografo.html">📷 Registar Fotógrafo</a>
+            </div>
         </div>
-      </div>
-    </nav>
-    
     </header>
-         
+    
+    <script>
+        const headerConfig = {
+            navPrefix: '',
+            userType: '',
+            userId: null
+        };
+    </script>
+    <script src=""></script>    
     <main>
         
 <section class="page-header">
@@ -153,35 +146,29 @@
             <div class="footer-section">
                 <h3>Connect With Me</h3>
                 <div class="social-links">
-                    <a href="#" class="social-link">
+                    <a href="https://github.com/mozeptofc-glitch/Mozept#" class="social-link">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fas fa-envelope"></i>
+                    <a href="https://www.instagram.com/moze.capture/" class="social-link">
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="http://localhost/Mustache-website/index.html">Home</a></li>
-                    <li><a href="http://localhost/Mustache-website/about/index.html">About</a></li>
-                    <li><a href="http://localhost/Mustache-website/projects.html">Projectos</a></li>
-                    <li><a href="http://localhost/Mustache-website/contact.html">Contactos</a></li>
+                    <li><a href="http://localhost/Mustache-website/index.html">Inicial</a></li>
+                    <li><a href="http://localhost/Mustache-website/reservarM.html">Reservar</a></li>
+                    <li><a href="http://localhost/Mustache-website/mensagensM.html">Mensagens</a></li>
+                    <li><a href="http://localhost/Mustache-website/blogM.html">Blog</a></li>
+                    <li><a href="http://localhost/Mustache-website/sobreM.html">Sobre Nós</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Portfolio. All rights reserved.</p>
+            <p>&copy; 2025 Moze. All rights reserved.</p>
         </div>
-    </footer>
-    <!-- Bootstrap JS Bundle -->
+    </footer>    <!-- Bootstrap JS Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>

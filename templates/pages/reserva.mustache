@@ -1,0 +1,86 @@
+{{<layout}}
+{{$main}}
+    <section class="reservar-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Encontre aqui o seu fotógrafo</h1>
+            
+            <form id="search-form" class="search-form">
+                <!-- Local (Distrito e Concelho) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="distrito">Distrito</label>
+                        <select id="distrito">
+                            <option value="">Selecione um distrito</option>
+                            <option value="aveiro">Aveiro</option>
+                            <option value="beja">Beja</option>
+                            <option value="braga">Braga</option>
+                            <option value="braganca">Bragança</option>
+                            <option value="castelobranco">Castelo Branco</option>
+                            <option value="coimbra">Coimbra</option>
+                            <option value="evora">Évora</option>
+                            <option value="faro">Faro</option>
+                            <option value="guarda">Guarda</option>
+                            <option value="leiria">Leiria</option>
+                            <option value="lisboa">Lisboa</option>
+                            <option value="portalegre">Portalegre</option>
+                            <option value="porto">Porto</option>
+                            <option value="santarem">Santarém</option>
+                            <option value="setubal">Setúbal</option>
+                            <option value="vianacastelo">Viana do Castelo</option>
+                            <option value="vilareal">Vila Real</option>
+                            <option value="viseu">Viseu</option>
+                            <option value="acores">Açores</option>
+                            <option value="madeira">Madeira</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="concelho">Concelho</label>
+                        <select id="concelho" disabled>
+                            <option value="">Selecione um concelho</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Data e Hora (opcionais) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data">Data (opcional)</label>
+                        <input type="date" id="data">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora">Hora (opcional)</label>
+                        <input type="time" id="hora">
+                    </div>
+                </div>
+
+                <!-- Categoria -->
+                <div class="form-group">
+                    <label for="categoria">Tipo de Fotografia</label>
+                    <select id="categoria">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="casamento">Casamento</option>
+                        <option value="evento">Evento</option>
+                        <option value="retrato">Retrato</option>
+                        <option value="produto">Produto</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Ver preços</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Resultados de Fotógrafos -->
+<section id="results-section" class="results hidden">
+    <div class="container">
+        <h2>Fotógrafos disponíveis</h2>
+        <div id="fotografos-grid" class="fotografos-grid">
+            <!-- Os fotógrafos são carregados dinamicamente -->
+        </div>
+    </div>
+</section>
+
+{{/main}}
+{{/layout}}

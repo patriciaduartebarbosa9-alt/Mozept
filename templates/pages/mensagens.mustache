@@ -1,0 +1,75 @@
+{{< layout}}
+{{$main}}
+    <div class="messaging-container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar" class="search-input">
+                </div>
+
+                <div class="conversations-list">
+                    <div class="conversation-item" data-user-id="1" data-user-name="Rodrigo Silva">
+                        <img src="https://i.pravatar.cc/48?img=1" alt="Rodrigo Silva" class="avatar">
+                        <div class="conversation-info">
+                            <h3>Rodrigo Silva</h3>
+                            <p>Combinado! Qualquer dúvida, é só dizer.</p>
+                        </div>
+                    </div>
+
+                    <div class="conversation-item" data-user-id="2" data-user-name="Ana Ribeiro">
+                        <img src="https://i.pravatar.cc/48?img=2" alt="Ana Ribeiro" class="avatar">
+                        <div class="conversation-info">
+                            <h3>Ana Ribeiro</h3>
+                            <p>Já recebi os retratos.</p>
+                        </div>
+                    </div>
+
+                    <div class="conversation-item" data-user-id="3" data-user-name="Rafael Tavares">
+                        <img src="https://i.pravatar.cc/48?img=3" alt="Rafael Tavares" class="avatar">
+                        <div class="conversation-info">
+                            <h3>Rafael Tavares</h3>
+                            <p>Obrigado pela confiança!</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="chat-area">
+                <div class="chat-header hidden">
+                    <div class="chat-header-info">
+                        <img src="" alt="" class="chat-avatar">
+                        <div>
+                            <h3 class="chat-user-name"></h3>
+                            <p class="chat-status">Online</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messages-container hidden">
+                    <div class="messages-list" id="messages-list">
+                        <!-- msgs aparecem aqui -->
+                    </div>
+                </div>
+
+                <div class="message-input-area hidden">
+                    <div class="input-wrapper">
+                        <button class="input-btn" id="upload-btn">
+                            <span>📎</span>
+                        </button>
+                        <input type="file" id="file-input" style="display: none;">
+                        <input type="text" placeholder="Escreva a sua mensagem..." class="message-input" id="message-input">
+                        <button class="input-btn send-btn">
+                            <span>📤</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="empty-state">
+                    <h2>As tuas mensagens</h2>
+                    <p>Recebe e envia mensagens sobre os teus serviços.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+{{/main}}
+{{/ layout}}

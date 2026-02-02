@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <meta name="robots" content="">
+        <link rel="canonical" href="">
+        <meta property="og:title" content="">
+        <meta property="og:description" content="">
+        <meta property="og:image" content="">
+        <meta property="og:url" content="">
+        <meta property="og:type" content="">
+        <meta name="twitter:card" content="">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:description" content="">
+        <meta name="twitter:image" content="">
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    
+       
+    
+  </head>
+<body>
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    <header class="header">
+        <div class="logo">Moze</div>
+    
+        <nav class="nav">
+            <a href="index.html">Página Final</a>
+            <a href="reserva.html">Reservar</a>
+            <a href="mensagens.html">Mensagens</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">Sobre Nós</a>
+        </nav>
+    
+        <div class="profile-menu-container">
+            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil">
+                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            </button>
+    
+            <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="login.html">🔐 Fazer Login</a>
+                    <a href="registar-cliente.html">📝 Registar Cliente</a>
+                    <a href="registar-fotografo.html">📷 Registar Fotógrafo</a>
+            </div>
+        </div>
+    </header>
+    
+    <script>
+        const headerConfig = {
+            navPrefix: '',
+            userType: '',
+            userId: null
+        };
+    </script>
+    <script src=""></script>    
+    <main>
+        
+    <section class="user-type-toggle">
+    <div class="container">
+        <div class="toggle-buttons">
+            <button class="toggle-btn active" data-type="cliente">Sou Cliente</button>
+            <button class="toggle-btn" data-type="fotografo">Sou Fotógrafo</button>
+        </div>
+    </div>
+</section>
+
+<!-- Informação Cliente -->
+<section class="user-type-section cliente-section active" data-type="cliente">
+    <div class="container">
+        <h2>Bem-vindo, Cliente!</h2>
+        <p>Encontre fotografias profissionais para seus eventos e projetos</p>
+        
+        <div class="info-content">
+            <p>Como cliente, você pode:</p>
+            <ul>
+                <li>Procurar por fotografias disponíveis de vários profissionais</li>
+                <li>Reservar sesões fotográficas em datas flexíveis</li>
+                <li>Ver portfolios dos fotografos</li>
+                <li>Fazer upload das suas fotos para galeria</li>
+                <li>Receber notificações sobre novas sessões disponíveis</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Informação Fotógrafo -->
+<section class="user-type-section fotografo-section" data-type="fotografo">
+    <div class="container">
+        <h2>Bem-vindo, Fotógrafo!</h2>
+        <p>Expanda seu negócio e encontre novos clientes</p>
+        
+        <div class="info-content">
+            <p>Como fotógrafo, você pode:</p>
+            <ul>
+                <li>Criar seu portfolio profissional</li>
+                <li>Receber pedidos de clientes</li>
+                <li>Definir seus próprios preços e disponibilidades</li>
+                <li>Gerenciar suas reservas e agenda</li>
+                <li>Ganhar visibilidade no mercado</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Serviços Cards -->
+<section class="services-section">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Fotografia</h3>
+                <p>Capture seus momentos especiais e compartilhe para o mundo</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📢</div>
+                <h3>Publicidade</h3>
+                <p>Conteúdo profissional para campanhas de negócios</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👤</div>
+                <h3>Retratos Criativos</h3>
+                <p>Retratos personalizados e criativos</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Momento</h3>
+                <p>Fotografe e compartilhe um belo momento</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Funciona -->
+<section class="how-it-works">
+    <div class="container">
+        <h2>Como funciona</h2>
+        <div class="works-grid">
+            <div class="works-card">
+                <div class="works-icon">⏱️</div>
+                <h3>Agendamento Rápido</h3>
+                <p>Reserve uma fotografia em minutos</p>
+            </div>
+            <div class="works-card">
+                <div class="works-icon">✅</div>
+                <h3>Profissionais Verificados</h3>
+                <p>Todos os profissionais são verificados e certificados</p>
+            </div>
+            <div class="works-card">
+                <div class="works-icon">€</div>
+                <h3>Preços Transparentes</h3>
+                <p>Saiba exatamente o que irá pagar antes de agendar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chamada Ação Fotografia -->
+<section class="photography-cta">
+    <div class="container">
+        <h2>Fotografia profissional ao seu alcance</h2>
+        <p>Conectamos você aos melhores profissionais para transformar sua visão em realidade.</p>
+    </div>
+</section>
+
+<!-- Contacto / Formulário -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>CONTACTO</h3>
+                <h2>Vamos criar algo incrível juntos</h2>
+                <p>Entre em contacto conosco para agendar sua sessão ou tirar suas dúvidas.</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <strong>Email</strong>
+                        <p>contacto@moze.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <strong>Telefone</strong>
+                        <p>+351 123 456 789</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <strong>Localização</strong>
+                        <p>Porto, Portugal</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <strong>Redes Sociais</strong>
+                        <p><a href="#">@moze</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Conte-nos sobre o seu projeto..." rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect With Me</h3>
+                <div class="social-links">
+                    <a href="https://github.com/mozeptofc-glitch/Mozept#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/moze.capture/" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="http://localhost/Mustache-website/index.html">Inicial</a></li>
+                    <li><a href="http://localhost/Mustache-website/reservarM.html">Reservar</a></li>
+                    <li><a href="http://localhost/Mustache-website/mensagensM.html">Mensagens</a></li>
+                    <li><a href="http://localhost/Mustache-website/blogM.html">Blog</a></li>
+                    <li><a href="http://localhost/Mustache-website/sobreM.html">Sobre Nós</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Moze. All rights reserved.</p>
+        </div>
+    </footer>    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
+    <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
+       
+      
+   </body>
+</html>

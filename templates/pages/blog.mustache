@@ -1,0 +1,156 @@
+{{< layout}}
+{{$main}}
+    <section class="blog-header">
+    <div class="container">
+        <h1>Blog Moze</h1>
+        <p>Histórias, dicas e inspiração sobre fotografia</p>
+    </div>
+</section>
+
+<!-- Search and Filter -->
+<section class="blog-filters">
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="blog-search" placeholder="Procurar artigos..." class="search-input">
+            <button class="search-btn">🔍</button>
+        </div>
+        
+        <div class="filter-tags">
+            <button class="filter-tag active" data-category="todos">Todos</button>
+            <button class="filter-tag" data-category="fotografia">Fotografia</button>
+            <button class="filter-tag" data-category="dicas">Dicas & Truques</button>
+            <button class="filter-tag" data-category="portfolio">Portfolio</button>
+            <button class="filter-tag" data-category="eventos">Eventos</button>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Grid -->
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-grid">
+            <!-- Post 1 -->
+            <article class="blog-card" data-category="fotografia">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1606986628025-35d57e735ae0?w=400&h=250&fit=crop" alt="Dicas de Fotografia">
+                    <span class="blog-category">Fotografia</span>
+                </div>
+                <div class="blog-content">
+                    <h3>10 Dicas para Melhorar sua Fotografia</h3>
+                    <p class="blog-excerpt">Aprenda as técnicas essenciais para capturar fotos incríveis em qualquer situação.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">15 Jan 2025</span>
+                        <span class="blog-author">Por João Silva</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-card" data-category="dicas">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1606933248051-5ce98caddc84?w=400&h=250&fit=crop" alt="Iluminação em Fotografia">
+                    <span class="blog-category">Dicas & Truques</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Dominar a Iluminação Natural</h3>
+                    <p class="blog-excerpt">Descubra como usar a luz natural para criar fotos cinematográficas.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">12 Jan 2025</span>
+                        <span class="blog-author">Por Maria Santos</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="blog-card" data-category="portfolio">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=250&fit=crop" alt="Criar Portfolio">
+                    <span class="blog-category">Portfolio</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Como Criar um Portfolio Fotográfico Impactante</h3>
+                    <p class="blog-excerpt">Estratégias para mostrar seu melhor trabalho e atrair clientes.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">10 Jan 2025</span>
+                        <span class="blog-author">Por Pedro Costa</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="blog-card" data-category="eventos">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f19dd76716?w=400&h=250&fit=crop" alt="Fotografia de Eventos">
+                    <span class="blog-category">Eventos</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Fotografia de Casamentos: Primeiros Passos</h3>
+                    <p class="blog-excerpt">Tudo o que precisa saber para começar a fotografar eventos especiais.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">8 Jan 2025</span>
+                        <span class="blog-author">Por Ana Silva</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="blog-card" data-category="fotografia">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=400&h=250&fit=crop" alt="Composição Fotográfica">
+                    <span class="blog-category">Fotografia</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Regra dos Terços: Composição Perfeita</h3>
+                    <p class="blog-excerpt">Aprenda a usar a regra dos terços para composições mais atraentes.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">5 Jan 2025</span>
+                        <span class="blog-author">Por Carlos Oliveira</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="blog-card" data-category="dicas">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=400&h=250&fit=crop" alt="Edição de Fotos">
+                    <span class="blog-category">Dicas & Truques</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Edição de Fotos: Ferramentas Essenciais</h3>
+                    <p class="blog-excerpt">Conheça as melhores ferramentas para pós-produção fotográfica.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">3 Jan 2025</span>
+                        <span class="blog-author">Por Sofia Ferreira</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" style="display: none;">
+            <p>Nenhum artigo encontrado. Tente uma outra pesquisa.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="blog-newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Não perca nossas novidades</h2>
+            <p>Inscreva-se na nossa newsletter para receber as últimas dicas e histórias sobre fotografia.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu email" required>
+                <button type="submit">Inscrever</button>
+            </form>
+        </div>
+    </div>
+</section>
+{{/main}}
+{{/ layout}}

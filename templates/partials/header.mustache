@@ -1,40 +1,41 @@
+<link rel="stylesheet" href="/assets/css/styles.css">
 <header class="header">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/index.html">Arlindo Santos</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index.html">final</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/projects.html">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about/index.html">About</a>
-        </li>
+    <div class="logo">{{site.title}}</div>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/gallery.html">Gallery</a>
-        </li>
-   
-   <li class="nav-item">
-          <a class="nav-link" href="/products.html">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/clients/insert.html">Clients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    
+    <nav class="nav">
+        <a href="{{navPrefix}}index.html">Página Final</a>
+        <a href="{{navPrefix}}reserva.html">Reservar</a>
+        <a href="{{navPrefix}}mensagens.html">Mensagens</a>
+        <a href="{{navPrefix}}blog.html">Blog</a>
+        <a href="{{navPrefix}}about.html">Sobre Nós</a>
+    </nav>
+
+    <div class="profile-menu-container">
+        <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil">
+            <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+        </button>
+
+        <div class="profile-dropdown" id="profile-dropdown">
+            {{#user.authenticated}}
+                <a href="#" id="ver-perfil-link">👤 Ver Perfil</a>
+                <hr>
+                <button id="btn-delete-account">🗑️ Apagar Conta</button>
+                <button id="btn-logout">🚪 Terminar Sessão</button>
+            {{/user.authenticated}}
+            {{^user.authenticated}}
+                <a href="{{navPrefix}}login.html">🔐 Fazer Login</a>
+                <a href="{{navPrefix}}registar-cliente.html">📝 Registar Cliente</a>
+                <a href="{{navPrefix}}registar-fotografo.html">📷 Registar Fotógrafo</a>
+            {{/user.authenticated}}
+        </div>
     </div>
-  </div>
-</nav>
-
 </header>
- 
+
+<script>
+    const headerConfig = {
+        navPrefix: '{{navPrefix}}',
+        userType: '{{user.type}}',
+        userId: {{#user.authenticated}}{{user.id}}{{/user.authenticated}}{{^user.authenticated}}null{{/user.authenticated}}
+    };
+</script>
+<script src="{{headerJs}}"></script>

@@ -26,103 +26,208 @@
     
   </head>
 <body>
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
     <header class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost/Mustache-website/index.html">Arlindo Santos</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="http://localhost/Mustache-website/index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/projects.html">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/about/index.html">About</a>
-            </li>
+        <div class="logo">Moze</div>
     
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/gallery.html">Gallery</a>
-            </li>
-       
-       <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/products.html">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://localhost/Mustache-website/clients/insert.html">Clients</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        
+        <nav class="nav">
+            <a href="index.html">Página Final</a>
+            <a href="reserva.html">Reservar</a>
+            <a href="mensagens.html">Mensagens</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">Sobre Nós</a>
+        </nav>
+    
+        <div class="profile-menu-container">
+            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil">
+                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            </button>
+    
+            <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="login.html">🔐 Fazer Login</a>
+                    <a href="registar-cliente.html">📝 Registar Cliente</a>
+                    <a href="registar-fotografo.html">📷 Registar Fotógrafo</a>
+            </div>
         </div>
-      </div>
-    </nav>
-    
     </header>
-         
+    
+    <script>
+        const headerConfig = {
+            navPrefix: '',
+            userType: '',
+            userId: null
+        };
+    </script>
+    <script src=""></script>    
     <main>
         
-<section class="hero">
-    <div class="hero-content">
-        <div>
-            <h1 class="hero-title">Welcome to My Portfolio</h1>
-            <p class="hero-subtitle">Full Stack Developer & Creative Problem Solver</p>
-            <div class="hero-buttons">
-                <a href="http://localhost/Mustache-website/projects.html" class="btn btn-primary">View My Work</a>
-                <a href="http://localhost/Mustache-website/contact.html" class="btn btn-secondary">Get In Touch</a>
+    <section id="gallery">
+        <div class="gallery-container">
+          
+          <!-- Card 1 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=6" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Sergio Silva</span>
+                  <span class="photographer-location">Via Moze • Editorial Porto</span>
+                </div>
+              </div>
+              <button class="card-menu">...</button>
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="http://localhost/Mustache-website/assets/images/hero.png" alt="Hero Image">
-        </div>
-        <div class="profile-placeholder">
-            <i class="fas fa-user-circle"></i>
-        </div>
-    </div>
-</section>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1606986628025-35d57e735ae0?w=500&h=500&fit=crop" alt="Fotografia">
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 210</button>
+                <button class="action-btn">💬 12</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>15 fotos • Natureza</strong>
+              </div>
+            </div>
+          </article>
 
-<section class="features">
-    <div class="container">
-        <h2 class="section-title">What I Do</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-code"></i>
+          <!-- Card 2 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=7" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Julia Martins</span>
+                  <span class="photographer-location">Via Moze • Editorial Vogue</span>
                 </div>
-                <h3 class="feature-title">Web Development</h3>
-                <p class="feature-description">Creating responsive and modern web applications using the latest technologies and best practices for optimal user experience.</p>
+              </div>
+              <button class="card-menu">...</button>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 class="feature-title">Mobile Development</h3>
-                <p class="feature-description">Building cross-platform mobile applications with React Native and Flutter for both iOS and Android platforms.</p>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1606933248051-5ce98caddc84?w=500&h=500&fit=crop" alt="Fotografia">
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3 class="feature-title">Backend Development</h3>
-                <p class="feature-description">Designing and implementing robust APIs, databases, and server-side solutions using modern technologies and best practices.</p>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 568</button>
+                <button class="action-btn">💬 34</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>23 fotos • Vida Selvagem</strong>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
+          </article>
 
-<section class="cta">
-    <div class="container">
-        <h2>Ready to Start a Project?</h2>
-        <p>Let's work together to bring your ideas to life</p>
-        <a href="http://localhost/Mustache-website/contact.html" class="btn btn-primary">Start Conversation</a>
-    </div>
-</section>
+          <!-- Card 3 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=8" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Rodrigo Silva</span>
+                  <span class="photographer-location">Via Moze • Editorial Vogue</span>
+                </div>
+              </div>
+              <button class="card-menu">...</button>
+            </div>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&h=500&fit=crop" alt="Fotografia">
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 389</button>
+                <button class="action-btn">💬 56</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>18 fotos • Conceptual</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=9" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Sofia Martins</span>
+                  <span class="photographer-location">Via Moze • Editorial Vogue</span>
+                </div>
+              </div>
+              <button class="card-menu">...</button>
+            </div>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1519167758481-83f19dd76716?w=500&h=500&fit=crop" alt="Fotografia">
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 612</button>
+                <button class="action-btn">💬 78</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>31 fotos • Natureza</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=10" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Paulo Costa</span>
+                  <span class="photographer-location">Via Moze • Editorial Porto</span>
+                </div>
+              </div>
+              <button class="card-menu">...</button>
+            </div>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=500&h=500&fit=crop" alt="Fotografia">
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 445</button>
+                <button class="action-btn">💬 92</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>27 fotos • Retrato</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="gallery-card">
+            <div class="card-header">
+              <div class="header-left">
+                <img src="https://i.pravatar.cc/40?img=11" alt="Fotógrafo" class="profile-avatar">
+                <div class="header-info">
+                  <span class="photographer-name">Ana Oliveira</span>
+                  <span class="photographer-location">Via Moze • Editorial Vogue</span>
+                </div>
+              </div>
+              <button class="card-menu">...</button>
+            </div>
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=500&h=500&fit=crop" alt="Fotografia">
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="action-btn">❤️ 823</button>
+                <button class="action-btn">💬 145</button>
+                <button class="action-btn">📤</button>
+              </div>
+              <div class="card-details">
+                <strong>42 fotos • Vida Selvagem</strong>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
 
     </main>
     
@@ -131,35 +236,29 @@
             <div class="footer-section">
                 <h3>Connect With Me</h3>
                 <div class="social-links">
-                    <a href="#" class="social-link">
+                    <a href="https://github.com/mozeptofc-glitch/Mozept#" class="social-link">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fas fa-envelope"></i>
+                    <a href="https://www.instagram.com/moze.capture/" class="social-link">
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="http://localhost/Mustache-website/index.html">Home</a></li>
-                    <li><a href="http://localhost/Mustache-website/about/index.html">About</a></li>
-                    <li><a href="http://localhost/Mustache-website/projects.html">Projectos</a></li>
-                    <li><a href="http://localhost/Mustache-website/contact.html">Contactos</a></li>
+                    <li><a href="http://localhost/Mustache-website/index.html">Inicial</a></li>
+                    <li><a href="http://localhost/Mustache-website/reservarM.html">Reservar</a></li>
+                    <li><a href="http://localhost/Mustache-website/mensagensM.html">Mensagens</a></li>
+                    <li><a href="http://localhost/Mustache-website/blogM.html">Blog</a></li>
+                    <li><a href="http://localhost/Mustache-website/sobreM.html">Sobre Nós</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Portfolio. All rights reserved.</p>
+            <p>&copy; 2025 Moze. All rights reserved.</p>
         </div>
-    </footer>
-    <!-- Bootstrap JS Bundle -->
+    </footer>    <!-- Bootstrap JS Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>

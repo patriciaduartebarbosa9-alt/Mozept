@@ -1,0 +1,173 @@
+{{< layout}}
+{{$main}}
+    <section class="user-type-toggle">
+    <div class="container">
+        <div class="toggle-buttons">
+            <button class="toggle-btn active" data-type="cliente">Sou Cliente</button>
+            <button class="toggle-btn" data-type="fotografo">Sou Fotógrafo</button>
+        </div>
+    </div>
+</section>
+
+<!-- Informação Cliente -->
+<section class="user-type-section cliente-section active" data-type="cliente">
+    <div class="container">
+        <h2>Bem-vindo, Cliente!</h2>
+        <p>Encontre fotografias profissionais para seus eventos e projetos</p>
+        
+        <div class="info-content">
+            <p>Como cliente, você pode:</p>
+            <ul>
+                <li>Procurar por fotografias disponíveis de vários profissionais</li>
+                <li>Reservar sesões fotográficas em datas flexíveis</li>
+                <li>Ver portfolios dos fotografos</li>
+                <li>Fazer upload das suas fotos para galeria</li>
+                <li>Receber notificações sobre novas sessões disponíveis</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Informação Fotógrafo -->
+<section class="user-type-section fotografo-section" data-type="fotografo">
+    <div class="container">
+        <h2>Bem-vindo, Fotógrafo!</h2>
+        <p>Expanda seu negócio e encontre novos clientes</p>
+        
+        <div class="info-content">
+            <p>Como fotógrafo, você pode:</p>
+            <ul>
+                <li>Criar seu portfolio profissional</li>
+                <li>Receber pedidos de clientes</li>
+                <li>Definir seus próprios preços e disponibilidades</li>
+                <li>Gerenciar suas reservas e agenda</li>
+                <li>Ganhar visibilidade no mercado</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Serviços Cards -->
+<section class="services-section">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Fotografia</h3>
+                <p>Capture seus momentos especiais e compartilhe para o mundo</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📢</div>
+                <h3>Publicidade</h3>
+                <p>Conteúdo profissional para campanhas de negócios</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👤</div>
+                <h3>Retratos Criativos</h3>
+                <p>Retratos personalizados e criativos</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Momento</h3>
+                <p>Fotografe e compartilhe um belo momento</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Funciona -->
+<section class="how-it-works">
+    <div class="container">
+        <h2>Como funciona</h2>
+        <div class="works-grid">
+            <div class="works-card">
+                <div class="works-icon">⏱️</div>
+                <h3>Agendamento Rápido</h3>
+                <p>Reserve uma fotografia em minutos</p>
+            </div>
+            <div class="works-card">
+                <div class="works-icon">✅</div>
+                <h3>Profissionais Verificados</h3>
+                <p>Todos os profissionais são verificados e certificados</p>
+            </div>
+            <div class="works-card">
+                <div class="works-icon">€</div>
+                <h3>Preços Transparentes</h3>
+                <p>Saiba exatamente o que irá pagar antes de agendar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chamada Ação Fotografia -->
+<section class="photography-cta">
+    <div class="container">
+        <h2>Fotografia profissional ao seu alcance</h2>
+        <p>Conectamos você aos melhores profissionais para transformar sua visão em realidade.</p>
+    </div>
+</section>
+
+<!-- Contacto / Formulário -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>CONTACTO</h3>
+                <h2>Vamos criar algo incrível juntos</h2>
+                <p>Entre em contacto conosco para agendar sua sessão ou tirar suas dúvidas.</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <strong>Email</strong>
+                        <p>contacto@moze.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <strong>Telefone</strong>
+                        <p>+351 123 456 789</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <strong>Localização</strong>
+                        <p>Porto, Portugal</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <strong>Redes Sociais</strong>
+                        <p><a href="#">@moze</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Conte-nos sobre o seu projeto..." rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{{/main}}
+{{/layout}}

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <meta name="robots" content="">
+        <link rel="canonical" href="">
+        <meta property="og:title" content="">
+        <meta property="og:description" content="">
+        <meta property="og:image" content="">
+        <meta property="og:url" content="">
+        <meta property="og:type" content="">
+        <meta name="twitter:card" content="">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:description" content="">
+        <meta name="twitter:image" content="">
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    
+       
+    
+  </head>
+<body>
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    <header class="header">
+        <div class="logo">Moze</div>
+    
+        <nav class="nav">
+            <a href="index.html">Página Final</a>
+            <a href="reserva.html">Reservar</a>
+            <a href="mensagens.html">Mensagens</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">Sobre Nós</a>
+        </nav>
+    
+        <div class="profile-menu-container">
+            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil">
+                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            </button>
+    
+            <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="login.html">🔐 Fazer Login</a>
+                    <a href="registar-cliente.html">📝 Registar Cliente</a>
+                    <a href="registar-fotografo.html">📷 Registar Fotógrafo</a>
+            </div>
+        </div>
+    </header>
+    
+    <script>
+        const headerConfig = {
+            navPrefix: '',
+            userType: '',
+            userId: null
+        };
+    </script>
+    <script src=""></script>    
+    <main>
+        
+    <section class="blog-header">
+    <div class="container">
+        <h1>Blog Moze</h1>
+        <p>Histórias, dicas e inspiração sobre fotografia</p>
+    </div>
+</section>
+
+<!-- Search and Filter -->
+<section class="blog-filters">
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="blog-search" placeholder="Procurar artigos..." class="search-input">
+            <button class="search-btn">🔍</button>
+        </div>
+        
+        <div class="filter-tags">
+            <button class="filter-tag active" data-category="todos">Todos</button>
+            <button class="filter-tag" data-category="fotografia">Fotografia</button>
+            <button class="filter-tag" data-category="dicas">Dicas & Truques</button>
+            <button class="filter-tag" data-category="portfolio">Portfolio</button>
+            <button class="filter-tag" data-category="eventos">Eventos</button>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Grid -->
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-grid">
+            <!-- Post 1 -->
+            <article class="blog-card" data-category="fotografia">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1606986628025-35d57e735ae0?w=400&h=250&fit=crop" alt="Dicas de Fotografia">
+                    <span class="blog-category">Fotografia</span>
+                </div>
+                <div class="blog-content">
+                    <h3>10 Dicas para Melhorar sua Fotografia</h3>
+                    <p class="blog-excerpt">Aprenda as técnicas essenciais para capturar fotos incríveis em qualquer situação.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">15 Jan 2025</span>
+                        <span class="blog-author">Por João Silva</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-card" data-category="dicas">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1606933248051-5ce98caddc84?w=400&h=250&fit=crop" alt="Iluminação em Fotografia">
+                    <span class="blog-category">Dicas & Truques</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Dominar a Iluminação Natural</h3>
+                    <p class="blog-excerpt">Descubra como usar a luz natural para criar fotos cinematográficas.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">12 Jan 2025</span>
+                        <span class="blog-author">Por Maria Santos</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="blog-card" data-category="portfolio">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=250&fit=crop" alt="Criar Portfolio">
+                    <span class="blog-category">Portfolio</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Como Criar um Portfolio Fotográfico Impactante</h3>
+                    <p class="blog-excerpt">Estratégias para mostrar seu melhor trabalho e atrair clientes.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">10 Jan 2025</span>
+                        <span class="blog-author">Por Pedro Costa</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="blog-card" data-category="eventos">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f19dd76716?w=400&h=250&fit=crop" alt="Fotografia de Eventos">
+                    <span class="blog-category">Eventos</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Fotografia de Casamentos: Primeiros Passos</h3>
+                    <p class="blog-excerpt">Tudo o que precisa saber para começar a fotografar eventos especiais.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">8 Jan 2025</span>
+                        <span class="blog-author">Por Ana Silva</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="blog-card" data-category="fotografia">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=400&h=250&fit=crop" alt="Composição Fotográfica">
+                    <span class="blog-category">Fotografia</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Regra dos Terços: Composição Perfeita</h3>
+                    <p class="blog-excerpt">Aprenda a usar a regra dos terços para composições mais atraentes.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">5 Jan 2025</span>
+                        <span class="blog-author">Por Carlos Oliveira</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="blog-card" data-category="dicas">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=400&h=250&fit=crop" alt="Edição de Fotos">
+                    <span class="blog-category">Dicas & Truques</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Edição de Fotos: Ferramentas Essenciais</h3>
+                    <p class="blog-excerpt">Conheça as melhores ferramentas para pós-produção fotográfica.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">3 Jan 2025</span>
+                        <span class="blog-author">Por Sofia Ferreira</span>
+                    </div>
+                    <a href="article.html" class="read-more">Ler mais →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" style="display: none;">
+            <p>Nenhum artigo encontrado. Tente uma outra pesquisa.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="blog-newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Não perca nossas novidades</h2>
+            <p>Inscreva-se na nossa newsletter para receber as últimas dicas e histórias sobre fotografia.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu email" required>
+                <button type="submit">Inscrever</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect With Me</h3>
+                <div class="social-links">
+                    <a href="https://github.com/mozeptofc-glitch/Mozept#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/moze.capture/" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="http://localhost/Mustache-website/index.html">Inicial</a></li>
+                    <li><a href="http://localhost/Mustache-website/reservarM.html">Reservar</a></li>
+                    <li><a href="http://localhost/Mustache-website/mensagensM.html">Mensagens</a></li>
+                    <li><a href="http://localhost/Mustache-website/blogM.html">Blog</a></li>
+                    <li><a href="http://localhost/Mustache-website/sobreM.html">Sobre Nós</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Moze. All rights reserved.</p>
+        </div>
+    </footer>    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
+    <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
+       
+      
+   </body>
+</html>
