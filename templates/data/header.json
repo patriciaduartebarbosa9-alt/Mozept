@@ -1,0 +1,11 @@
+{
+  "logo": "/assets/images/logo.png",
+  "siteName": "Mozept",
+  "navLinks": [
+    { "label": "Início", "url": "/index.html" },
+    { "label": "Reserva", "url": "/reserva.html" },
+    { "label": "Mensagem", "url": "/mensagem.html" },
+    { "label": "Blog", "url": "/blog.html" },
+    { "label": "Sobre", "url": "/about.html" }
+]
+}

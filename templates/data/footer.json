@@ -1,0 +1,13 @@
+{
+  "copyright": "© 2026 Mozept. Todos os direitos reservados.",
+  "footerLinks": [
+    { "label": "Política de Privacidade", "url": "/privacy.html" },
+    { "label": "Termos de Uso", "url": "/terms.html" },
+    { "label": "Contato", "url": "/contact.html" }
+  ],
+  "social": [
+    { "icon": "fab fa-github", "url": "https://github.com/mozept" },
+    { "icon": "fab fa-linkedin", "url": "https://linkedin.com/in/mozept" },
+    { "icon": "fab fa-twitter", "url": "https://twitter.com/mozept" }
+  ]
+}

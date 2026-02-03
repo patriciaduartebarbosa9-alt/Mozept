@@ -1,0 +1,88 @@
+{{< layout}}
+{{$main}}
+<script>
+    const headerConfig = {
+        navPrefix: '',
+        userType: '',
+        userId: null
+    };
+</script>
+<main class="profile-page">
+  <!-- PERFIL -->
+  <section class="profile-card">
+    <img src="https://i.pravatar.cc/80?img=32" class="avatar" alt="Avatar">
+    <div class="profile-info">
+      <h2>Rodrigo Silva</h2>
+      <p>Fotógrafo Profissional Especializado em Casamentos e Eventos</p>
+      <div class="meta">
+        <span>⭐ 4.9 (127 avaliações)</span>
+        <span>Mirandela, Portugal</span>
+      </div>
+    </div>
+    <button class="edit-btn" onclick="window.location.href='edit-profile.html'">Editar Perfil</button>
+  </section>
+  <!-- TABS -->
+  <section class="tabs">
+    <button class="tab-btn active" data-tab="portfolio">Portfólio</button>
+    <button class="tab-btn" data-tab="servicos">Serviços</button>
+    <button class="tab-btn" data-tab="avaliacoes">Avaliações</button>
+  </section>
+  <!-- CONTEÚDO DAS TABS -->
+  <section class="tab-content">
+    <!-- PORTFÓLIO -->
+    <div id="portfolio" class="tab-panel active">
+      <button class="edit-btn" data-edit="portfolio">Editar Portfólio</button>
+      <div class="portfolio">
+        <img src="https://picsum.photos/400/400?1">
+        <img src="https://picsum.photos/400/400?2">
+        <img src="https://picsum.photos/400/400?3">
+        <img src="https://picsum.photos/400/400?4">
+        <img src="https://picsum.photos/400/400?5">
+        <img src="https://picsum.photos/400/400?6">
+      </div>
+    </div>
+    <!-- SERVIÇOS -->
+    <div id="servicos" class="tab-panel">
+      <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
+      <ul class="services">
+        <li>📸 Casamentos</li>
+        <li>🎉 Eventos</li>
+        <li>🧑‍💼 Retratos Profissionais</li>
+        <li>🏢 Fotografia Corporativa</li>
+      </ul>
+    </div>
+    <!-- AVALIAÇÕES -->
+    <div id="avaliacoes" class="tab-panel">
+      <div class="review">
+        <p>Excelente profissional, super atento.</p>
+        <span>— Ana Silva</span>
+      </div>
+      <div class="review">
+        <p>Fotos incríveis, recomendo.</p>
+        <span>— João Costa</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Alternância de abas do perfil
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remove ativo de todos os botões e painéis
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+        // Ativa o botão e painel correspondente
+        btn.classList.add('active');
+        const tab = btn.getAttribute('data-tab');
+        document.getElementById(tab).classList.add('active');
+      });
+    });
+  });
+</script>
+
+{{/main}}
+{{/layout}}

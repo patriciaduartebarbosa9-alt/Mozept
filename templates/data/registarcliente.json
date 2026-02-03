@@ -1,0 +1,13 @@
+{
+  "title": "Criar Conta de Cliente",
+  "fields": [
+    { "name": "nome", "label": "Nome Completo", "type": "text", "required": true, "placeholder": "nome" },
+    { "name": "email", "label": "Email", "type": "email", "required": true, "placeholder": "email@mail.com" },
+    { "name": "password", "label": "Password", "type": "password", "required": true, "placeholder": "******", "minlength": 6 }
+  ],
+  "submitLabel": "Registar",
+  "loginLink": {
+    "label": "Já tem conta? Fazer login",
+    "url": "login.html"
+  }
+}

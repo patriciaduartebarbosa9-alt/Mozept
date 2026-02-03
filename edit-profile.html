@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started with React 18</title>
+    <title></title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -73,21 +73,45 @@
     <script src=""></script>    
     <main>
         
-<section class="page-header">
-    <div class="container">
-        <h1>Very Deep Nested Page</h1>
-        <p>Testing very deep nesting: blog/2025/articles/sample</p>
-    </div>
-</section>
-
-<section class="article-content">
-    <div class="container">
-        <article class="blog-article">
-            <h2>Deep Nested Article</h2>
-            <p>This is a test of very deep nesting to show recursive scanning works.</p>
-        </article>
-    </div>
-</section>
+<script>
+    const headerConfig = {
+        navPrefix: '',
+        userType: '',
+        userId: null
+    };
+</script>
+<main class="edit-page">
+  <h1>Editar Perfil</h1>
+  <form class="edit-form">
+    <!-- FOTO DE PERFIL -->
+    <section class="edit-section">
+      <h2>Foto de Perfil</h2>
+      <div id="profile-preview"></div>
+      <input type="file" accept="image/*" id="profile-pic">
+      <label for="profile-pic">Escolher imagem</label>
+    </section>
+    <!-- PORTFOLIO -->
+    <section class="edit-section">
+      <h2>Editar Portfólio</h2>
+      <div id="portfolio-items"></div>
+      <button type="button" id="add-portfolio-item" style="background:#7b0000; color:#fff; border:none; padding:12px 32px; border-radius:8px; font-size:16px; cursor:pointer; margin:12px 0;">Adicionar Portfolio</button>
+    </section>
+    <!-- SERVIÇOS -->
+    <section class="edit-section">
+      <h2>Editar Serviços</h2>
+      <textarea id="services-text" rows="10" placeholder="Liste os serviços, um por linha..."></textarea>
+    </section>
+    <!-- PALAVRA PASSE -->
+    <section class="edit-section">
+      <h2>Alterar Palavra Passe</h2>
+      <input type="password" placeholder="Palavra passe atual">
+      <input type="password" placeholder="Nova palavra passe">
+      <input type="password" placeholder="Confirmar nova palavra passe">
+    </section>
+    <button type="submit" class="save-btn">Salvar Alterações</button>
+  </form>
+  <a href="perfil.html" class="back-link">Voltar ao Perfil</a>
+</main>
 
     </main>
     

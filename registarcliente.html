@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started with React 18</title>
+    <title>Criar Conta de Cliente</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -73,21 +73,55 @@
     <script src=""></script>    
     <main>
         
-<section class="page-header">
-    <div class="container">
-        <h1>Very Deep Nested Page</h1>
-        <p>Testing very deep nesting: blog/2025/articles/sample</p>
+<main class="register-main">
+  <div class="register-container">
+    <div class="register-welcome">
+      <h1>Bem Vindo<br>de Volta!</h1>
+      <p>Entre para desfrutar melhor do nosso website.</p>
+      <a href="login.html" class="register-btn-outline">Entrar</a>
     </div>
-</section>
-
-<section class="article-content">
-    <div class="container">
-        <article class="blog-article">
-            <h2>Deep Nested Article</h2>
-            <p>This is a test of very deep nesting to show recursive scanning works.</p>
-        </article>
+    <div class="register-form-side">
+      <h2>Criar Conta</h2>
+      <div class="register-socials">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
+      </div>
+      <form class="register-form" id="register-form">
+        <label>Nome Completo*
+          <input type="text" name="nome" placeholder="nome" required>
+        </label>
+        <label>Email*
+          <input type="email" name="email" placeholder="email@mail.com" required>
+        </label>
+        <label>Password*
+          <div class="password-field">
+            <input type="password" name="password" placeholder="******" id="reg-password" required>
+            <span class="toggle-password" onclick="togglePassword()"><i class="fa fa-eye"></i></span>
+          </div>
+        </label>
+        <button type="submit" class="register-btn">Registar</button>
+      </form>
     </div>
-</section>
+  </div>
+</main>
+<script>
+function togglePassword() {
+  const pwd = document.getElementById('reg-password');
+  const icon = document.querySelector('.toggle-password i');
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    pwd.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+}
+</script>
 
     </main>
     
