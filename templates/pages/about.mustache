@@ -1,51 +1,259 @@
 {{< layout}}
 {{$main}}
-    <section class="user-type-toggle">
-    <div class="container">
-        <div class="toggle-buttons">
-            <button class="toggle-btn active" data-type="cliente">Sou Cliente</button>
-            <button class="toggle-btn" data-type="fotografo">Sou Fotógrafo</button>
-        </div>
-    </div>
-</section>
+        <style>
+            .services-section {
+                background: #fff;
+                padding: 36px 0 24px 0;
+                margin-bottom: 0;
+            }
+            .services-grid {
+                display: flex;
+                gap: 22px;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 18px;
+            }
+            .service-card {
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 2px 10px #0001;
+                padding: 28px 22px 22px 22px;
+                min-width: 180px;
+                max-width: 220px;
+                flex: 1 1 180px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                transition: box-shadow 0.2s;
+            }
+            .service-icon {
+                font-size: 2.1rem;
+                color: #7b0000;
+                margin-bottom: 10px;
+            }
+            .service-card h3 {
+                font-size: 1.13rem;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: #7b0000;
+            }
+            .service-card p {
+                color: #555;
+                font-size: 1rem;
+                margin: 0;
+            }
+            .how-it-works {
+                background: #fff;
+                padding: 36px 0 18px 0;
+                margin-bottom: 0;
+            }
+            .how-it-works h2 {
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 28px;
+            }
+            .works-grid {
+                display: flex;
+                gap: 22px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .works-card {
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 2px 10px #0001;
+                padding: 24px 18px 18px 18px;
+                min-width: 160px;
+                max-width: 200px;
+                flex: 1 1 160px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .works-icon {
+                font-size: 2rem;
+                color: #7b0000;
+                margin-bottom: 8px;
+            }
+            .works-card h3 {
+                font-size: 1.08rem;
+                font-weight: 600;
+                margin-bottom: 6px;
+                color: #7b0000;
+            }
+            .works-card p {
+                color: #555;
+                font-size: 0.98rem;
+                margin: 0;
+            }
+            .photography-cta {
+                background: #fff;
+                padding: 36px 0 36px 0;
+                text-align: center;
+                margin-bottom: 0;
+            }
+            .photography-cta h2 {
+                font-size: 1.7rem;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 10px;
+            }
+            .photography-cta p {
+                color: #444;
+                font-size: 1.13rem;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+        </style>
+        <style>
+            .user-type-toggle {
+                margin-top: 32px;
+                margin-bottom: 32px;
+                display: flex;
+                justify-content: center;
+            }
+            .toggle-buttons {
+                display: flex;
+                gap: 18px;
+                justify-content: center;
+                align-items: center;
+            }
+            .toggle-btn {
+                font-size: 1.18rem;
+                font-weight: 500;
+                background: #fff;
+                color: #7b0000;
+                border: none;
+                border-radius: 22px;
+                padding: 10px 32px;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+                box-shadow: 0 2px 8px #0001;
+            }
+            .toggle-btn.active {
+                background: #7b0000;
+                color: #fff;
+                font-weight: 600;
+                box-shadow: 0 2px 12px #7b000033;
+            }
+            .user-type-section {
+                width: 100%;
+                max-width: 980px;
+                margin: 0 auto 32px auto;
+                background: #FCFBF8;
+                border-radius: 22px;
+                box-shadow: 0 2px 16px #0001;
+                padding: 32px 24px;
+                display: block;
+                transition: box-shadow 0.2s;
+            }
+            .user-type-section .container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 36px;
+            }
+            .user-type-section img {
+                width: 100%;
+                max-width: 320px;
+                border-radius: 18px;
+                object-fit: cover;
+                box-shadow: 0 2px 12px #0001;
+                background: #eee;
+            }
+            .user-type-section h2 {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: #7b0000;
+            }
+            .user-type-section p {
+                font-size: 1.1rem;
+                margin-bottom: 18px;
+                color: #222;
+            }
+            .user-type-section ul {
+                margin-bottom: 18px;
+                padding-left: 20px;
+            }
+            .user-type-section li {
+                font-size: 1.05rem;
+                margin-bottom: 8px;
+                color: #444;
+                line-height: 1.5;
+            }
+        </style>
+        <section class="user-type-toggle">
+            <div class="container">
+                <div class="toggle-buttons">
+                    <button class="toggle-btn active" data-type="cliente">Sou Cliente</button>
+                    <button class="toggle-btn" data-type="fotografo">Sou Fotógrafo</button>
+                </div>
+            </div>
+        </section>
 
-<!-- Informação Cliente -->
-<section class="user-type-section cliente-section active" data-type="cliente">
-    <div class="container">
-        <h2>Bem-vindo, Cliente!</h2>
-        <p>Encontre fotografias profissionais para seus eventos e projetos</p>
-        
-        <div class="info-content">
-            <p>Como cliente, você pode:</p>
-            <ul>
-                <li>Procurar por fotografias disponíveis de vários profissionais</li>
-                <li>Reservar sesões fotográficas em datas flexíveis</li>
-                <li>Ver portfolios dos fotografos</li>
-                <li>Fazer upload das suas fotos para galeria</li>
-                <li>Receber notificações sobre novas sessões disponíveis</li>
-            </ul>
-        </div>
-    </div>
-</section>
+        <!-- Bloco Cliente -->
+        <section class="user-type-section cliente-section active" data-type="cliente" style="margin-bottom:32px;">
+            <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px;">
+                <div style="flex:1;min-width:320px;max-width:420px;">
+                    <h2 style="margin-bottom:12px;">Sou Cliente</h2>
+                    <p style="font-size:1.1rem;margin-bottom:18px;">Encontre o fotógrafo ideal para o seu projeto, evento ou campanha.</p>
+                    <ul style="margin-bottom:18px;">
+                        <li>Reserve sessões fotográficas em minutos</li>
+                        <li>Compare portfolios e avaliações</li>
+                        <li>Receba propostas de profissionais verificados</li>
+                        <li>Preços transparentes e agendamento fácil</li>
+                    </ul>
+                </div>
+                <div style="flex:1;min-width:260px;max-width:340px;display:flex;justify-content:center;">
+                    <img src="/assets/images/about/cliente-exemplo.jpg" alt="Cliente exemplo" style="width:100%;max-width:320px;border-radius:18px;object-fit:cover;box-shadow:0 2px 12px #0001;">
+                </div>
+            </div>
+        </section>
 
-<!-- Informação Fotógrafo -->
-<section class="user-type-section fotografo-section" data-type="fotografo">
-    <div class="container">
-        <h2>Bem-vindo, Fotógrafo!</h2>
-        <p>Expanda seu negócio e encontre novos clientes</p>
-        
-        <div class="info-content">
-            <p>Como fotógrafo, você pode:</p>
-            <ul>
-                <li>Criar seu portfolio profissional</li>
-                <li>Receber pedidos de clientes</li>
-                <li>Definir seus próprios preços e disponibilidades</li>
-                <li>Gerenciar suas reservas e agenda</li>
-                <li>Ganhar visibilidade no mercado</li>
-            </ul>
-        </div>
-    </div>
-</section>
+        <!-- Bloco Fotógrafo -->
+        <section class="user-type-section fotografo-section" data-type="fotografo" style="margin-bottom:32px;display:none;">
+            <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px;">
+                <div style="flex:1;min-width:260px;max-width:340px;display:flex;justify-content:center;">
+                    <img src="/assets/images/about/fotografo-exemplo.jpg" alt="Fotógrafo exemplo" style="width:100%;max-width:320px;border-radius:18px;object-fit:cover;box-shadow:0 2px 12px #0001;">
+                </div>
+                <div style="flex:1;min-width:320px;max-width:420px;">
+                    <h2 style="margin-bottom:12px;">Sou Fotógrafo</h2>
+                    <p style="font-size:1.1rem;margin-bottom:18px;">Junte-se à nossa rede de profissionais e expanda sua carreira.</p>
+                    <ul style="margin-bottom:18px;">
+                        <li>Acesso a clientes qualificados e projetos exclusivos</li>
+                        <li>Gestão simplificada de agendamentos e pagamentos</li>
+                        <li>Faça parte de uma comunidade criativa</li>
+                        <li>Mostre seu talento e aumente sua visibilidade</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        // Alternância entre Cliente e Fotógrafo
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const type = this.getAttribute('data-type');
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.user-type-section').forEach(sec => {
+                    if(sec.getAttribute('data-type') === type) {
+                        sec.style.display = '';
+                        sec.classList.add('active');
+                    } else {
+                        sec.style.display = 'none';
+                        sec.classList.remove('active');
+                    }
+                });
+            });
+        });
+        </script>
 
 <!-- Serviços Cards -->
 <section class="services-section">
@@ -108,57 +316,218 @@
 </section>
 
 <!-- Contacto / Formulário -->
+<style>
+    .contact-section {
+        background: #e9e9e9;
+        padding: 48px 0 56px 0;
+        margin-top: 0;
+        width: 100%;
+        position: static;
+        left: unset;
+        right: unset;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .contact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .contact-info {
+        flex: 1;
+        min-width: 240px;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .contact-info h3 {
+        color: #b11a1a;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .contact-info h2 {
+        color: #6a6a6a;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        text-align: center;
+    }
+    .contact-info p {
+        color: #888;
+        font-size: 1.05rem;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px #0002;
+        padding: 18px 20px;
+        margin-bottom: 0;
+        min-width: 220px;
+    }
+    .contact-icon {
+        font-size: 1.7rem;
+        color: #7b0000;
+        min-width: 36px;
+        text-align: center;
+    }
+    .contact-details strong {
+        font-size: 1.08rem;
+        color: #222;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 2px;
+    }
+    .contact-details p, .contact-details a {
+        color: #888;
+        font-size: 1rem;
+        margin: 0;
+        text-decoration: none;
+        text-align: left;
+    }
+    .contact-form-container {
+        flex: 2;
+        min-width: 320px;
+        max-width: 520px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px #0002;
+        padding: 32px 28px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group textarea {
+        flex: 1;
+        border: 1.5px solid #ddd;
+        border-radius: 8px;
+        padding: 12px 14px;
+        font-size: 1rem;
+        background: #f8f8f8;
+        color: #222;
+        outline: none;
+        transition: border 0.2s;
+        margin-bottom: 0;
+        font-size: 1.02rem;
+        color: #444;
+        font-weight: 500;
+        margin-bottom: 4px;
+        display: block;
+    }
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group textarea:focus {
+        border: 1.5px solid #7b0000;
+    }
+    .form-group textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+    .submit-btn {
+        background: #7b0000;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 8px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.2s;
+    }
+    .submit-btn:hover {
+        background: #a00000;
+    }
+    .contact-form label {
+        font-size: 1.02rem;
+        color: #444;
+        font-weight: 500;
+        margin-bottom: 4px;
+        display: block;
+    }
+    .contact-items-col {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        flex: 1;
+        min-width: 220px;
+        max-width: 320px;
+    }
+</style>
 <section class="contact-section">
     <div class="container">
+        <div class="contact-info" style="max-width:600px;margin:0 auto 32px auto;">
+            <h3>CONTACTO</h3>
+            <h2>Vamos criar algo<br>incrível juntos</h2>
+            <p>Entre em contato conosco para agendar sua sessão ou tirar suas dúvidas.</p>
+        </div>
         <div class="contact-grid">
-            <div class="contact-info">
-                <h3>CONTACTO</h3>
-                <h2>Vamos criar algo incrível juntos</h2>
-                <p>Entre em contacto conosco para agendar sua sessão ou tirar suas dúvidas.</p>
-                
+            <div class="contact-items-col">
                 <div class="contact-item">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon">&#9993;</div>
                     <div class="contact-details">
                         <strong>Email</strong>
-                        <p>contacto@moze.com</p>
+                        <p>contato@moze.com</p>
                     </div>
                 </div>
-                
                 <div class="contact-item">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon">&#128222;</div>
                     <div class="contact-details">
                         <strong>Telefone</strong>
                         <p>+351 123 456 789</p>
                     </div>
                 </div>
-                
                 <div class="contact-item">
-                    <div class="contact-icon">📍</div>
+                    <div class="contact-icon">&#128205;</div>
                     <div class="contact-details">
                         <strong>Localização</strong>
                         <p>Porto, Portugal</p>
                     </div>
                 </div>
-                
                 <div class="contact-item">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon"><img src="/assets/images/instagram.svg" alt="Instagram" style="width:22px;height:22px;vertical-align:middle;"></div>
                     <div class="contact-details">
-                        <strong>Redes Sociais</strong>
-                        <p><a href="#">@moze</a></p>
+                        <strong>Siga-nos</strong>
+                        <p><a href="#">Instagram<br>@moze</a></p>
                     </div>
                 </div>
             </div>
-            
             <div class="contact-form-container">
                 <form class="contact-form">
                     <div class="form-group">
                         <input type="text" placeholder="Nome completo" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Telefone" required>
+                        <input type="email" placeholder="Seu@email.com" required>
+                        <input type="tel" placeholder="+351 123 456 789" required>
                     </div>
                     <div class="form-group">
                         <textarea placeholder="Conte-nos sobre o seu projeto..." rows="5"></textarea>
@@ -168,6 +537,7 @@
             </div>
         </div>
     </div>
+    
 </section>
 {{/main}}
 {{/layout}}

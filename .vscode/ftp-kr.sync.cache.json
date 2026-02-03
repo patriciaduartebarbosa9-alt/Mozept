@@ -1,0 +1,508 @@
+{
+  "ftp://if0_40999093@ftpupload.net:21": {
+    "htdocs": {
+      ".github": {},
+      ".vscode": {},
+      "README.md": {
+        "type": "-",
+        "size": 11289,
+        "lmtime": 0,
+        "modified": false
+      },
+      "Untitled-1.txt": {
+        "type": "-",
+        "size": 752,
+        "lmtime": 0,
+        "modified": false
+      },
+      "about": {
+        "about.html": {
+          "type": "-",
+          "size": 11172,
+          "lmtime": 0,
+          "modified": false
+        },
+        "index.html": {
+          "type": "-",
+          "size": 8776,
+          "lmtime": 1770062362434.332,
+          "modified": false
+        }
+      },
+      "about.html": {
+        "type": "-",
+        "size": 11201,
+        "lmtime": 1770062362441.361,
+        "modified": false
+      },
+      "api": {},
+      "assets": {
+        "css": {
+          "gallery-slider.css": {
+            "type": "-",
+            "size": 723,
+            "lmtime": 1770061407014.4504,
+            "modified": false
+          },
+          "styles.css": {
+            "type": "-",
+            "size": 23882,
+            "lmtime": 1770061382184.6345,
+            "modified": false
+          }
+        }
+      },
+      "auth.txt": {
+        "type": "-",
+        "size": 111,
+        "lmtime": 0,
+        "modified": false
+      },
+      "blog": {
+        "1": {
+          "1.html": {
+            "type": "-",
+            "size": 5019,
+            "lmtime": 1770062362445.3728,
+            "modified": false
+          },
+          "2.html": {
+            "type": "-",
+            "size": 1049,
+            "lmtime": 1770062362448.8845,
+            "modified": false
+          }
+        },
+        "2025": {
+          "articles": {
+            "sample.html": {
+              "type": "-",
+              "size": 5018,
+              "lmtime": 1770062362453.8862,
+              "modified": false
+            }
+          },
+          "test.html": {
+            "type": "-",
+            "size": 5003,
+            "lmtime": 1770062362455.886,
+            "modified": false
+          }
+        },
+        "article.html": {
+          "type": "-",
+          "size": 4900,
+          "lmtime": 1770062362459.4004,
+          "modified": false
+        },
+        "blog.html": {
+          "type": "-",
+          "size": 12049,
+          "lmtime": 0,
+          "modified": false
+        },
+        "index.html": {
+          "type": "-",
+          "size": 5301,
+          "lmtime": 1770062362462.0166,
+          "modified": false
+        }
+      },
+      "blog.html": {
+        "type": "-",
+        "size": 12074,
+        "lmtime": 1770062362466.0352,
+        "modified": false
+      },
+      "child.html": {
+        "type": "-",
+        "size": 1333,
+        "lmtime": 1770062362470.09,
+        "modified": false
+      },
+      "clients": {
+        "create_clients_table.sql": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "insert.html": {
+          "type": "-",
+          "size": 5440,
+          "lmtime": 1770062362474.068,
+          "modified": false
+        },
+        "insert_client.html": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "insert_client.js": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "insert_client.php": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "compile.dev.js": {
+        "type": "-",
+        "size": 48558,
+        "lmtime": 0,
+        "modified": false
+      },
+      "compile.js": {
+        "type": "-",
+        "size": 42920,
+        "lmtime": 0,
+        "modified": false
+      },
+      "contact.html": {
+        "type": "-",
+        "size": 7637,
+        "lmtime": 1770062362477.0974,
+        "modified": false
+      },
+      "files for your website should be uploaded here!": {
+        "type": "-",
+        "size": 0,
+        "lmtime": 0,
+        "modified": false
+      },
+      "gallery-api-1.html": {
+        "type": "-",
+        "size": 5402,
+        "lmtime": 1770062362481.9092,
+        "modified": false
+      },
+      "gallery-api.html": {
+        "type": "-",
+        "size": 5400,
+        "lmtime": 1770062362484.988,
+        "modified": false
+      },
+      "gallery.html": {
+        "type": "-",
+        "size": 6466,
+        "lmtime": 1770062362489.0605,
+        "modified": false
+      },
+      "htdocs": {},
+      "index.html": {
+        "type": "-",
+        "size": 11898,
+        "lmtime": 1770062362494.065,
+        "modified": false
+      },
+      "index.php": {
+        "type": "-",
+        "size": 3404,
+        "lmtime": 0,
+        "modified": false
+      },
+      "index2.html": {
+        "type": "-",
+        "size": 10160,
+        "lmtime": 0,
+        "modified": false
+      },
+      "mensagens.html": {
+        "type": "-",
+        "size": 7790,
+        "lmtime": 1770062362497.0613,
+        "modified": false
+      },
+      "mustache-website.code-workspace": {
+        "type": "-",
+        "size": 67,
+        "lmtime": 0,
+        "modified": false
+      },
+      "node_modules": {},
+      "package-lock.json": {
+        "type": "-",
+        "size": 538,
+        "lmtime": 0,
+        "modified": false
+      },
+      "package.json": {
+        "type": "-",
+        "size": 58,
+        "lmtime": 0,
+        "modified": false
+      },
+      "products": {
+        "product1.html": {
+          "type": "-",
+          "size": 4644,
+          "lmtime": 1770062362501.2085,
+          "modified": false
+        },
+        "product2.html": {
+          "type": "-",
+          "size": 4661,
+          "lmtime": 1770062362506.207,
+          "modified": false
+        }
+      },
+      "products.html": {
+        "type": "-",
+        "size": 4773,
+        "lmtime": 1770062362509.7217,
+        "modified": false
+      },
+      "projects.html": {
+        "type": "-",
+        "size": 16935,
+        "lmtime": 1770062362516.239,
+        "modified": false
+      },
+      "reserva.html": {
+        "type": "-",
+        "size": 8448,
+        "lmtime": 1770062362519.753,
+        "modified": false
+      },
+      "settings.json": {
+        "type": "-",
+        "size": 263,
+        "lmtime": 0,
+        "modified": false
+      },
+      "templates": {
+        "partials": {
+          "about": {},
+          "analytics.mustache": {
+            "type": "-",
+            "size": 0,
+            "lmtime": 0,
+            "modified": false
+          },
+          "comments.mustache": {
+            "type": "-",
+            "size": 0,
+            "lmtime": 0,
+            "modified": false
+          },
+          "contact-form.mustache": {
+            "type": "-",
+            "size": 841,
+            "lmtime": 0,
+            "modified": false
+          },
+          "contact-info-cards.mustache": {
+            "type": "-",
+            "size": 462,
+            "lmtime": 0,
+            "modified": false
+          },
+          "feature-card.mustache": {
+            "type": "-",
+            "size": 216,
+            "lmtime": 0,
+            "modified": false
+          },
+          "footer.mustache": {
+            "type": "-",
+            "size": 1180,
+            "lmtime": 1770061705993.3684,
+            "modified": false
+          },
+          "header.mustache": {
+            "type": "-",
+            "size": 1729,
+            "lmtime": 1770062350954.386,
+            "modified": false
+          },
+          "metadata.mustache": {
+            "type": "-",
+            "size": 856,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project-card.mustache": {
+            "type": "-",
+            "size": 1603,
+            "lmtime": 0,
+            "modified": false
+          },
+          "scripts.mustache": {
+            "type": "-",
+            "size": 89,
+            "lmtime": 0,
+            "modified": false
+          },
+          "skills-section.mustache": {
+            "type": "-",
+            "size": 799,
+            "lmtime": 0,
+            "modified": false
+          },
+          "social.mustache": {
+            "type": "-",
+            "size": 155,
+            "lmtime": 0,
+            "modified": false
+          },
+          "styles.mustache": {
+            "type": "-",
+            "size": 88,
+            "lmtime": 0,
+            "modified": false
+          },
+          "timeline-item.mustache": {
+            "type": "-",
+            "size": 271,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "pages": {
+          "about": {},
+          "about.mustache": {
+            "type": "-",
+            "size": 6725,
+            "lmtime": 1770060868698.9316,
+            "modified": false
+          },
+          "blog": {},
+          "blog.mustache": {
+            "type": "-",
+            "size": 7607,
+            "lmtime": 1770060911531.1924,
+            "modified": false
+          },
+          "child.mustache": {
+            "type": "-",
+            "size": 809,
+            "lmtime": 0,
+            "modified": false
+          },
+          "clients": {},
+          "contact.mustache": {
+            "type": "-",
+            "size": 877,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery-api-1.mustache": {
+            "type": "-",
+            "size": 226,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery-api.mustache": {
+            "type": "-",
+            "size": 226,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery.mustache": {
+            "type": "-",
+            "size": 541,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.mustache": {
+            "type": "-",
+            "size": 7425,
+            "lmtime": 1770061437022.0378,
+            "modified": false
+          },
+          "mensagens.mustache": {
+            "type": "-",
+            "size": 3323,
+            "lmtime": 1770060933037.2874,
+            "modified": false
+          },
+          "products": {},
+          "products.mustache": {
+            "type": "-",
+            "size": 285,
+            "lmtime": 0,
+            "modified": false
+          },
+          "projects.mustache": {
+            "type": "-",
+            "size": 818,
+            "lmtime": 0,
+            "modified": false
+          },
+          "reserva.mustache": {
+            "type": "-",
+            "size": 3979,
+            "lmtime": 1770060970526.4136,
+            "modified": false
+          }
+        },
+        "data": {
+          "about": {},
+          "about.json": {
+            "type": "-",
+            "size": 1786,
+            "lmtime": 0,
+            "modified": false
+          },
+          "blog": {},
+          "clients": {},
+          "contact.json": {
+            "type": "-",
+            "size": 932,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery-api-1.json": {
+            "type": "-",
+            "size": 1003,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery-api.json": {
+            "type": "-",
+            "size": 1001,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery.json": {
+            "type": "-",
+            "size": 1537,
+            "lmtime": 0,
+            "modified": false
+          },
+          "global.json": {
+            "type": "-",
+            "size": 1181,
+            "lmtime": 1770062174949.7566,
+            "modified": false
+          },
+          "index.json": {
+            "type": "-",
+            "size": 1123,
+            "lmtime": 0,
+            "modified": false
+          },
+          "projects.json": {
+            "type": "-",
+            "size": 2342,
+            "lmtime": 0,
+            "modified": false
+          }
+        }
+      },
+      "test.js": {
+        "type": "-",
+        "size": 211,
+        "lmtime": 0,
+        "modified": false
+      }
+    }
+  },
+  "$version": 1
+}

@@ -1,11 +1,27 @@
 {{< layout}}
 {{$main}}
-  <p>Ver <a href="/products/product1.html">Produto 1</a> baseada em uma sub parent layout</p>
-
-
-
-    {{$product}}
-        <h1>Get In Touch</h1>
-        <p>Let's discuss your next project or collaboration opportunity</p>
-    {{/product}}    
+  <h1 style="text-align:center;margin-bottom:36px;">Fotógrafos</h1>
+  <div class="fotografos-list" style="display:flex;flex-wrap:wrap;gap:36px;justify-content:center;">
+    {{#fotografos}}
+      <div class="fotografo-perfil" style="background:#fff;border-radius:18px;padding:32px 28px 28px 28px;box-shadow:0 2px 16px #0002;display:flex;flex-direction:column;align-items:center;max-width:340px;min-width:260px;flex:1 1 300px;">
+        <img src="{{imagem}}" alt="{{nome}}" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:16px;box-shadow:0 2px 8px #0001;">
+        <h3 style="margin:0 0 4px 0;font-size:1.22rem;font-weight:700;color:#7b0000;">{{nome}}</h3>
+        <div style="color:#888;font-size:1.01rem;margin-bottom:8px;">{{especialidade}}</div>
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+          <span style="background:#f6f6f6;border-radius:8px;padding:4px 10px;font-size:0.98rem;color:#7b0000;font-weight:600;">{{preco}}</span>
+          <span style="color:#555;font-size:0.97rem;">{{distrito}}, {{concelho}}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
+          <span style="color:#f7b500;font-size:1.1rem;">&#9733;</span>
+          <span style="font-size:1.01rem;color:#444;font-weight:600;">{{nota}}</span>
+        </div>
+        <div class="galeria-mini" style="display:flex;gap:6px;margin-bottom:16px;">
+          {{#galeria}}
+            <img src="{{.}}" alt="Foto galeria" style="width:38px;height:38px;border-radius:8px;object-fit:cover;box-shadow:0 1px 4px #0001;">
+          {{/galeria}}
+        </div>
+        <button style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:10px 0;width:100%;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background 0.2s;">Contactar</button>
+      </div>
+    {{/fotografos}}
+  </div>
 {{/main}}

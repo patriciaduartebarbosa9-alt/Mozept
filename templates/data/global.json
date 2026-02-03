@@ -1,4 +1,5 @@
 {
+
   "site": {
     "title": "Moze",
     "description": "Full Stack Developer & Creative Problem Solver",
@@ -33,5 +34,8 @@
     "title": "Ready to Start Your Project?",
     "description": "Let's work together to bring your ideas to life. Contact me today to discuss your next project.",
     "button": "Start Project"
-  }
+  },
+  "styles": [
+    "assets/css/styles.css"
+  ]
 }

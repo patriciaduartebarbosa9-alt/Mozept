@@ -29,5 +29,71 @@
     "title": "Ready to Start a Project?",
     "description": "Let's work together to bring your ideas to life",
     "button": "Start Conversation"
-  }
+  },
+  "styles": [
+    "assets/css/styles.css"
+  ],
+  "isHome": true,
+  "galleryCards": [
+    {
+      "avatar": "https://i.pravatar.cc/40?img=6",
+      "name": "Sergio Silva",
+      "location": "Via Moze • Editorial Porto",
+      "image": "assets/images/1.jpg",
+      "likes": 210,
+      "comments": 12,
+      "photos": 15,
+      "category": "Natureza"
+    },
+    {
+      "avatar": "https://i.pravatar.cc/40?img=7",
+      "name": "Julia Martins",
+      "location": "Via Moze • Editorial Vogue",
+      "image": "assets/images/6.jpg",
+      "likes": 568,
+      "comments": 34,
+      "photos": 23,
+      "category": "Vida Selvagem"
+    },
+    {
+      "avatar": "https://i.pravatar.cc/40?img=8",
+      "name": "Rodrigo Silva",
+      "location": "Via Moze • Editorial Vogue",
+      "image": "assets/images/5.jpg",
+      "likes": 389,
+      "comments": 56,
+      "photos": 18,
+      "category": "Conceptual"
+    },
+    {
+      "avatar": "https://i.pravatar.cc/40?img=9",
+      "name": "Sofia Martins",
+      "location": "Via Moze • Editorial Vogue",
+      "image": "assets/images/1.jpg",
+      "likes": 612,
+      "comments": 78,
+      "photos": 31,
+      "category": "Natureza"
+    },
+    {
+      "avatar": "https://i.pravatar.cc/40?img=10",
+      "name": "Paulo Costa",
+      "location": "Via Moze • Editorial Porto",
+      "image": "assets/images/5.jpg",
+      "likes": 445,
+      "comments": 92,
+      "photos": 27,
+      "category": "Retrato"
+    },
+    {
+      "avatar": "https://i.pravatar.cc/40?img=11",
+      "name": "Ana Oliveira",
+      "location": "Via Moze • Editorial Vogue",
+      "image": "assets/images/1.jpg",
+      "likes": 823,
+      "comments": 145,
+      "photos": 42,
+      "category": "Vida Selvagem"
+    }
+  ]
 }

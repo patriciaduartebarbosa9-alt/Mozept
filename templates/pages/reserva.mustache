@@ -1,85 +1,134 @@
 {{<layout}}
 {{$main}}
-    <section class="reservar-hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>Encontre aqui o seu fotógrafo</h1>
-            
-            <form id="search-form" class="search-form">
-                <!-- Local (Distrito e Concelho) -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="distrito">Distrito</label>
-                        <select id="distrito">
-                            <option value="">Selecione um distrito</option>
-                            <option value="aveiro">Aveiro</option>
-                            <option value="beja">Beja</option>
-                            <option value="braga">Braga</option>
-                            <option value="braganca">Bragança</option>
-                            <option value="castelobranco">Castelo Branco</option>
-                            <option value="coimbra">Coimbra</option>
-                            <option value="evora">Évora</option>
-                            <option value="faro">Faro</option>
-                            <option value="guarda">Guarda</option>
-                            <option value="leiria">Leiria</option>
-                            <option value="lisboa">Lisboa</option>
-                            <option value="portalegre">Portalegre</option>
-                            <option value="porto">Porto</option>
-                            <option value="santarem">Santarém</option>
-                            <option value="setubal">Setúbal</option>
-                            <option value="vianacastelo">Viana do Castelo</option>
-                            <option value="vilareal">Vila Real</option>
-                            <option value="viseu">Viseu</option>
-                            <option value="acores">Açores</option>
-                            <option value="madeira">Madeira</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="concelho">Concelho</label>
-                        <select id="concelho" disabled>
-                            <option value="">Selecione um concelho</option>
-                        </select>
-                    </div>
-                </div>
+        <section class="reservar-hero" style="background:#fdfcf9;min-height:100vh;display:flex;align-items:center;justify-content:center;">
+            <div class="container" style="max-width:420px;width:100%;margin:auto;">
+                <div class="hero-content" style="padding:32px 0;">
+                    <h1 style="font-size:2.6rem;font-weight:700;margin-bottom:32px;line-height:1.1;">Encontre aqui o seu fotografo</h1>
+                    <form id="search-form" class="search-form" style="display:flex;flex-direction:column;gap:18px;">
+                                                <div style="display:flex;gap:12px;">
+                                                    <div style="flex:1;">
+                                                        <select id="distrito" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
+                                                            <option value="">Distrito</option>
+                                                            <option value="aveiro">Aveiro</option>
+                                                            <option value="beja">Beja</option>
+                                                            <option value="braga">Braga</option>
+                                                            <option value="braganca">Bragança</option>
+                                                            <option value="castelobranco">Castelo Branco</option>
+                                                            <option value="coimbra">Coimbra</option>
+                                                            <option value="evora">Évora</option>
+                                                            <option value="faro">Faro</option>
+                                                            <option value="guarda">Guarda</option>
+                                                            <option value="leiria">Leiria</option>
+                                                            <option value="lisboa">Lisboa</option>
+                                                            <option value="portalegre">Portalegre</option>
+                                                            <option value="porto">Porto</option>
+                                                            <option value="santarem">Santarém</option>
+                                                            <option value="setubal">Setúbal</option>
+                                                            <option value="vianacastelo">Viana do Castelo</option>
+                                                            <option value="vilareal">Vila Real</option>
+                                                            <option value="viseu">Viseu</option>
+                                                            <option value="acores">Açores</option>
+                                                            <option value="madeira">Madeira</option>
+                                                        </select>
+                                                    </div>
+                                                    <div style="flex:1;">
+                                                        <select id="concelho" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;" disabled>
+                                                            <option value="">Concelho</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                        <div style="display:flex;gap:12px;">
+                            <div style="position:relative;flex:1;">
+                                <input type="date" placeholder="Data" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
+                            </div>
+                            <div style="position:relative;flex:1;">
+                                <input type="time" placeholder="Hora" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
+                            </div>
+                        </div>
+                        <div style="position:relative;">
+                            <select style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
+                                <option value="">Categoria</option>
+                                <option value="casamento">Casamento</option>
+                                <option value="evento">Evento</option>
+                                <option value="retrato">Retrato</option>
+                                <option value="produto">Produto</option>
+                            </select>
 
-                <!-- Data e Hora (opcionais) -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="data">Data (opcional)</label>
-                        <input type="date" id="data">
-                    </div>
-                    <div class="form-group">
-                        <label for="hora">Hora (opcional)</label>
-                        <input type="time" id="hora">
-                    </div>
-                </div>
+                        </div>
+                        <button type="submit" style="background:#7b0000;color:#fff;font-size:1.1rem;font-weight:500;border:none;border-radius:8px;padding:12px 0;margin-top:8px;cursor:pointer;">Ver preços</button>
+                                        </form>
+<script>
+// Exemplo de concelhos por distrito
+const concelhosPorDistrito = {
+    aveiro: ["Aveiro", "Águeda", "Anadia", "Arouca", "Castelo de Paiva", "Espinho", "Estarreja", "Ílhavo", "Mealhada", "Murtosa", "Oliveira de Azeméis", "Oliveira do Bairro", "Ovar", "Santa Maria da Feira", "São João da Madeira", "Sever do Vouga", "Vagos", "Vale de Cambra"],
+    lisboa: ["Lisboa", "Amadora", "Cascais", "Loures", "Mafra", "Odivelas", "Sintra", "Vila Franca de Xira", "Oeiras", "Alenquer", "Arruda dos Vinhos", "Azambuja", "Cadaval", "Lourinhã", "Sobral de Monte Agraço", "Torres Vedras"],
+    porto: ["Porto", "Gondomar", "Maia", "Matosinhos", "Paredes", "Valongo", "Vila do Conde", "Vila Nova de Gaia", "Santo Tirso", "Trofa", "Felgueiras", "Lousada", "Paços de Ferreira", "Penafiel"],
+};
 
-                <!-- Categoria -->
-                <div class="form-group">
-                    <label for="categoria">Tipo de Fotografia</label>
-                    <select id="categoria">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="casamento">Casamento</option>
-                        <option value="evento">Evento</option>
-                        <option value="retrato">Retrato</option>
-                        <option value="produto">Produto</option>
-                    </select>
-                </div>
+const distritoSelect = document.getElementById('distrito');
+const concelhoSelect = document.getElementById('concelho');
 
-                <button type="submit" class="btn-primary">Ver preços</button>
-            </form>
-        </div>
-    </div>
-</section>
+distritoSelect.addEventListener('change', function() {
+    const distrito = this.value;
+    concelhoSelect.innerHTML = '<option value="">Concelho</option>';
+    if (concelhosPorDistrito[distrito]) {
+        concelhoSelect.disabled = false;
+        concelhosPorDistrito[distrito].forEach(function(concelho) {
+            const opt = document.createElement('option');
+            opt.value = concelho.toLowerCase().replace(/ /g, '-');
+            opt.textContent = concelho;
+            concelhoSelect.appendChild(opt);
+        });
+    } else {
+        concelhoSelect.disabled = true;
+    }
+});
+</script>
+                </div>
+            </div>
+        </section>
 
 <!-- Resultados de Fotógrafos -->
-<section id="results-section" class="results hidden">
-    <div class="container">
-        <h2>Fotógrafos disponíveis</h2>
-        <div id="fotografos-grid" class="fotografos-grid">
-            <!-- Os fotógrafos são carregados dinamicamente -->
+<section id="results-section" class="results hidden" style="display:flex;align-items:center;justify-content:center;min-height:60vh;">
+    <div class="container" style="max-width:700px;width:100%;margin:auto;">
+        <h2 style="text-align:center;">Fotógrafos disponíveis</h2>
+        <div id="fotografos-grid" class="fotografos-grid"></div>
+        <script>
+                async function fetchFotografos() {
+                    const res = await fetch('/templates/data/products.json');
+                    if (!res.ok) return [];
+                    const data = await res.json();
+                    return data.fotografos || [];
+                }
+
+                function renderFotografoCard(f) {
+                    return `
+                        <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
+                            <div style="display:flex;align-items:center;justify-content:space-between;">
+                                <div style="display:flex;align-items:center;gap:16px;">
+                                    <img src="${f.imagem}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+                                    <div>
+                                        <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
+                                        <div style="color:#555;font-size:0.98rem;">${f.concelho} • ${f.nota} <span style='color:#7b0000;'>★</span></div>
+                                    </div>
+                                </div>
+                                <a href="#" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Ver perfil</a>
+                            </div>
+                            <div style="display:flex;gap:8px;margin-top:14px;">
+                                ${(f.galeria||[]).map(img => `<img src="${img}" alt="" style="height:80px;width:120px;object-fit:cover;border-radius:8px;">`).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                document.getElementById('search-form').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    document.getElementById('results-section').classList.remove('hidden');
+                    const fotografos = await fetchFotografos();
+                    document.getElementById('fotografos-grid').innerHTML = fotografos.map(renderFotografoCard).join('');
+                });
+                </script>
         </div>
-    </div>
 </section>
 
 {{/main}}

@@ -998,6 +998,9 @@ async function compile() {
         let errorCount = 0;
         let failedTemplates = [];
 
+        // Copiar assets antes de processar os templates
+        copyAssets();
+
         // Process each template
         for (const templateInfo of templates) {
             try {

@@ -1,4 +1,5 @@
 {
+
   "title": "Blog",
   "blog": {
     "title": "Latest Articles",
@@ -30,5 +31,7 @@
       "readTime": "6 min read",
       "url": "blog/article"
     }
-  ]
+  ],
+   "isBlog": true
+
 }
