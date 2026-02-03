@@ -41,6 +41,180 @@
         <img src="https://picsum.photos/400/400?6">
       </div>
     </div>
+    </script>
+    <script>
+    // Portfolio editável
+    let portfolioEditMode = false;
+    const editBtn = document.getElementById('edit-portfolio-btn');
+    const addBtn = document.getElementById('add-portfolio-item');
+    const portfolioItems = document.getElementById('portfolio-items');
+
+    // Dados iniciais (mock)
+    let portfolioData = [
+      {img:'https://picsum.photos/400/400?1', nome:'Projeto 1', desc:'Descrição 1'},
+      {img:'https://picsum.photos/400/400?2', nome:'Projeto 2', desc:'Descrição 2'},
+      {img:'https://picsum.photos/400/400?3', nome:'Projeto 3', desc:'Descrição 3'},
+      {img:'https://picsum.photos/400/400?4', nome:'Projeto 4', desc:'Descrição 4'},
+      {img:'https://picsum.photos/400/400?5', nome:'Projeto 5', desc:'Descrição 5'},
+      {img:'https://picsum.photos/400/400?6', nome:'Projeto 6', desc:'Descrição 6'}
+    ];
+
+    function renderPortfolio() {
+      portfolioItems.innerHTML = '';
+      portfolioData.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'portfolio-item';
+        div.style = 'position:relative; text-align:center;';
+        if (portfolioEditMode) {
+          div.innerHTML = `
+            <div style='position:relative; display:inline-block; margin-bottom:16px;'>
+              <label style='cursor:pointer;'>
+                <input type='file' accept='image/*' style='display:none;' data-idx='${idx}' class='portfolio-img-input'>
+                <img src='${item.img}' alt='Portfolio' style='width:220px; height:220px; object-fit:cover; border-radius:18px; background:#eee; display:block; margin:auto; cursor:pointer;'>
+              <script>
+                // Alternância de abas do perfil
+                document.addEventListener('DOMContentLoaded', function() {
+                  const tabBtns = document.querySelectorAll('.tab-btn');
+                  const tabPanels = document.querySelectorAll('.tab-panel');
+                  tabBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                      // Remove ativo de todos os botões e painéis
+                      tabBtns.forEach(b => b.classList.remove('active'));
+                      tabPanels.forEach(panel => panel.classList.remove('active'));
+                      // Ativa o botão e painel correspondente
+                      btn.classList.add('active');
+                      const tab = btn.getAttribute('data-tab');
+                      document.getElementById(tab).classList.add('active');
+                    });
+                  });
+                });
+              </script>
+              reader.onload = e => {
+                div.querySelector('img').src = e.target.result;
+                portfolioData[idx].img = e.target.result;
+              };
+              reader.readAsDataURL(this.files[0]);
+            }
+          });
+          // Editar nome
+          div.querySelector('.portfolio-name').addEventListener('input', function() {
+            portfolioData[idx].nome = this.value;
+          });
+          // Editar descrição
+          div.querySelector('.portfolio-desc').addEventListener('input', function() {
+            portfolioData[idx].desc = this.value;
+          });
+          // Remover
+          div.querySelector('.remove-portfolio-item').addEventListener('click', function() {
+            portfolioData.splice(idx,1);
+            renderPortfolio();
+          });
+        } else {
+          div.innerHTML = `<img src='${item.img}' alt='Portfolio' style='width:220px; height:220px; object-fit:cover; border-radius:18px; background:#eee; display:block; margin:auto;'>`;
+        }
+        portfolioItems.appendChild(div);
+
+    editBtn.addEventListener('click', function() {
+      portfolioEditMode = !portfolioEditMode;
+      addBtn.style.display = portfolioEditMode ? 'inline-block' : 'none';
+      editBtn.textContent = portfolioEditMode ? 'Concluir Edição' : 'Editar Portfólio';
+      renderPortfolio();
+    });
+
+    addBtn.addEventListener('click', function() {
+      portfolioData.push({img:'https://picsum.photos/400/400?random='+Math.random(), nome:'', desc:''});
+      renderPortfolio();
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+      addBtn.style.display = 'none';
+      renderPortfolio();
+    });
+    </script>
+    <style>
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      align-items: start;
+      max-width: 900px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .portfolio-item img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #eee;
+      box-shadow: none;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 32px;
+      }
+      .portfolio-item img {
+        width: 160px;
+        height: 160px;
+      }
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+      }
+      .portfolio-item img {
+        width: 100%;
+        height: auto;
+        max-width: 320px;
+      }
+    }
+    </style>
+    </script>
+    </script>
+    </script>
+    <style>
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px 32px;
+      justify-items: center;
+      align-items: center;
+      background: #fcfaf7;
+      border-radius: 0 0 24px 24px;
+    }
+    .portfolio-item img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #eee;
+      box-shadow: none;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .portfolio-item img {
+        width: 160px;
+        height: 160px;
+      }
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+      }
+      .portfolio-item img {
+        width: 100%;
+        height: auto;
+        max-width: 320px;
+      }
+    }
+    </style>
     <!-- SERVIÇOS -->
     <div id="servicos" class="tab-panel">
       <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
