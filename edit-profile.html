@@ -44,7 +44,6 @@
                 <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
             </button>
             <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
-                        <a href="login.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Fazer Login</a>
                         <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
                         <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
             </div>
@@ -86,15 +85,18 @@
     <!-- FOTO DE PERFIL -->
     <section class="edit-section">
       <h2>Foto de Perfil</h2>
-      <div id="profile-preview"></div>
-      <input type="file" accept="image/*" id="profile-pic">
-      <label for="profile-pic">Escolher imagem</label>
+      <div id="profile-preview" style="margin-bottom:12px;"></div>
+      <input type="file" accept="image/*" id="profile-pic" style="display:none;">
+      <label for="profile-pic" class="upload-label" style="display:inline-block; background:#eee; color:#7b0000; border-radius:8px; padding:10px 24px; cursor:pointer; font-weight:500;">Escolher imagem</label>
     </section>
     <!-- PORTFOLIO -->
     <section class="edit-section">
       <h2>Editar Portfólio</h2>
       <div id="portfolio-items"></div>
-      <button type="button" id="add-portfolio-item" style="background:#7b0000; color:#fff; border:none; padding:12px 32px; border-radius:8px; font-size:16px; cursor:pointer; margin:12px 0;">Adicionar Portfolio</button>
+      <div id="portfolio-edit-controls" style="display:flex; gap:12px; margin:12px 0;">
+        <button type="button" id="edit-portfolio-btn" style="background:#7b0000; color:#fff; border:none; padding:12px 32px; border-radius:8px; font-size:16px; cursor:pointer;">Editar Portfólio</button>
+        <button type="button" id="add-portfolio-item" style="background:#eee; color:#7b0000; border:none; padding:12px 32px; border-radius:8px; font-size:16px; cursor:pointer; display:none;">Adicionar</button>
+      </div>
     </section>
     <!-- SERVIÇOS -->
     <section class="edit-section">
@@ -111,6 +113,130 @@
     <button type="submit" class="save-btn">Salvar Alterações</button>
   </form>
   <a href="perfil.html" class="back-link">Voltar ao Perfil</a>
+<script>
+// Estado de edição do portfólio
+let portfolioEditMode = false;
+const editBtn = document.getElementById('edit-portfolio-btn');
+const addBtn = document.getElementById('add-portfolio-item');
+const portfolioItems = document.getElementById('portfolio-items');
+
+editBtn.addEventListener('click', function() {
+  portfolioEditMode = !portfolioEditMode;
+  addBtn.style.display = portfolioEditMode ? 'inline-block' : 'none';
+  // Ativar/desativar edição dos campos existentes
+  document.querySelectorAll('.portfolio-item-edit input, .portfolio-item-edit textarea').forEach(el => {
+    el.disabled = !portfolioEditMode;
+    el.style.background = portfolioEditMode ? '#fff' : '#f2f2f2';
+  });
+  document.querySelectorAll('.remove-portfolio-item').forEach(btn => {
+    btn.style.display = portfolioEditMode ? 'inline-block' : 'none';
+  });
+  editBtn.textContent = portfolioEditMode ? 'Concluir Edição' : 'Editar Portfólio';
+});
+
+// Adicionar item ao portfólio
+addBtn.addEventListener('click', function() {
+  const idx = document.querySelectorAll('.portfolio-item-edit').length;
+  const item = document.createElement('div');
+  item.className = 'portfolio-item-edit';
+  item.style = 'margin-bottom:18px; border:1px solid #eee; border-radius:10px; padding:16px; background:#fafafa;';
+  item.innerHTML = `
+    <label style='display:block; margin-bottom:8px;'>Imagem*
+      <input type='file' accept='image/*' class='portfolio-img-input' data-idx='${idx}' style='display:block; margin-top:4px;' ${portfolioEditMode ? '' : 'disabled'}>
+      <div class='portfolio-img-preview' style='margin-top:8px;'></div>
+    </label>
+    <label style='display:block; margin-bottom:8px;'>Nome*
+      <input type='text' class='portfolio-name' placeholder='Nome do projeto' required style='width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;' ${portfolioEditMode ? '' : 'disabled'}>
+    </label>
+    <label style='display:block; margin-bottom:8px;'>Descrição*
+      <textarea class='portfolio-desc' placeholder='Descreva o projeto...' required style='width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;' ${portfolioEditMode ? '' : 'disabled'}></textarea>
+    </label>
+    <button type='button' class='remove-portfolio-item' style='background:#eee; color:#7b0000; border:none; border-radius:6px; padding:6px 18px; cursor:pointer; margin-top:6px; display:${portfolioEditMode ? 'inline-block' : 'none'};'>Remover</button>
+  `;
+  portfolioItems.appendChild(item);
+  // Preview da imagem
+  item.querySelector('.portfolio-img-input').addEventListener('change', function() {
+    const preview = item.querySelector('.portfolio-img-preview');
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.innerHTML = `<img src='${e.target.result}' alt='Preview' style='max-width:100px; max-height:100px; border-radius:8px; box-shadow:0 2px 8px #0001;'>`;
+      };
+      reader.readAsDataURL(this.files[0]);
+    } else {
+      preview.innerHTML = '';
+    }
+  });
+  // Remover item
+  item.querySelector('.remove-portfolio-item').addEventListener('click', function() {
+    item.remove();
+  });
+});
+// Inicialmente, campos não editáveis/remover oculto
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.portfolio-item-edit input, .portfolio-item-edit textarea').forEach(el => {
+    el.disabled = true;
+    el.style.background = '#f2f2f2';
+  });
+  document.querySelectorAll('.remove-portfolio-item').forEach(btn => {
+    btn.style.display = 'none';
+  });
+  addBtn.style.display = 'none';
+});
+// Adicionar item ao portfólio
+const portfolioItems = document.getElementById('portfolio-items');
+document.getElementById('add-portfolio-item').addEventListener('click', function() {
+  const idx = document.querySelectorAll('.portfolio-item-edit').length;
+  const item = document.createElement('div');
+  item.className = 'portfolio-item-edit';
+  item.style = 'margin-bottom:18px; border:1px solid #eee; border-radius:10px; padding:16px; background:#fafafa;';
+  item.innerHTML = `
+    <label style='display:block; margin-bottom:8px;'>Imagem*
+      <input type='file' accept='image/*' class='portfolio-img-input' data-idx='${idx}' style='display:block; margin-top:4px;'>
+      <div class='portfolio-img-preview' style='margin-top:8px;'></div>
+    </label>
+    <label style='display:block; margin-bottom:8px;'>Nome*
+      <input type='text' class='portfolio-name' placeholder='Nome do projeto' required style='width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;'>
+    </label>
+    <label style='display:block; margin-bottom:8px;'>Descrição*
+      <textarea class='portfolio-desc' placeholder='Descreva o projeto...' required style='width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;'></textarea>
+    </label>
+    <button type='button' class='remove-portfolio-item' style='background:#eee; color:#7b0000; border:none; border-radius:6px; padding:6px 18px; cursor:pointer; margin-top:6px;'>Remover</button>
+  `;
+  portfolioItems.appendChild(item);
+  // Preview da imagem
+  item.querySelector('.portfolio-img-input').addEventListener('change', function() {
+    const preview = item.querySelector('.portfolio-img-preview');
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.innerHTML = `<img src='${e.target.result}' alt='Preview' style='max-width:100px; max-height:100px; border-radius:8px; box-shadow:0 2px 8px #0001;'>`;
+      };
+      reader.readAsDataURL(this.files[0]);
+    } else {
+      preview.innerHTML = '';
+    }
+  });
+  // Remover item
+  item.querySelector('.remove-portfolio-item').addEventListener('click', function() {
+    item.remove();
+  });
+});
+// Preview da imagem de perfil
+const inputPic = document.getElementById('profile-pic');
+const preview = document.getElementById('profile-preview');
+inputPic.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width:120px; max-height:120px; border-radius:50%; box-shadow:0 2px 8px #0001;">`;
+    };
+    reader.readAsDataURL(this.files[0]);
+  } else {
+    preview.innerHTML = '';
+  }
+});
+</script>
 </main>
 
     </main>

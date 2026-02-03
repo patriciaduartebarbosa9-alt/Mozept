@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <meta name="robots" content="">
+        <link rel="canonical" href="">
+        <meta property="og:title" content="">
+        <meta property="og:description" content="">
+        <meta property="og:image" content="">
+        <meta property="og:url" content="">
+        <meta property="og:type" content="">
+        <meta name="twitter:card" content="">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:description" content="">
+        <meta name="twitter:image" content="">
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    
+     <link rel="stylesheet" href="assets/css/styles.css">
+       
+    
+  </head>
+<body>
+    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+    <header class="header">
+        <div class="logo">Moze</div>
+    
+        <nav class="nav">
+            <a href="index.html"> Inicial</a>
+            <a href="reserva.html">Reservar</a>
+            <a href="mensagens.html">Mensagens</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">Sobre Nós</a>
+        </nav>
+    
+        <div class="profile-menu-container" style="position: relative;">
+            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil" onclick="document.getElementById('profile-dropdown').classList.toggle('show')">
+                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            </button>
+            <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
+                        <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
+                        <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
+            </div>
+        </div>
+        <script>
+          document.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('profile-dropdown');
+            var btn = document.getElementById('profile-btn');
+            if (!btn.contains(event.target)) {
+              dropdown.classList.remove('show');
+              dropdown.style.display = 'none';
+            } else {
+              dropdown.style.display = dropdown.classList.contains('show') ? 'block' : 'none';
+            }
+          });
+        </script>
+    </header>
+    
+    <script>
+        const headerConfig = {
+            navPrefix: '',
+            userType: '',
+            userId: null
+        };
+    </script>
+    <script src=""></script>    
+    <main>
+        
+
+<div class="profile-container">
+  <div class="client-card">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="client-avatar" alt="Avatar">
+    <div class="client-info">
+      <div class="client-title">Pedro Tavares</div>
+      <div class="client-desc">Aluno de Multimédia na EsACT</div>
+      <div class="client-meta">
+        <span class="client-rating">★ 4.2(3 avaliações)</span>
+        <span class="client-location">Mirandela, Portugal</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Tabs Únicas (Favoritos, Histórico, Avaliações) -->
+  <div class="tabs-cards-container">
+    <div class="tabs-cards-header" style="margin-bottom:0; margin-top:32px;">
+      <button class="tab-btn-sub active" data-tab="favoritos">Favoritos</button>
+      <button class="tab-btn-sub" data-tab="historico">Histórico</button>
+    </div>
+    <div class="tabs-cards-content">
+      <div id="tab-favoritos" class="tab-cards-panel active">
+        <div class="fav-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" class="fav-avatar" alt="Avatar">
+          <div class="fav-info">
+            <div class="fav-title">Pedro Tavares</div>
+            <div class="fav-desc">Aluno de Multimédia na EsACT</div>
+            <div class="fav-meta">
+              <span class="fav-rating">★ 4.2(3 avaliações)</span>
+              <span class="fav-location">Mirandela, Portugal</span>
+            </div>
+          </div>
+          <button class="fav-contact-btn">Contactar</button>
+        </div>
+      </div>
+      <div id="tab-historico" class="tab-cards-panel" style="display:none;">
+        <div class="fav-card">
+          <img src="https://randomuser.me/api/portraits/men/85.jpg" class="fav-avatar" alt="Avatar">
+          <div class="fav-info">
+            <div class="fav-title">RODRIGO SILVA</div>
+            <div class="fav-desc">Fotógrafo Profissional Especializado em Casamentos e Eventos</div>
+            <div class="fav-meta">
+              <span class="fav-rating">★ 4.9(127 avaliações)</span>
+              <span class="fav-location">Mirandela, Portugal</span>
+            </div>
+          </div>
+          <button class="fav-contact-btn">Contactar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Tabs secundárias (Favoritos, Histórico)
+  const tabBtns = document.querySelectorAll('.tab-btn-sub');
+  const tabPanels = document.querySelectorAll('.tab-cards-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const target = btn.getAttribute('data-tab');
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+      });
+      btn.classList.add('active');
+      const panel = document.getElementById('tab-' + target);
+      if(panel) {
+        panel.classList.add('active');
+        panel.style.display = '';
+      }
+    });
+  });
+
+  // Logout
+  const logoutBtn = document.getElementById('btn-logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function() {
+      if(confirm('Tem a certeza que deseja sair?')) {
+        localStorage.clear();
+        window.location.href = 'login.html';
+      }
+    });
+  }
+});
+</script>
+
+<style>
+.tab-cards-panel {
+  display: none;
+}
+.tab-cards-panel.active {
+  display: block;
+}
+.tabs-cards-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 40px auto 0 auto;
+  max-width: 900px;
+  padding: 0 0 32px 0;
+}
+.tabs-cards-header {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 24px;
+  padding: 0 32px;
+}
+.tab-btn-sub {
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #a00;
+  padding: 18px 0 10px 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-bottom 0.2s;
+}
+.tab-btn-sub.active {
+  color: #a00;
+  border-bottom: 2px solid #a00;
+  font-weight: bold;
+}
+.tabs-cards-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.fav-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  padding: 24px 32px;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  gap: 24px;
+  position: relative;
+}
+.fav-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 16px;
+}
+.fav-info {
+  flex: 1;
+}
+.fav-title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #222;
+}
+.fav-desc {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.fav-meta {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+  color: #666;
+  align-items: center;
+}
+.fav-rating {
+  color: #a00;
+  font-weight: bold;
+}
+.fav-contact-btn {
+  background: #a00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.fav-contact-btn:hover {
+  background: #7b0000;
+}
+
+.client-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  padding: 24px 32px;
+  margin: 24px auto 32px auto;
+  max-width: 700px;
+  width: 100%;
+  gap: 24px;
+}
+.client-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 16px;
+}
+.client-info {
+  flex: 1;
+}
+.client-title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #222;
+}
+.client-desc {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.client-meta {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+  color: #666;
+  align-items: center;
+}
+.client-rating {
+  color: #a00;
+  font-weight: bold;
+}
+.client-location {
+  color: #222;
+}
+</style>
+
+
+    </main>
+    
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo"><small>&copy;</small>Moze</div>
+            </div>
+            <div class="footer-section">
+                <h3>Empresa</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html">Sobre nós</a></li>
+                    <li><a href="contact.html">Contatos</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos e Condições</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <ul class="footer-social">
+                    <li><a href="https://www.instagram.com/moze.capture/">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Linkedin</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <div class="footer-newsletter">Subscreva se à nossa Newsletter</div>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Insira o seu e-mail" required>
+                    <button type="submit" class="newsletter-btn">&#8594;</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Moze. All rights reserved.</p>
+        </div>
+    </footer>    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
+    <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
+       
+      
+   </body>
+</html>

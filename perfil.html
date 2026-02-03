@@ -44,7 +44,6 @@
                 <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
             </button>
             <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
-                        <a href="login.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Fazer Login</a>
                         <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
                         <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
             </div>
@@ -103,17 +102,161 @@
   <!-- CONTEÚDO DAS TABS -->
   <section class="tab-content">
     <!-- PORTFÓLIO -->
-    <div id="portfolio" class="tab-panel active">
-      <button class="edit-btn" data-edit="portfolio">Editar Portfólio</button>
-      <div class="portfolio">
-        <img src="https://picsum.photos/400/400?1">
-        <img src="https://picsum.photos/400/400?2">
-        <img src="https://picsum.photos/400/400?3">
-        <img src="https://picsum.photos/400/400?4">
-        <img src="https://picsum.photos/400/400?5">
-        <img src="https://picsum.photos/400/400?6">
-      </div>
+<div id="portfolio" class="tab-panel active">
+  <button class="edit-btn" id="edit-portfolio-btn" data-edit="portfolio">
+    Editar Portfólio
+  </button>
+
+  <button class="edit-btn" id="add-portfolio-item"
+    style="background:#eee; color:#7b0000; margin-left:12px; display:none;">
+    Adicionar
+  </button>
+
+  <div style="display:flex; justify-content:center; background:#fcfaf7;
+              border-radius:0 0 24px 24px; padding:32px 0;">
+    <div class="portfolio portfolio-grid" id="portfolio-items"
+         style="background:transparent; padding:0; border-radius:0;">
     </div>
+  </div>
+</div>
+
+<script>
+let portfolioEditMode = false;
+const editBtn = document.getElementById('edit-portfolio-btn');
+const addBtn = document.getElementById('add-portfolio-item');
+const portfolioItems = document.getElementById('portfolio-items');
+
+let portfolioData = [
+  {img:'https://picsum.photos/400/400?1', nome:'Projeto 1', desc:'Descrição 1'},
+  {img:'https://picsum.photos/400/400?2', nome:'Projeto 2', desc:'Descrição 2'},
+  {img:'https://picsum.photos/400/400?3', nome:'Projeto 3', desc:'Descrição 3'},
+  {img:'https://picsum.photos/400/400?4', nome:'Projeto 4', desc:'Descrição 4'},
+  {img:'https://picsum.photos/400/400?5', nome:'Projeto 5', desc:'Descrição 5'},
+  {img:'https://picsum.photos/400/400?6', nome:'Projeto 6', desc:'Descrição 6'}
+];
+
+function renderPortfolio() {
+  portfolioItems.innerHTML = '';
+
+  portfolioData.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'portfolio-item';
+    div.style = 'position:relative; text-align:center;';
+
+    if (portfolioEditMode) {
+      div.innerHTML = `
+        <div style="position:relative; display:inline-block; margin-bottom:16px;">
+          <label style="cursor:pointer;">
+            <input type="file" accept="image/*" style="display:none;"
+                   data-idx="${idx}" class="portfolio-img-input">
+            <img src="${item.img}">
+          </label>
+
+          <button type="button" class="delete-img-btn"
+                  style="position:absolute; top:8px; right:8px;
+                  background:#fff; border:none; border-radius:50%;
+                  width:32px; height:32px; cursor:pointer;">
+            🗑
+          </button>
+        </div>
+
+        <input type="text" value="${item.nome}"
+               class="portfolio-name"
+               style="width:100%; margin:10px 0; padding:8px;
+               border-radius:6px; border:1px solid #ccc;">
+
+        <textarea class="portfolio-desc"
+                  style="width:100%; padding:8px;
+                  border-radius:6px; border:1px solid #ccc;">
+          ${item.desc}
+        </textarea>
+
+        <button type="button" class="remove-portfolio-item"
+                style="margin-top:8px;">
+          Remover
+        </button>
+      `;
+
+      div.querySelector('.delete-img-btn').onclick = () => {
+        portfolioData.splice(idx, 1);
+        renderPortfolio();
+      };
+
+      div.querySelector('.portfolio-img-input').onchange = function () {
+        if (this.files[0]) {
+          const reader = new FileReader();
+          reader.onload = e => {
+            portfolioData[idx].img = e.target.result;
+            renderPortfolio();
+          };
+          reader.readAsDataURL(this.files[0]);
+        }
+      };
+
+      div.querySelector('.portfolio-name').oninput =
+        e => portfolioData[idx].nome = e.target.value;
+
+      div.querySelector('.portfolio-desc').oninput =
+        e => portfolioData[idx].desc = e.target.value;
+
+      div.querySelector('.remove-portfolio-item').onclick = () => {
+        portfolioData.splice(idx, 1);
+        renderPortfolio();
+      };
+
+    } else {
+      div.innerHTML = `<img src="${item.img}">`;
+    }
+
+    portfolioItems.appendChild(div);
+  });
+}
+
+editBtn.onclick = () => {
+  portfolioEditMode = !portfolioEditMode;
+  addBtn.style.display = portfolioEditMode ? 'inline-block' : 'none';
+  editBtn.textContent = portfolioEditMode
+    ? 'Concluir Edição'
+    : 'Editar Portfólio';
+  renderPortfolio();
+};
+
+addBtn.onclick = () => {
+  portfolioData.push({
+    img:'https://picsum.photos/400/400?random='+Math.random(),
+    nome:'', desc:''
+  });
+  renderPortfolio();
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  addBtn.style.display = 'none';
+  renderPortfolio();
+});
+</script>
+
+<style>
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  justify-content: center;
+  align-items: start;
+  max-width: 760px;
+  width: 100%;
+  margin: auto;
+}
+
+.portfolio-item img {
+  width: 100%;
+  max-width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #eee;
+  display: block;
+}
+</style>
     <!-- SERVIÇOS -->
     <div id="servicos" class="tab-panel">
       <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
@@ -136,8 +279,7 @@
       </div>
     </div>
   </section>
-</main>
-
+    </main>
 <script>
   // Alternância de abas do perfil
   document.addEventListener('DOMContentLoaded', function() {

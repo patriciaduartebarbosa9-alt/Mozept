@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Development Techniques</title>
+    <title></title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -72,21 +72,58 @@
     <script src=""></script>    
     <main>
         
-<section class="page-header">
-    <div class="container">
-        <h1>Deep Nested Test Page</h1>
-        <p>Testing nested folder compilation</p>
+<main class="register-main">
+  <div class="register-container">
+    <div class="register-form-side">
+      <h2 style="margin-bottom: 18px;">Entrar</h2>
+      <div class="register-socials" style="margin-bottom: 18px;">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
+      </div>
+      <form class="register-form" id="login-form">
+        <label>Email*
+          <input type="email" name="email" placeholder="email" required>
+        </label>
+        <label>Password*
+          <div class="password-field">
+            <input type="password" name="password" placeholder="password" id="login-password" required>
+            <span class="toggle-password" onclick="togglePassword()"><i class="fa fa-eye"></i></span>
+          </div>
+        </label>
+        <button type="submit" class="register-btn">Entrar</button>
+      </form>
     </div>
-</section>
-
-<section class="article-content">
-    <div class="container">
-        <article class="blog-article">
-            <h2>Deep Nested Test</h2>
-            <p>This page is in blog/2025/ to test deeper relative path calculations.</p>
-        </article>
+    <div class="register-welcome">
+      <h1>Olá!</h1>
+      <p>Se ainda não se registou no nosso website<br>pode clicar aqui.</p>
+      <a href="registo.html" class="register-btn-outline">Registar</a>
     </div>
-</section>
+  </div>
+</main>
+<script>
+function togglePassword() {
+  const pwd = document.getElementById('login-password');
+  const icon = document.querySelector('.toggle-password i');
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    pwd.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+}
+// Redireciona para index.html ao submeter o formulário
+document.getElementById('login-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Aqui você pode adicionar validação/autenticação real
+  window.location.href = 'index.html';
+});
+</script>
 
     </main>
     

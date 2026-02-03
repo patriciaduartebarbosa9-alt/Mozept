@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Development Techniques</title>
+    <title></title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -72,21 +72,93 @@
     <script src=""></script>    
     <main>
         
-<section class="page-header">
-    <div class="container">
-        <h1>Deep Nested Test Page</h1>
-        <p>Testing nested folder compilation</p>
+<main class="register-main">
+  <div class="register-container">
+    <div class="register-welcome">
+      <h1>Bem Vindo<br>de Volta!</h1>
+      <p>Entre para desfrutar melhor do nosso website.</p>
+      <a href="login.html" class="register-btn-outline">Entrar</a>
     </div>
-</section>
-
-<section class="article-content">
-    <div class="container">
-        <article class="blog-article">
-            <h2>Deep Nested Test</h2>
-            <p>This page is in blog/2025/ to test deeper relative path calculations.</p>
-        </article>
+    <div class="register-form-side">
+      <h2>Criar Conta</h2>
+      <div class="register-socials">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
+      </div>
+      <form class="register-form" id="register-form">
+        <label>Nome Completo*
+          <input type="text" name="nome" placeholder="nome" required>
+        </label>
+        <label>Email*
+          <input type="email" name="email" placeholder="email@mail.com" required>
+        </label>
+        <label>Password*
+          <div class="password-field">
+            <input type="password" name="password" placeholder="*****" id="reg-password" required>
+            <span class="toggle-password" onclick="togglePassword()"><i class="fa fa-eye"></i></span>
+          </div>
+        </label>
+        <label>Certificado*
+          <div class="file-upload-area" style="margin-top:8px;">
+            <input type="file" name="certificado" id="certificado" required style="display:none;">
+            <div id="certificado-drop" class="file-drop" style="border:2px dashed #bbb; border-radius:10px; padding:24px; text-align:center; background:#fafafa; cursor:pointer;">
+              <i class="fa fa-cloud-upload-alt" style="font-size:2rem; color:#bbb;"></i><br>
+              <span>Faz upload do seu ficheiro ou arrasta para aqui,<br> .pdf, .jpg, .png (máx. 5MB)</span><br>
+              <button type="button" onclick="document.getElementById('certificado').click();" style="margin-top:10px; background:#eee; border:none; border-radius:6px; padding:6px 18px; cursor:pointer;">Escolher ficheiro</button>
+            </div>
+            <span id="certificado-filename" style="display:block; margin-top:8px; color:#870000;"></span>
+          </div>
+        </label>
+        <button type="submit" class="register-btn">Registar</button>
+      </form>
     </div>
-</section>
+  </div>
+</main>
+<script>
+function togglePassword() {
+  const pwd = document.getElementById('reg-password');
+  const icon = document.querySelector('.toggle-password i');
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    pwd.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+}
+// Drag and drop para certificado
+const dropArea = document.getElementById('certificado-drop');
+const fileInput = document.getElementById('certificado');
+const fileName = document.getElementById('certificado-filename');
+dropArea.addEventListener('click', () => fileInput.click());
+dropArea.addEventListener('dragover', e => { e.preventDefault(); dropArea.style.background = '#f0eaea'; });
+dropArea.addEventListener('dragleave', e => { e.preventDefault(); dropArea.style.background = '#fafafa'; });
+dropArea.addEventListener('drop', e => {
+  e.preventDefault();
+  fileInput.files = e.dataTransfer.files;
+  showFileName();
+  dropArea.style.background = '#fafafa';
+});
+fileInput.addEventListener('change', showFileName);
+function showFileName() {
+  if (fileInput.files.length > 0) {
+    fileName.textContent = fileInput.files[0].name;
+  } else {
+    fileName.textContent = '';
+  }
+}
+// Redireciona para login.html ao submeter o formulário
+document.getElementById('register-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Aqui você pode adicionar validação/envio real
+  window.location.href = 'login.html';
+});
+</script>
 
     </main>
     
