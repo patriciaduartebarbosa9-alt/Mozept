@@ -16,7 +16,7 @@
         <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
         <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
       </div>
-      <form class="register-form" id="register-form">
+      <form class="register-form" id="register-form" action="login.html" method="POST" enctype="multipart/form-data">
         <label>Nome Completo*
           <input type="text" name="nome" placeholder="nome" required>
         </label>
@@ -80,12 +80,7 @@ function showFileName() {
     fileName.textContent = '';
   }
 }
-// Redireciona para login.html ao submeter o formulário
-document.getElementById('register-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  // Aqui você pode adicionar validação/envio real
-  window.location.href = 'login.html';
-});
+// Nenhum JS impede o envio do formulário. O envio é feito diretamente para insert_fotografo.php via POST.
 </script>
 {{/main}}
 {{/layout}}

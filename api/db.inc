@@ -1,9 +1,10 @@
 <?php
 // Database connection details
-$host = 'localhost';
-$username = 'root';
-$password = ''; // Update with your MySQL password
-$database = 'mustache'; // Update with your database name
+
+$host = 'sql100.infinityfree.com';
+$username = 'if0_40999093';
+$password = 'mozept123';
+$database = 'if0_40999093_moze';
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $database);

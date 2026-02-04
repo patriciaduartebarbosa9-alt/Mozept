@@ -6,8 +6,8 @@ $(document).ready(function() {
         event.preventDefault(); // Prevent the default form submission
 
         var formData = {
-            name: $('#name').val(),
-            nif: $('#nif').val()
+            nome: $('#nome').val(),
+            id: $('#id').val()
         };
         console.log(formData); // Log the form data for debugging
         $.ajax({

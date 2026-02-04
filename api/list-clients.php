@@ -24,7 +24,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || parse_url($_SERVER['HTTP_REFERER'], PHP_
 
 try {
     // Query to fetch clients
-    $sql = "SELECT id, name, nif FROM clients";
+    $sql = "SELECT id, nome, id, cliente FROM cliente";
     $result = $conn->query($sql);
     if ($result === false) {
         http_response_code(500);
@@ -32,14 +32,14 @@ try {
         exit;
     }
 
-    $clients = [];
+    $cliente = [];
     while ($row = $result->fetch_assoc()) {
-        $clients[] = $row;
+        $cliente[] = $row;
     }
 
     // Return JSON response
     http_response_code(200);
-    echo json_encode(['clients' => $clients]);
+    echo json_encode(['cliente' => $cliente]);
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['message' => $e->getMessage()]);

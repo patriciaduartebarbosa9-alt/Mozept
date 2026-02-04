@@ -1,66 +1,102 @@
 <?php
-// Include the database configuration
-require_once 'db.inc';
+// Iniciar sessão
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-try {
-    // Check if the request method is POST
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Se já está autenticado, redirecionar
+if (isset($_SESSION['id'])) {
+    header('Location: index.html');
+    exit;
+}
 
-        $rawData = file_get_contents('php://input');
-        $data = json_decode($rawData, true);
+$erro = '';
+$sucesso = '';
 
-        // Get the form data from JSON
-        $name = isset($data['name']) ? trim($data['name']) : '';
-        $nif = isset($data['nif']) ? trim($data['nif']) : '';
-        // $name ="ana";
-        // $nif ="12";   
-        // Validate the data
-        if (empty($name) || empty($nif)) {
-            http_response_code(400);
-            echo json_encode(['message' => 'Name and NIF are required.']);
-            exit;
-        }
+// Processar formulário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $password_confirm = $_POST['password_confirm'] ?? '';
+    $id = $_POST['id'] ?? '';
 
-        // Check if NIF already exists
-        $checkStmt = $conn->prepare("SELECT COUNT(*) FROM clients WHERE nif = ?");
-        if (!$checkStmt) {
-            throw new Exception('Failed to prepare check statement: ' . $conn->error);
-        }
-        $checkStmt->bind_param("i", $nif);
-        $checkStmt->execute();
-        $checkStmt->bind_result($count);
-        $checkStmt->fetch();
-        $checkStmt->close();
-
-        if ($count > 0) {
-            http_response_code(400);
-            echo json_encode(['message' => 'The provided NIF already exists in the database. Please use a unique NIF.']);
-            exit;
-        }
-
-        // Prepare and bind the SQL statement
-        $stmt = $conn->prepare("INSERT INTO clients (name, nif) VALUES (?, ?)");
-        if (!$stmt) {
-            throw new Exception('Failed to prepare statement: ' . $conn->error);
-        }
-        $stmt->bind_param("si", $name, $nif);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            http_response_code(200);
-            echo json_encode(['message' => 'Client data inserted successfully.']);
-        } else {
-            throw new Exception('Failed to insert data: ' . $stmt->error);
-        }
-        // Close the statement and connection
-        $stmt->close();
-        $conn->close();
+    // Validações
+    if (empty($nome) || empty($email) || empty($password) || empty($password_confirm)) {
+        $erro = 'Todos os campos são obrigatórios';
+    } elseif ($password !== $password_confirm) {
+        $erro = 'As passwords não coincidem';
+    } elseif (strlen($password) < 6) {
+        $erro = 'A password deve ter no mínimo 6 caracteres';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erro = 'Email inválido';
     } else {
-        // Respond with an error if the request method is not POST
-        http_response_code(405);
-        echo json_encode(['message' => 'Invalid request method.']);
+        // Ligação à BD
+            $host = 'sql100.infinityfree.com';
+            $username = 'if0_40999093';
+            $password = 'mozept123';
+            $database = 'if0_40999093_moze';
+
+        $conn = mysqli_connect($host, $user, $pass, $db);
+
+        if (!$conn) {
+            $erro = 'Erro ao conectar à base de dados';
+        } else {
+            mysqli_set_charset($conn, "utf8mb4");
+
+            // Verificar se email já existe
+            $stmt = $conn->prepare("SELECT id FROM utilizador WHERE email = ?");
+            if ($stmt) {
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    $erro = 'Este email já está registado';
+                } else {
+                    // Hash da password
+                    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+                    // Inserir utilizador
+                    $stmt = $conn->prepare("
+                        INSERT INTO utilizador (id, idfotografo, idcliente, email, password)
+                        VALUES (?, ?, ?, ?, ?)
+                    ");
+
+                    if ($stmt) {
+                        $stmt->bind_param("sssss", $id, $idfotografo, $idcliente, $email, $password_hash);
+
+                        if ($stmt->execute()) {
+                            $utilizador_id = $stmt->insert_id;
+
+                            // Criar registo em clientes
+                            $stmt2 = $conn->prepare("INSERT INTO clientes (id, nome) VALUES (?, ?)");
+                            if ($stmt2) {
+                                $localizacao = '';
+                                $stmt2->bind_param("is", $id, $nome);
+                                $stmt2->execute();
+                                $stmt2->close();
+                            }
+
+                            // Login automático
+                            $_SESSION['id'] = $id;
+                            $_SESSION['tipo'] = 'cliente';
+
+                            header('Location: perfil-cliente.php');
+                            exit;
+                        } else {
+                            $erro = 'Erro ao registar utilizador: ' . mysqli_error($conn);
+                        }
+                    } else {
+                        $erro = 'Erro na preparação da query';
+                    }
+                }
+                $stmt->close();
+            } else {
+                $erro = 'Erro ao verificar email';
+            }
+
+            mysqli_close($conn);
+        }
     }
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['message' => $e->getMessage()]);
 }

@@ -2,7 +2,25 @@
   "ftp://if0_40999093@ftpupload.net:21": {
     "htdocs": {
       ".github": {},
+      ".htaccess": {
+        "type": "-",
+        "size": 63,
+        "lmtime": 0,
+        "modified": false
+      },
       ".vscode": {},
+      "404.html": {
+        "type": "-",
+        "size": 819,
+        "lmtime": 1770207840342.263,
+        "modified": false
+      },
+      "404.php": {
+        "type": "-",
+        "size": 817,
+        "lmtime": 1770207779775.1787,
+        "modified": false
+      },
       "README.md": {
         "type": "-",
         "size": 11289,
@@ -24,30 +42,220 @@
         },
         "index.html": {
           "type": "-",
-          "size": 7242,
-          "lmtime": 1770134968929.3645,
+          "size": 7253,
+          "lmtime": 1770207842576.9146,
           "modified": false
         }
       },
       "about.html": {
         "type": "-",
-        "size": 24843,
-        "lmtime": 1770134968938.8403,
+        "size": 18833,
+        "lmtime": 1770207842587.078,
         "modified": false
       },
-      "api": {},
+      "api": {
+        "config.php": {
+          "type": "-",
+          "size": 618,
+          "lmtime": 1770199836809.0054,
+          "modified": false
+        },
+        "db.inc": {
+          "type": "-",
+          "size": 408,
+          "lmtime": 0,
+          "modified": false
+        },
+        "gallery.php": {
+          "type": "-",
+          "size": 1090,
+          "lmtime": 0,
+          "modified": false
+        },
+        "insert_client.php": {
+          "type": "-",
+          "size": 2359,
+          "lmtime": 0,
+          "modified": false
+        },
+        "list-clients.php": {
+          "type": "-",
+          "size": 1362,
+          "lmtime": 0,
+          "modified": false
+        },
+        "teste.php": {
+          "type": "-",
+          "size": 169,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
       "assets": {
         "css": {
+          "404.css": {
+            "type": "-",
+            "size": 1566,
+            "lmtime": 1770207613378.3774,
+            "modified": false
+          },
+          "erro404.css": {
+            "type": "-",
+            "size": 1125,
+            "lmtime": 1770206098997.901,
+            "modified": true
+          },
           "gallery-slider.css": {
             "type": "-",
             "size": 723,
             "lmtime": 1770061407014.4504,
             "modified": false
           },
+          "perfilcliente.css": {
+            "type": "-",
+            "size": 2674,
+            "lmtime": 1770200416842.8853,
+            "modified": false
+          },
           "styles.css": {
             "type": "-",
-            "size": 31619,
-            "lmtime": 1770130033758.7803,
+            "size": 46193,
+            "lmtime": 1770207604217.2307,
+            "modified": false
+          }
+        },
+        "images": {
+          "1.jpg": {
+            "type": "-",
+            "size": 861703,
+            "lmtime": 0,
+            "modified": false
+          },
+          "2.png": {
+            "type": "-",
+            "size": 693934,
+            "lmtime": 0,
+            "modified": false
+          },
+          "3.jpg": {
+            "type": "-",
+            "size": 619973,
+            "lmtime": 0,
+            "modified": false
+          },
+          "4.jpg": {
+            "type": "-",
+            "size": 650543,
+            "lmtime": 0,
+            "modified": false
+          },
+          "5.jpg": {
+            "type": "-",
+            "size": 486831,
+            "lmtime": 0,
+            "modified": false
+          },
+          "6.jpg": {
+            "type": "-",
+            "size": 449528,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Captura de ecrã 2025-11-17 142437.png": {
+            "type": "-",
+            "size": 693934,
+            "lmtime": 0,
+            "modified": false
+          },
+          "IMG_8496.jpg": {
+            "type": "-",
+            "size": 619973,
+            "lmtime": 0,
+            "modified": false
+          },
+          "IMG_8569.jpg": {
+            "type": "-",
+            "size": 650543,
+            "lmtime": 0,
+            "modified": false
+          },
+          "IMG_8602.jpg": {
+            "type": "-",
+            "size": 486831,
+            "lmtime": 0,
+            "modified": false
+          },
+          "IMG_9854.jpg": {
+            "type": "-",
+            "size": 861703,
+            "lmtime": 0,
+            "modified": false
+          },
+          "gallery": {},
+          "pag.404.jpeg": {
+            "type": "-",
+            "size": 88541,
+            "lmtime": 1770203332081.7993,
+            "modified": false
+          },
+          "pag.404.jpg": {
+            "type": "-",
+            "size": 88473,
+            "lmtime": 1770204240313.9941,
+            "modified": false
+          },
+          "pag404.jpg": {
+            "type": "-",
+            "size": 88473,
+            "lmtime": 1770204240313.9941,
+            "modified": false
+          },
+          "project1.svg": {
+            "type": "-",
+            "size": 1110,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project2.svg": {
+            "type": "-",
+            "size": 1257,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project3.svg": {
+            "type": "-",
+            "size": 1276,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project4.svg": {
+            "type": "-",
+            "size": 1372,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project5.svg": {
+            "type": "-",
+            "size": 1476,
+            "lmtime": 0,
+            "modified": false
+          },
+          "project6.svg": {
+            "type": "-",
+            "size": 1449,
+            "lmtime": 0,
+            "modified": false
+          },
+          "publicidade1.jpg": {
+            "type": "-",
+            "size": 449528,
+            "lmtime": 0,
+            "modified": false
+          },
+          "test1.png": {
+            "type": "-",
+            "size": 313870,
+            "lmtime": 0,
             "modified": false
           }
         }
@@ -62,14 +270,14 @@
         "1": {
           "1.html": {
             "type": "-",
-            "size": 6193,
-            "lmtime": 1770134968945.9802,
+            "size": 6204,
+            "lmtime": 1770207842594.239,
             "modified": false
           },
           "2.html": {
             "type": "-",
             "size": 1049,
-            "lmtime": 1770134968953.7744,
+            "lmtime": 1770207842599.764,
             "modified": false
           }
         },
@@ -77,22 +285,22 @@
           "articles": {
             "sample.html": {
               "type": "-",
-              "size": 6192,
-              "lmtime": 1770134968959.0596,
+              "size": 6203,
+              "lmtime": 1770207842603.289,
               "modified": false
             }
           },
           "test.html": {
             "type": "-",
-            "size": 6177,
-            "lmtime": 1770134968962.8586,
+            "size": 6188,
+            "lmtime": 1770207842606.2834,
             "modified": false
           }
         },
         "article.html": {
           "type": "-",
-          "size": 6074,
-          "lmtime": 1770134968966.8677,
+          "size": 6085,
+          "lmtime": 1770207842609.801,
           "modified": false
         },
         "blog.html": {
@@ -103,21 +311,21 @@
         },
         "index.html": {
           "type": "-",
-          "size": 6471,
-          "lmtime": 1770134968973.4475,
+          "size": 6482,
+          "lmtime": 1770207842614.3137,
           "modified": false
         }
       },
       "blog.html": {
         "type": "-",
-        "size": 13248,
-        "lmtime": 1770134968980.9524,
+        "size": 13259,
+        "lmtime": 1770207842620.8318,
         "modified": false
       },
       "child.html": {
         "type": "-",
         "size": 1333,
-        "lmtime": 1770134968984.2283,
+        "lmtime": 1770207842625.833,
         "modified": false
       },
       "clients": {
@@ -129,8 +337,8 @@
         },
         "insert.html": {
           "type": "-",
-          "size": 6555,
-          "lmtime": 1770134968988.1152,
+          "size": 6566,
+          "lmtime": 1770207842630.8481,
           "modified": false
         },
         "insert_client.html": {
@@ -166,14 +374,20 @@
       },
       "contact.html": {
         "type": "-",
-        "size": 8811,
-        "lmtime": 1770134968996.862,
+        "size": 8822,
+        "lmtime": 1770207842635.8596,
         "modified": false
       },
       "edit-profile.html": {
         "type": "-",
-        "size": 14199,
-        "lmtime": 1770134969000.0142,
+        "size": 14210,
+        "lmtime": 1770207842641.937,
+        "modified": false
+      },
+      "erro404.html": {
+        "type": "-",
+        "size": 2777,
+        "lmtime": 1770206762886.6904,
         "modified": false
       },
       "files for your website should be uploaded here!": {
@@ -184,27 +398,27 @@
       },
       "gallery-api-1.html": {
         "type": "-",
-        "size": 6517,
-        "lmtime": 1770134969001.3723,
+        "size": 6528,
+        "lmtime": 1770207842645.938,
         "modified": false
       },
       "gallery-api.html": {
         "type": "-",
-        "size": 6515,
-        "lmtime": 1770134969006.6501,
+        "size": 6526,
+        "lmtime": 1770207842647.937,
         "modified": false
       },
       "gallery.html": {
         "type": "-",
-        "size": 7581,
-        "lmtime": 1770134969008.1362,
+        "size": 7592,
+        "lmtime": 1770207842651.9736,
         "modified": false
       },
       "htdocs": {},
       "index.html": {
         "type": "-",
-        "size": 12529,
-        "lmtime": 1770134969014.114,
+        "size": 12540,
+        "lmtime": 1770207842655.486,
         "modified": false
       },
       "index.php": {
@@ -221,14 +435,14 @@
       },
       "login.html": {
         "type": "-",
-        "size": 7833,
-        "lmtime": 1770134969019.996,
+        "size": 7844,
+        "lmtime": 1770207842661.0044,
         "modified": false
       },
       "mensagens.html": {
         "type": "-",
-        "size": 17798,
-        "lmtime": 1770134969022.686,
+        "size": 12540,
+        "lmtime": 1770207842664.0034,
         "modified": false
       },
       "mustache-website.code-workspace": {
@@ -250,42 +464,48 @@
         "lmtime": 0,
         "modified": false
       },
+      "pag404.jpg": {
+        "type": "-",
+        "size": 88473,
+        "lmtime": 1770204240313.9941,
+        "modified": false
+      },
       "perfil.html": {
         "type": "-",
-        "size": 13061,
-        "lmtime": 1770135569540.2058,
+        "size": 12704,
+        "lmtime": 1770207842669.0034,
         "modified": false
       },
       "perfilcliente.html": {
         "type": "-",
-        "size": 11793,
-        "lmtime": 1770136782450.363,
+        "size": 8803,
+        "lmtime": 1770207842677.38,
         "modified": false
       },
       "products": {
         "product1.html": {
           "type": "-",
-          "size": 5818,
-          "lmtime": 1770134969034.5847,
+          "size": 5829,
+          "lmtime": 1770207842686.907,
           "modified": false
         },
         "product2.html": {
           "type": "-",
-          "size": 5835,
-          "lmtime": 1770134969039.1067,
+          "size": 5846,
+          "lmtime": 1770207842691.9287,
           "modified": false
         }
       },
       "products.html": {
         "type": "-",
-        "size": 10506,
-        "lmtime": 1770134969044.1133,
+        "size": 10517,
+        "lmtime": 1770207842695.9294,
         "modified": false
       },
       "projects.html": {
         "type": "-",
-        "size": 18109,
-        "lmtime": 1770134969048.9077,
+        "size": 18120,
+        "lmtime": 1770207842700.9978,
         "modified": false
       },
       "registar.html": {
@@ -296,26 +516,26 @@
       },
       "registarcliente.html": {
         "type": "-",
-        "size": 7919,
-        "lmtime": 1770135732393.266,
+        "size": 7930,
+        "lmtime": 1770207842703.995,
         "modified": false
       },
       "registarfotografo.html": {
         "type": "-",
-        "size": 9773,
-        "lmtime": 1770134969058.7837,
+        "size": 9784,
+        "lmtime": 1770207842707.9973,
         "modified": false
       },
       "registo.html": {
         "type": "-",
-        "size": 6409,
-        "lmtime": 1770134969062.4294,
+        "size": 6420,
+        "lmtime": 1770207842712.146,
         "modified": false
       },
       "reserva.html": {
         "type": "-",
-        "size": 15373,
-        "lmtime": 1770134969067.3584,
+        "size": 15384,
+        "lmtime": 1770207842718.6582,
         "modified": false
       },
       "settings.json": {
@@ -413,11 +633,17 @@
           }
         },
         "pages": {
+          "404.mustache": {
+            "type": "-",
+            "size": 912,
+            "lmtime": 1770207287073.739,
+            "modified": false
+          },
           "about": {},
           "about.mustache": {
             "type": "-",
-            "size": 19094,
-            "lmtime": 1770076377445.4497,
+            "size": 13073,
+            "lmtime": 1770202364085.0994,
             "modified": false
           },
           "blog": {},
@@ -444,6 +670,12 @@
             "type": "-",
             "size": 8559,
             "lmtime": 1770131674426.333,
+            "modified": false
+          },
+          "erro404.mustache": {
+            "type": "-",
+            "size": 940,
+            "lmtime": 1770206753833.469,
             "modified": false
           },
           "gallery-api-1.mustache": {
@@ -478,20 +710,20 @@
           },
           "mensagens.mustache": {
             "type": "-",
-            "size": 12179,
-            "lmtime": 1770075329867.186,
+            "size": 6888,
+            "lmtime": 1770202246566.4946,
             "modified": false
           },
           "perfil.mustache": {
             "type": "-",
-            "size": 7419,
-            "lmtime": 1770135567901.6821,
+            "size": 7051,
+            "lmtime": 1770202139932.447,
             "modified": false
           },
           "perfilcliente.mustache": {
             "type": "-",
-            "size": 6153,
-            "lmtime": 1770136780171.285,
+            "size": 3111,
+            "lmtime": 1770202149398.6958,
             "modified": false
           },
           "products": {},
@@ -539,6 +771,12 @@
           }
         },
         "data": {
+          "404.json": {
+            "type": "-",
+            "size": 46,
+            "lmtime": 1770207479588.7122,
+            "modified": false
+          },
           "about": {},
           "about.json": {
             "type": "-",
@@ -553,6 +791,12 @@
             "size": 934,
             "lmtime": 0,
             "modified": true
+          },
+          "erro404.json": {
+            "type": "-",
+            "size": 78,
+            "lmtime": 1770206747682.5923,
+            "modified": false
           },
           "footer.json": {
             "type": "-",
@@ -596,6 +840,12 @@
             "lmtime": 0,
             "modified": true
           },
+          "perfilcliente.json": {
+            "type": "-",
+            "size": 53,
+            "lmtime": 1770202256288.4387,
+            "modified": false
+          },
           "products.json": {
             "type": "-",
             "size": 846,
@@ -618,6 +868,32 @@
             "type": "-",
             "size": 535,
             "lmtime": 1770130291255.9575,
+            "modified": false
+          }
+        },
+        "layouts": {
+          "404.mustache": {
+            "type": "-",
+            "size": 1288,
+            "lmtime": 1770206579503.0867,
+            "modified": false
+          },
+          "layout.mustache": {
+            "type": "-",
+            "size": 1327,
+            "lmtime": 1770205177219.8562,
+            "modified": false
+          },
+          "parent.mustache": {
+            "type": "-",
+            "size": 816,
+            "lmtime": 0,
+            "modified": false
+          },
+          "products.mustache": {
+            "type": "-",
+            "size": 206,
+            "lmtime": 0,
             "modified": false
           }
         }
