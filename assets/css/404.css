@@ -1,0 +1,81 @@
+            /*=================== ERRO404 ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #780001;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding-left: clamp(20px, 5%, 40px);
+    padding-right: 0;
+    gap: 40px;
+    overflow: hidden;
+}
+
+.texto {
+    max-width: 420px;
+    margin-left: clamp(8px, 151vw, 200px);
+}
+
+.texto h1 {
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.sub {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.descricao {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+.botao {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid #f2eeee;
+    border-radius: 6px;
+    color: #fff;
+    background: #780001;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background-color: #fff;
+    color: #780001;
+    border: 2px solid #780001;
+}
+
+/* 🔹 CONTROLO DA IMAGEM */
+.ilustracao {
+    flex-shrink: 0;
+    margin-left: 0; /* imagem mais à esquerda */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ilustracao img {
+    max-width: 700px;   /* limite de largura mais razoável */
+    max-height: 80vh;
+    height: auto;
+    display: block;
+    margin-right: 0; /* sem deslocamento para a direita */
+}

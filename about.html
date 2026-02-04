@@ -21,12 +21,13 @@
     <!-- Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+
     
      <link rel="stylesheet" href="assets/css/styles.css">
        
     
   </head>
-<body>
+<body class="">
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
     <header class="header">
         <div class="logo">Moze</div>
@@ -73,192 +74,7 @@
     <main>
         
         <style>
-            .services-section {
-                background: #fff;
-                padding: 36px 0 24px 0;
-                margin-bottom: 0;
-            }
-            .services-grid {
-                display: flex;
-                gap: 22px;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-top: 18px;
-            }
-            .service-card {
-                background: #fff;
-                border-radius: 16px;
-                box-shadow: 0 2px 10px #0001;
-                padding: 28px 22px 22px 22px;
-                min-width: 180px;
-                max-width: 220px;
-                flex: 1 1 180px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                transition: box-shadow 0.2s;
-            }
-            .service-icon {
-                font-size: 2.1rem;
-                color: #7b0000;
-                margin-bottom: 10px;
-            }
-            .service-card h3 {
-                font-size: 1.13rem;
-                font-weight: 600;
-                margin-bottom: 8px;
-                color: #7b0000;
-            }
-            .service-card p {
-                color: #555;
-                font-size: 1rem;
-                margin: 0;
-            }
-            .how-it-works {
-                background: #fff;
-                padding: 36px 0 18px 0;
-                margin-bottom: 0;
-            }
-            .how-it-works h2 {
-                text-align: center;
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: #222;
-                margin-bottom: 28px;
-            }
-            .works-grid {
-                display: flex;
-                gap: 22px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .works-card {
-                background: #fff;
-                border-radius: 16px;
-                box-shadow: 0 2px 10px #0001;
-                padding: 24px 18px 18px 18px;
-                min-width: 160px;
-                max-width: 200px;
-                flex: 1 1 160px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .works-icon {
-                font-size: 2rem;
-                color: #7b0000;
-                margin-bottom: 8px;
-            }
-            .works-card h3 {
-                font-size: 1.08rem;
-                font-weight: 600;
-                margin-bottom: 6px;
-                color: #7b0000;
-            }
-            .works-card p {
-                color: #555;
-                font-size: 0.98rem;
-                margin: 0;
-            }
-            .photography-cta {
-                background: #fff;
-                padding: 36px 0 36px 0;
-                text-align: center;
-                margin-bottom: 0;
-            }
-            .photography-cta h2 {
-                font-size: 1.7rem;
-                font-weight: 700;
-                color: #222;
-                margin-bottom: 10px;
-            }
-            .photography-cta p {
-                color: #444;
-                font-size: 1.13rem;
-                margin: 0 auto;
-                max-width: 600px;
-            }
-        </style>
-        <style>
-            .user-type-toggle {
-                margin-top: 32px;
-                margin-bottom: 32px;
-                display: flex;
-                justify-content: center;
-            }
-            .toggle-buttons {
-                display: flex;
-                gap: 18px;
-                justify-content: center;
-                align-items: center;
-            }
-            .toggle-btn {
-                font-size: 1.18rem;
-                font-weight: 500;
-                background: #fff;
-                color: #7b0000;
-                border: none;
-                border-radius: 22px;
-                padding: 10px 32px;
-                cursor: pointer;
-                transition: background 0.2s, color 0.2s;
-                box-shadow: 0 2px 8px #0001;
-            }
-            .toggle-btn.active {
-                background: #7b0000;
-                color: #fff;
-                font-weight: 600;
-                box-shadow: 0 2px 12px #7b000033;
-            }
-            .user-type-section {
-                width: 100%;
-                max-width: 980px;
-                margin: 0 auto 32px auto;
-                background: #FCFBF8;
-                border-radius: 22px;
-                box-shadow: 0 2px 16px #0001;
-                padding: 32px 24px;
-                display: block;
-                transition: box-shadow 0.2s;
-            }
-            .user-type-section .container {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 36px;
-            }
-            .user-type-section img {
-                width: 100%;
-                max-width: 320px;
-                border-radius: 18px;
-                object-fit: cover;
-                box-shadow: 0 2px 12px #0001;
-                background: #eee;
-            }
-            .user-type-section h2 {
-                font-size: 2rem;
-                font-weight: 700;
-                margin-bottom: 12px;
-                color: #7b0000;
-            }
-            .user-type-section p {
-                font-size: 1.1rem;
-                margin-bottom: 18px;
-                color: #222;
-            }
-            .user-type-section ul {
-                margin-bottom: 18px;
-                padding-left: 20px;
-            }
-            .user-type-section li {
-                font-size: 1.05rem;
-                margin-bottom: 8px;
-                color: #444;
-                line-height: 1.5;
-            }
+          
         </style>
         <section class="user-type-toggle">
             <div class="container">

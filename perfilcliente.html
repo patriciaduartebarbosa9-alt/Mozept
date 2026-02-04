@@ -21,12 +21,13 @@
     <!-- Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+
     
-     <link rel="stylesheet" href="assets/css/styles.css">
+     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/perfilcliente.css">
        
     
   </head>
-<body>
+<body class="">
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
     <header class="header">
         <div class="logo">Moze</div>
@@ -90,7 +91,7 @@
 
   <!-- Tabs Únicas (Favoritos, Histórico, Avaliações) -->
   <div class="tabs-cards-container">
-    <div class="tabs-cards-header" style="margin-bottom:0; margin-top:32px;">
+    <div class="tabs-cards-header">
       <button class="tab-btn-sub active" data-tab="favoritos">Favoritos</button>
       <button class="tab-btn-sub" data-tab="historico">Histórico</button>
     </div>
@@ -109,7 +110,7 @@
           <button class="fav-contact-btn">Contactar</button>
         </div>
       </div>
-      <div id="tab-historico" class="tab-cards-panel" style="display:none;">
+      <div id="tab-historico" class="tab-cards-panel">
         <div class="fav-card">
           <img src="https://randomuser.me/api/portraits/men/85.jpg" class="fav-avatar" alt="Avatar">
           <div class="fav-info">
@@ -147,171 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  // Logout
-  const logoutBtn = document.getElementById('btn-logout');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', function() {
-      if(confirm('Tem a certeza que deseja sair?')) {
-        localStorage.clear();
-        window.location.href = 'login.html';
-      }
-    });
-  }
 });
 </script>
 
-<style>
-.tab-cards-panel {
-  display: none;
-}
-.tab-cards-panel.active {
-  display: block;
-}
-.tabs-cards-container {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  margin: 40px auto 0 auto;
-  max-width: 900px;
-  padding: 0 0 32px 0;
-}
-.tabs-cards-header {
-  display: flex;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 24px;
-  padding: 0 32px;
-}
-.tab-btn-sub {
-  flex: 1;
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #a00;
-  padding: 18px 0 10px 0;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: color 0.2s, border-bottom 0.2s;
-}
-.tab-btn-sub.active {
-  color: #a00;
-  border-bottom: 2px solid #a00;
-  font-weight: bold;
-}
-.tabs-cards-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-}
-.fav-card {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-  padding: 24px 32px;
-  margin: 0 auto;
-  max-width: 600px;
-  width: 100%;
-  gap: 24px;
-  position: relative;
-}
-.fav-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 16px;
-}
-.fav-info {
-  flex: 1;
-}
-.fav-title {
-  font-weight: bold;
-  font-size: 18px;
-  color: #222;
-}
-.fav-desc {
-  color: #444;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-.fav-meta {
-  display: flex;
-  gap: 18px;
-  font-size: 14px;
-  color: #666;
-  align-items: center;
-}
-.fav-rating {
-  color: #a00;
-  font-weight: bold;
-}
-.fav-contact-btn {
-  background: #a00;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 22px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background 0.2s;
-  position: absolute;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.fav-contact-btn:hover {
-  background: #7b0000;
-}
 
-.client-card {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-  padding: 24px 32px;
-  margin: 24px auto 32px auto;
-  max-width: 700px;
-  width: 100%;
-  gap: 24px;
-}
-.client-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 16px;
-}
-.client-info {
-  flex: 1;
-}
-.client-title {
-  font-weight: bold;
-  font-size: 18px;
-  color: #222;
-}
-.client-desc {
-  color: #444;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-.client-meta {
-  display: flex;
-  gap: 18px;
-  font-size: 14px;
-  color: #666;
-  align-items: center;
-}
-.client-rating {
-  color: #a00;
-  font-weight: bold;
-}
-.client-location {
-  color: #222;
-}
+<style>
+
 </style>
 
 
