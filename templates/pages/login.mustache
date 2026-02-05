@@ -11,7 +11,7 @@
         <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
         <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
       </div>
-      <form class="register-form" id="login-form">
+        <form class="register-form" id="login-form" action="login.php" method="POST">
         <label>Email*
           <input type="email" name="email" placeholder="email" required>
         </label>
@@ -45,12 +45,7 @@ function togglePassword() {
     icon.classList.add('fa-eye');
   }
 }
-// Redireciona para index.html ao submeter o formulário
-document.getElementById('login-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  // Aqui você pode adicionar validação/autenticação real
-  window.location.href = 'index.html';
-});
+
 </script>
 {{/main}}
 {{/layout}}

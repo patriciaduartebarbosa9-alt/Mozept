@@ -1,7 +1,16 @@
 <?php
 // gallery.php
+// Defina DEBUG como false para produção, true para depuração
+if (!defined('DEBUG')) {
+    define('DEBUG', false);
+}
+
 
 require_once __DIR__ . '/config.php';
+// Garante que SITEURL está definida
+if (!defined('SITEURL')) {
+    define('SITEURL', 'http://localhost/Mozept');
+}
 
 // Your PHP code for the gallery API will go here.
 

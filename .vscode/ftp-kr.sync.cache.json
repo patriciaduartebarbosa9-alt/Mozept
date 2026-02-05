@@ -4,9 +4,9 @@
       ".github": {},
       ".htaccess": {
         "type": "-",
-        "size": 63,
+        "size": 46,
         "lmtime": 0,
-        "modified": false
+        "modified": true
       },
       ".vscode": {},
       "404.html": {
@@ -42,46 +42,58 @@
         },
         "index.html": {
           "type": "-",
-          "size": 7253,
-          "lmtime": 1770207842576.9146,
+          "size": 7294,
+          "lmtime": 1770302524759.77,
           "modified": false
         }
       },
       "about.html": {
         "type": "-",
-        "size": 18833,
-        "lmtime": 1770207842587.078,
+        "size": 18874,
+        "lmtime": 1770302524772.742,
         "modified": false
       },
       "api": {
         "config.php": {
           "type": "-",
-          "size": 618,
-          "lmtime": 1770199836809.0054,
+          "size": 0,
+          "lmtime": 1770302690749.0916,
           "modified": false
         },
         "db.inc": {
           "type": "-",
-          "size": 408,
-          "lmtime": 0,
+          "size": 445,
+          "lmtime": 1770302666290.0447,
           "modified": false
         },
         "gallery.php": {
           "type": "-",
-          "size": 1090,
-          "lmtime": 0,
+          "size": 1338,
+          "lmtime": 1770302216984.2424,
           "modified": false
         },
         "insert_client.php": {
           "type": "-",
-          "size": 2359,
-          "lmtime": 0,
+          "size": 3706,
+          "lmtime": 1770248254514.9453,
+          "modified": false
+        },
+        "insert_fotografo.php": {
+          "type": "-",
+          "size": 3664,
+          "lmtime": 1770249502642.6836,
           "modified": false
         },
         "list-clients.php": {
           "type": "-",
-          "size": 1362,
-          "lmtime": 0,
+          "size": 1370,
+          "lmtime": 1770246208984.3376,
+          "modified": false
+        },
+        "login.php": {
+          "type": "-",
+          "size": 1816,
+          "lmtime": 1770241994184.1858,
           "modified": false
         },
         "teste.php": {
@@ -258,6 +270,14 @@
             "lmtime": 0,
             "modified": false
           }
+        },
+        "js": {
+          "insert-client.js": {
+            "type": "-",
+            "size": 1299,
+            "lmtime": 1770243511922.7224,
+            "modified": false
+          }
         }
       },
       "auth.txt": {
@@ -270,14 +290,14 @@
         "1": {
           "1.html": {
             "type": "-",
-            "size": 6204,
-            "lmtime": 1770207842594.239,
+            "size": 6245,
+            "lmtime": 1770302524776.9236,
             "modified": false
           },
           "2.html": {
             "type": "-",
             "size": 1049,
-            "lmtime": 1770207842599.764,
+            "lmtime": 1770302524782.0637,
             "modified": false
           }
         },
@@ -285,22 +305,22 @@
           "articles": {
             "sample.html": {
               "type": "-",
-              "size": 6203,
-              "lmtime": 1770207842603.289,
+              "size": 6244,
+              "lmtime": 1770302524785.068,
               "modified": false
             }
           },
           "test.html": {
             "type": "-",
-            "size": 6188,
-            "lmtime": 1770207842606.2834,
+            "size": 6229,
+            "lmtime": 1770302524790.1357,
             "modified": false
           }
         },
         "article.html": {
           "type": "-",
-          "size": 6085,
-          "lmtime": 1770207842609.801,
+          "size": 6126,
+          "lmtime": 1770302524795.1309,
           "modified": false
         },
         "blog.html": {
@@ -311,34 +331,40 @@
         },
         "index.html": {
           "type": "-",
-          "size": 6482,
-          "lmtime": 1770207842614.3137,
+          "size": 6523,
+          "lmtime": 1770302524800.204,
           "modified": false
         }
       },
       "blog.html": {
         "type": "-",
-        "size": 13259,
-        "lmtime": 1770207842620.8318,
+        "size": 13300,
+        "lmtime": 1770302524806.807,
         "modified": false
       },
       "child.html": {
         "type": "-",
         "size": 1333,
-        "lmtime": 1770207842625.833,
+        "lmtime": 1770302524812.8447,
         "modified": false
       },
       "clients": {
+        "create_clientes_table.sql": {
+          "type": "-",
+          "size": 212,
+          "lmtime": 1770242621950.0562,
+          "modified": false
+        },
         "create_clients_table.sql": {
           "type": "-",
-          "size": 0,
-          "lmtime": 0,
+          "size": 182,
+          "lmtime": 1770301704127.7837,
           "modified": false
         },
         "insert.html": {
           "type": "-",
-          "size": 6566,
-          "lmtime": 1770207842630.8481,
+          "size": 6607,
+          "lmtime": 1770302524819.037,
           "modified": false
         },
         "insert_client.html": {
@@ -374,14 +400,14 @@
       },
       "contact.html": {
         "type": "-",
-        "size": 8822,
-        "lmtime": 1770207842635.8596,
+        "size": 8863,
+        "lmtime": 1770302524824.3413,
         "modified": false
       },
       "edit-profile.html": {
         "type": "-",
-        "size": 14210,
-        "lmtime": 1770207842641.937,
+        "size": 14251,
+        "lmtime": 1770302524829.8618,
         "modified": false
       },
       "erro404.html": {
@@ -398,27 +424,27 @@
       },
       "gallery-api-1.html": {
         "type": "-",
-        "size": 6528,
-        "lmtime": 1770207842645.938,
+        "size": 6569,
+        "lmtime": 1770302524832.8606,
         "modified": false
       },
       "gallery-api.html": {
         "type": "-",
-        "size": 6526,
-        "lmtime": 1770207842647.937,
+        "size": 6567,
+        "lmtime": 1770302524835.297,
         "modified": false
       },
       "gallery.html": {
         "type": "-",
-        "size": 7592,
-        "lmtime": 1770207842651.9736,
+        "size": 7633,
+        "lmtime": 1770302524840.306,
         "modified": false
       },
       "htdocs": {},
       "index.html": {
         "type": "-",
-        "size": 12540,
-        "lmtime": 1770207842655.486,
+        "size": 12581,
+        "lmtime": 1770302524845.5188,
         "modified": false
       },
       "index.php": {
@@ -435,14 +461,14 @@
       },
       "login.html": {
         "type": "-",
-        "size": 7844,
-        "lmtime": 1770207842661.0044,
+        "size": 7885,
+        "lmtime": 1770302524853.923,
         "modified": false
       },
       "mensagens.html": {
         "type": "-",
-        "size": 12540,
-        "lmtime": 1770207842664.0034,
+        "size": 12581,
+        "lmtime": 1770302524859.081,
         "modified": false
       },
       "mustache-website.code-workspace": {
@@ -472,40 +498,40 @@
       },
       "perfil.html": {
         "type": "-",
-        "size": 12704,
-        "lmtime": 1770207842669.0034,
+        "size": 13236,
+        "lmtime": 1770302524865.0818,
         "modified": false
       },
       "perfilcliente.html": {
         "type": "-",
-        "size": 8803,
-        "lmtime": 1770207842677.38,
+        "size": 8844,
+        "lmtime": 1770302524869.467,
         "modified": false
       },
       "products": {
         "product1.html": {
           "type": "-",
-          "size": 5829,
-          "lmtime": 1770207842686.907,
+          "size": 5870,
+          "lmtime": 1770302524873.9912,
           "modified": false
         },
         "product2.html": {
           "type": "-",
-          "size": 5846,
-          "lmtime": 1770207842691.9287,
+          "size": 5887,
+          "lmtime": 1770302524878.4973,
           "modified": false
         }
       },
       "products.html": {
         "type": "-",
-        "size": 10517,
-        "lmtime": 1770207842695.9294,
+        "size": 10558,
+        "lmtime": 1770302524883.9734,
         "modified": false
       },
       "projects.html": {
         "type": "-",
-        "size": 18120,
-        "lmtime": 1770207842700.9978,
+        "size": 18161,
+        "lmtime": 1770302524888.9902,
         "modified": false
       },
       "registar.html": {
@@ -516,26 +542,26 @@
       },
       "registarcliente.html": {
         "type": "-",
-        "size": 7930,
-        "lmtime": 1770207842703.995,
+        "size": 7971,
+        "lmtime": 1770302524895.0066,
         "modified": false
       },
       "registarfotografo.html": {
         "type": "-",
-        "size": 9784,
-        "lmtime": 1770207842707.9973,
+        "size": 9735,
+        "lmtime": 1770302524900.088,
         "modified": false
       },
       "registo.html": {
         "type": "-",
-        "size": 6420,
-        "lmtime": 1770207842712.146,
+        "size": 6461,
+        "lmtime": 1770302524905.3513,
         "modified": false
       },
       "reserva.html": {
         "type": "-",
-        "size": 15384,
-        "lmtime": 1770207842718.6582,
+        "size": 15425,
+        "lmtime": 1770302524911.322,
         "modified": false
       },
       "settings.json": {
@@ -716,8 +742,8 @@
           },
           "perfil.mustache": {
             "type": "-",
-            "size": 7051,
-            "lmtime": 1770202139932.447,
+            "size": 7542,
+            "lmtime": 1770241994184.1858,
             "modified": false
           },
           "perfilcliente.mustache": {
@@ -753,8 +779,8 @@
           },
           "registarfotografo.mustache": {
             "type": "-",
-            "size": 4133,
-            "lmtime": 1770131232680.2466,
+            "size": 4043,
+            "lmtime": 1770248824729.1794,
             "modified": false
           },
           "registo.mustache": {
@@ -880,8 +906,8 @@
           },
           "layout.mustache": {
             "type": "-",
-            "size": 1327,
-            "lmtime": 1770205177219.8562,
+            "size": 1368,
+            "lmtime": 1770242241525.6096,
             "modified": false
           },
           "parent.mustache": {
