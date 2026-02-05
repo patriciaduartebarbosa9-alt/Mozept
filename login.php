@@ -1,10 +1,5 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-error_reporting(E_ALL);
-ini_set('display_errors', '0');
-require_once 'config.php';
-
-// Função para retornar respostas JSON
+require_once 'api/db.inc';
 function response($status, $message, $data = null) {
     echo json_encode([
         'status' => $status,
@@ -20,11 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Receber dados
-$data = json_decode(file_get_contents('php://input'), true);
 
-// Validações
-$email = isset($data['email']) ? trim($data['email']) : '';
-$password = isset($data['password']) ? $data['password'] : '';
+// Receber dados do formulário tradicional ou JSON
+if (!empty($_POST)) {
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+} else {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $email = isset($data['email']) ? trim($data['email']) : '';
+    $password = isset($data['password']) ? $data['password'] : '';
+}
 
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     response('error', 'Email inválido');
@@ -35,17 +35,13 @@ if (empty($password)) {
 }
 
 // Buscar utilizador
-$stmt = $conn->prepare("SELECT * FROM utilizador WHERE email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
 
-if ($result->num_rows === 0) {
+$stmt = $pdo->prepare("SELECT * FROM utilizador WHERE email = :email");
+$stmt->execute([':email' => $email]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$user) {
     response('error', 'Email ou password incorretos');
 }
-
-$user = $result->fetch_assoc();
-$stmt->close();
 
 // Verificar password
 if (!password_verify($password, $user['password'])) {
@@ -53,26 +49,27 @@ if (!password_verify($password, $user['password'])) {
 }
 
 // Inicializar dados do fotógrafo
+// Inicializar dados do utilizador
+$utilizador_id = null;
 $certificado_verificado = false;
 $status_certificado = 'pendente';
-$fotografo_id = null;
-
-// Se for fotógrafo, buscar dados na tabela fotografos
 if ($user['tipo'] === 'fotografo') {
-    $stmt = $conn->prepare("SELECT id, certificado, certificado_verificado FROM fotografo WHERE email = ?");
-    $stmt->bind_param("s", $user['email']);
-    $stmt->execute();
-    $foto_result = $stmt->get_result();
-
-    if ($foto_result->num_rows > 0) {
-        $foto = $foto_result->fetch_assoc();
-        $fotografo_id = $foto['email'];
+    $stmt = $pdo->prepare("SELECT email, certificado, certificado_verificado FROM fotografo WHERE email = :email");
+    $stmt->execute([':email' => $user['email']]);
+    $foto = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($foto) {
+        $utilizador_id = $foto['email'];
         if (!empty($foto['certificado'])) {
             $certificado_verificado = (bool)$foto['certificado_verificado'];
             $status_certificado = $certificado_verificado ? 'verificado' : 'pendente_verificacao';
         }
     }
-    $stmt->close();
+} elseif ($user['tipo'] === 'cliente') {
+    // Buscar o id da tabela utilizador para este email
+    $stmt = $pdo->prepare("SELECT id FROM utilizador WHERE email = :email");
+    $stmt->execute([':email' => $user['email']]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $utilizador_id = $row ? $row['id'] : $user['email'];
 }
 
 // Gerar token simples (pode usar JWT em produção)
@@ -83,15 +80,18 @@ session_start();
 $_SESSION['utilizador_email'] = $user['email'];
 $_SESSION['utilizador_tipo'] = $user['tipo'];
 $_SESSION['token'] = $token;
+$_SESSION['utilizador_id'] = $utilizador_id;
 
 // Preparar dados para retorno
+
+
 $userData = [
+    'id' => $utilizador_id,
     'email' => $user['email'],
     'nome' => $user['nome_completo'] ?? '',
     'tipo' => $user['tipo'],
     'foto_perfil' => $user['foto_perfil'] ?? null,
-    'token' => $token,
-    'fotografo_id' => $fotografo_id
+    'token' => $token
 ];
 
 // Se for fotógrafo, adicionar status do certificado
@@ -107,6 +107,5 @@ if ($user['tipo'] === 'fotografo') {
 }
 
 response('success', 'Login realizado com sucesso!', $userData);
-
-$conn->close();
+// Não existe $conn, não fechar
 ?>

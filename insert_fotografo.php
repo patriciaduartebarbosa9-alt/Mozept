@@ -52,12 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         // === 4️⃣ Inserir na tabela fotografo ===
-        $stmt = $pdo->prepare("INSERT INTO fotografo (nome, email, password, certificado) VALUES (:nome, :email, :password, :certificado)");
+        $distrito = trim($_POST['distrito'] ?? '');
+        $concelho = trim($_POST['concelho'] ?? '');
+        $stmt = $pdo->prepare("INSERT INTO fotografo (nome, email, password, certificado, distrito, concelho) VALUES (:nome, :email, :password, :certificado, :distrito, :concelho)");
         $stmt->execute([
             ':nome' => $nome,
             ':email' => $email,
             ':password' => $passwordHash,
-            ':certificado' => isset($filename) ? $filename : null
+            ':certificado' => isset($filename) ? $filename : null,
+            ':distrito' => $distrito,
+            ':concelho' => $concelho
         ]);
 
         // === 5️⃣ Inserir na tabela utilizador ===

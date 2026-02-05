@@ -128,6 +128,64 @@ require_once 'config.php';
     <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
      <script src="http://localhost/Mustache-website/assets/js/gallery-api.js" crossorigin="anonymous"></script>
        
+         <script>
+         // Guardar o id do utilizador da query string em localStorage e manter em todas as páginas
+         (function() {
+             const params = new URLSearchParams(window.location.search);
+             const userId = params.get('id');
+             if (userId) {
+                 localStorage.setItem('userId', userId);
+             }
+             window.getUserId = function() {
+                 return localStorage.getItem('userId');
+             };
+             // Propagar o id do utilizador nos links de navegação
+             document.addEventListener('DOMContentLoaded', function() {
+                 const uid = localStorage.getItem('userId');
+                 if (uid) {
+                     document.querySelectorAll('nav.nav a').forEach(function(link) {
+                         const url = new URL(link.href, window.location.origin);
+                         url.searchParams.set('id', uid);
+                         link.href = url.pathname + url.search;
+                     });
+                 }
+                 // Adicionar evento de logout se existir botão/link com id="logout-btn"
+                 const logoutBtn = document.getElementById('logout-btn');
+                 if (logoutBtn) {
+                     logoutBtn.addEventListener('click', function(e) {
+                         localStorage.removeItem('userId');
+                         // Opcional: redirecionar para login
+                         window.location.href = 'login.html';
+                     });
+                 }
+             });
+         })();
+         </script>
       
-   </body>
+     <script>
+     // Guardar o id do utilizador da query string em localStorage e manter em todas as páginas
+     (function() {
+         const params = new URLSearchParams(window.location.search);
+         const userId = params.get('id');
+         if (userId) {
+             localStorage.setItem('userId', userId);
+         }
+         // Se não houver id na query mas existe em localStorage, garantir que está disponível
+         window.getUserId = function() {
+             return localStorage.getItem('userId');
+         };
+         // Propagar o id do utilizador nos links de navegação
+         document.addEventListener('DOMContentLoaded', function() {
+             const uid = localStorage.getItem('userId');
+             if (uid) {
+                 document.querySelectorAll('nav.nav a').forEach(function(link) {
+                     const url = new URL(link.href, window.location.origin);
+                     url.searchParams.set('id', uid);
+                     link.href = url.pathname + url.search;
+                 });
+             }
+         });
+     })();
+     </script>
+     </body>
 </html>

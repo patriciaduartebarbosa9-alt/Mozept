@@ -88,7 +88,7 @@ require_once 'config.php';
         <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
         <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
       </div>
-        <form class="register-form" id="login-form" action="login.php" method="POST">
+        <form class="register-form" id="login-form">
         <label>Email*
           <input type="email" name="email" placeholder="email" required>
         </label>
@@ -100,6 +100,7 @@ require_once 'config.php';
         </label>
         <button type="submit" class="register-btn">Entrar</button>
       </form>
+      <div id="login-error" style="color:#b00;margin-top:12px;"></div>
     </div>
     <div class="register-welcome">
       <h1>Olá!</h1>
@@ -109,6 +110,7 @@ require_once 'config.php';
   </div>
 </main>
 <script>
+
 function togglePassword() {
   const pwd = document.getElementById('login-password');
   const icon = document.querySelector('.toggle-password i');
@@ -122,6 +124,27 @@ function togglePassword() {
     icon.classList.add('fa-eye');
   }
 }
+
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email = this.email.value.trim();
+  const password = this.password.value;
+  const errorDiv = document.getElementById('login-error');
+  errorDiv.textContent = '';
+
+  const res = await fetch('login.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
+  if (data.status === 'success') {
+    // Redireciona para index.html com o id do utilizador
+    window.location.href = 'index.html?id=' + encodeURIComponent(data.data.id);
+  } else {
+    errorDiv.textContent = data.message || 'Erro ao fazer login.';
+  }
+});
 
 </script>
 
@@ -168,6 +191,64 @@ function togglePassword() {
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
     <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
        
+         <script>
+         // Guardar o id do utilizador da query string em localStorage e manter em todas as páginas
+         (function() {
+             const params = new URLSearchParams(window.location.search);
+             const userId = params.get('id');
+             if (userId) {
+                 localStorage.setItem('userId', userId);
+             }
+             window.getUserId = function() {
+                 return localStorage.getItem('userId');
+             };
+             // Propagar o id do utilizador nos links de navegação
+             document.addEventListener('DOMContentLoaded', function() {
+                 const uid = localStorage.getItem('userId');
+                 if (uid) {
+                     document.querySelectorAll('nav.nav a').forEach(function(link) {
+                         const url = new URL(link.href, window.location.origin);
+                         url.searchParams.set('id', uid);
+                         link.href = url.pathname + url.search;
+                     });
+                 }
+                 // Adicionar evento de logout se existir botão/link com id="logout-btn"
+                 const logoutBtn = document.getElementById('logout-btn');
+                 if (logoutBtn) {
+                     logoutBtn.addEventListener('click', function(e) {
+                         localStorage.removeItem('userId');
+                         // Opcional: redirecionar para login
+                         window.location.href = 'login.html';
+                     });
+                 }
+             });
+         })();
+         </script>
       
-   </body>
+     <script>
+     // Guardar o id do utilizador da query string em localStorage e manter em todas as páginas
+     (function() {
+         const params = new URLSearchParams(window.location.search);
+         const userId = params.get('id');
+         if (userId) {
+             localStorage.setItem('userId', userId);
+         }
+         // Se não houver id na query mas existe em localStorage, garantir que está disponível
+         window.getUserId = function() {
+             return localStorage.getItem('userId');
+         };
+         // Propagar o id do utilizador nos links de navegação
+         document.addEventListener('DOMContentLoaded', function() {
+             const uid = localStorage.getItem('userId');
+             if (uid) {
+                 document.querySelectorAll('nav.nav a').forEach(function(link) {
+                     const url = new URL(link.href, window.location.origin);
+                     url.searchParams.set('id', uid);
+                     link.href = url.pathname + url.search;
+                 });
+             }
+         });
+     })();
+     </script>
+     </body>
 </html>
