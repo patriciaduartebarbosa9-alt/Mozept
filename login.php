@@ -48,29 +48,9 @@ if (!password_verify($password, $user['password'])) {
     response('error', 'Email ou password incorretos');
 }
 
-// Inicializar dados do fotógrafo
-// Inicializar dados do utilizador
-$utilizador_id = null;
-$certificado_verificado = false;
-$status_certificado = 'pendente';
-if ($user['tipo'] === 'fotografo') {
-    $stmt = $pdo->prepare("SELECT email, certificado, certificado_verificado FROM fotografo WHERE email = :email");
-    $stmt->execute([':email' => $user['email']]);
-    $foto = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($foto) {
-        $utilizador_id = $foto['email'];
-        if (!empty($foto['certificado'])) {
-            $certificado_verificado = (bool)$foto['certificado_verificado'];
-            $status_certificado = $certificado_verificado ? 'verificado' : 'pendente_verificacao';
-        }
-    }
-} elseif ($user['tipo'] === 'cliente') {
-    // Buscar o id da tabela utilizador para este email
-    $stmt = $pdo->prepare("SELECT id FROM utilizador WHERE email = :email");
-    $stmt->execute([':email' => $user['email']]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $utilizador_id = $row ? $row['id'] : $user['email'];
-}
+
+// Inicializar id do utilizador (usar id se existir, senão email)
+$utilizador_id = isset($user['id']) ? $user['id'] : $user['email'];
 
 // Gerar token simples (pode usar JWT em produção)
 $token = bin2hex(random_bytes(32));
@@ -94,17 +74,7 @@ $userData = [
     'token' => $token
 ];
 
-// Se for fotógrafo, adicionar status do certificado
-if ($user['tipo'] === 'fotografo') {
-    $userData['certificado'] = [
-        'status' => $status_certificado,
-        'verificado' => $certificado_verificado
-    ];
-    
-    if ($status_certificado === 'pendente') {
-        $userData['mensagem_certificado'] = 'Por favor, faça upload do seu certificado profissional para completar o perfil';
-    }
-}
+
 
 response('success', 'Login realizado com sucesso!', $userData);
 // Não existe $conn, não fechar

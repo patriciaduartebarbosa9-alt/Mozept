@@ -95,220 +95,105 @@ require_once 'config.php';
     <script src=""></script>    
     <main>
         
-<script>
-    const headerConfig = {
-        navPrefix: '',
-        userType: '',
-        userId: null
-    };
-</script>
 <main class="profile-page">
-  <!-- PERFIL -->
   <section class="profile-card">
-    <img src="https://i.pravatar.cc/80?img=32" class="avatar" alt="Avatar">
+    <img id="avatar" src="https://i.pravatar.cc/80" class="avatar" alt="Avatar do Fotógrafo">
     <div class="profile-info">
-      <h2>Sofia Martins</h2>
-      <p>Fotógrafo Profissional Especializado em Fotografia de Estúdio</p>
+      <h2 id="nome">Nome do Fotógrafo</h2>
+      <p id="especialidade">Especialidade</p>
       <div class="meta">
-        <span>⭐ 4.2 (127 avaliações)</span>
-        <span>Matosinhos, Porto</span>
+        <span id="email">Email</span><br>
+        <span id="portfolio">Portfólio</span>
       </div>
+      <!-- Exibir certificado, distrito, concelho -->
     </div>
-    <button class="edit-btn" onclick="window.location.href='mensagens.html'">Contactar</button>
+    <button id="btn-favorito" class="edit-btn">Adicionar aos Favoritos</button>
+    <button id="btn-mensagem" class="edit-btn" style="background:#eee; color:#7b0000; margin-left:12px;">Enviar Mensagem</button>
   </section>
-  <!-- TABS -->
-  <section class="tabs">
-    <button class="tab-btn" id="portfolio-tab-btn" data-tab="portfolio">Portfólio</button>
-    <button class="tab-btn" data-tab="servicos">Serviços</button>
-    <button class="tab-btn" data-tab="avaliacoes">Avaliações</button>
-  </section>
-  <!-- CONTEÚDO DAS TABS -->
-  <section class="tab-content">
-    <!-- PORTFÓLIO -->
-<div id="portfolio" class="tab-panel active">
-  
-
-  <button class="edit-btn" id="add-portfolio-item"
-    style="background:#eee; color:#7b0000; margin-left:12px; display:none;">
-    Adicionar
-  </button>
-
-  <div style="display:flex; justify-content:center; background:#fcfaf7;
-              border-radius:0 0 24px 24px; padding:32px 0;">
-    <div class="portfolio portfolio-grid" id="portfolio-items"
-         style="background:transparent; padding:0; border-radius:0;">
-    </div>
-  </div>
-</div>
-
+</main>
 <script>
-
-// Esconde portfólio se userType for cliente
-document.addEventListener('DOMContentLoaded', function() {
-  const userType = localStorage.getItem('userType');
-  const portfolioTabBtn = document.getElementById('portfolio-tab-btn');
-  const portfolioPanel = document.getElementById('portfolio');
-  if (userType === 'cliente') {
-    if (portfolioTabBtn) portfolioTabBtn.style.display = 'none';
-    if (portfolioPanel) portfolioPanel.style.display = 'none';
-  }
-});
-
-let portfolioEditMode = false;
-const editBtn = document.getElementById('edit-portfolio-btn');
-const addBtn = document.getElementById('add-portfolio-item');
-const portfolioItems = document.getElementById('portfolio-items');
-
-let portfolioData = [
-  {img:'https://picsum.photos/400/400?1', nome:'Projeto 1', desc:'Descrição 1'},
-  {img:'https://picsum.photos/400/400?2', nome:'Projeto 2', desc:'Descrição 2'},
-  {img:'https://picsum.photos/400/400?3', nome:'Projeto 3', desc:'Descrição 3'},
-  {img:'https://picsum.photos/400/400?4', nome:'Projeto 4', desc:'Descrição 4'},
-  {img:'https://picsum.photos/400/400?5', nome:'Projeto 5', desc:'Descrição 5'},
-  {img:'https://picsum.photos/400/400?6', nome:'Projeto 6', desc:'Descrição 6'}
-];
-
-function renderPortfolio() {
-  portfolioItems.innerHTML = '';
-
-  portfolioData.forEach((item, idx) => {
-    const div = document.createElement('div');
-    div.className = 'portfolio-item';
-    div.style = 'position:relative; text-align:center;';
-
-    if (portfolioEditMode) {
-      div.innerHTML = `
-        <div style="position:relative; display:inline-block; margin-bottom:16px;">
-          <label style="cursor:pointer;">
-            <input type="file" accept="image/*" style="display:none;"
-                   data-idx="${idx}" class="portfolio-img-input">
-            <img src="${item.img}">
-          </label>
-
-          <button type="button" class="delete-img-btn"
-                  style="position:absolute; top:8px; right:8px;
-                  background:#fff; border:none; border-radius:50%;
-                  width:32px; height:32px; cursor:pointer;">
-            🗑
-          </button>
-        </div>
-
-        <input type="text" value="${item.nome}"
-               class="portfolio-name"
-               style="width:100%; margin:10px 0; padding:8px;
-               border-radius:6px; border:1px solid #ccc;">
-
-        <textarea class="portfolio-desc"
-                  style="width:100%; padding:8px;
-                  border-radius:6px; border:1px solid #ccc;">
-          ${item.desc}
-        </textarea>
-
-        <button type="button" class="remove-portfolio-item"
-                style="margin-top:8px;">
-          Remover
-        </button>
-      `;
-
-      div.querySelector('.delete-img-btn').onclick = () => {
-        portfolioData.splice(idx, 1);
-        renderPortfolio();
-      };
-
-      div.querySelector('.portfolio-img-input').onchange = function () {
-        if (this.files[0]) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            portfolioData[idx].img = e.target.result;
-            renderPortfolio();
-          };
-          reader.readAsDataURL(this.files[0]);
-        }
-      };
-
-      div.querySelector('.portfolio-name').oninput =
-        e => portfolioData[idx].nome = e.target.value;
-
-      div.querySelector('.portfolio-desc').oninput =
-        e => portfolioData[idx].desc = e.target.value;
-
-      div.querySelector('.remove-portfolio-item').onclick = () => {
-        portfolioData.splice(idx, 1);
-        renderPortfolio();
-      };
-
-    } else {
-      div.innerHTML = `<img src="${item.img}">`;
-    }
-
-    portfolioItems.appendChild(div);
-  });
+// Exemplo: obter email do fotógrafo pela query string
+function getFotografoEmail() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('email');
 }
 
-editBtn.onclick = () => {
-  portfolioEditMode = !portfolioEditMode;
-  addBtn.style.display = portfolioEditMode ? 'inline-block' : 'none';
-  editBtn.textContent = portfolioEditMode
-    ? 'Concluir Edição'
-    : 'Editar Portfólio';
-  renderPortfolio();
+// Preencher dados do fotógrafo
+fetch('api/fotografo_publico.php?email=' + encodeURIComponent(getFotografoEmail()))
+  .then(r => r.json())
+  .then(f => {
+    if (f.tipo) {
+      document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
+      document.getElementById('especialidade').textContent = f.especialidade || 'Especialidade não disponível';
+      document.getElementById('email').textContent = f.email || 'Email não disponível';
+      document.getElementById('portfolio').textContent = f.portfolio || 'Portfólio não disponível';
+      if (f.foto_perfil) {
+        // Corrigir caminho para uploads
+        document.getElementById('avatar').src = '/uploads/' + f.foto_perfil;
+      } else {
+        document.getElementById('avatar').src = 'https://i.pravatar.cc/80';
+      }
+      // Exibir certificado, distrito, concelho, categoria
+      if (f.certificado) {
+        let cert = document.createElement('div');
+        cert.textContent = 'Certificado: ' + f.certificado;
+        document.querySelector('.profile-info').appendChild(cert);
+      }
+      if (f.distrito) {
+        let dist = document.createElement('div');
+        dist.textContent = 'Distrito: ' + f.distrito;
+        document.querySelector('.profile-info').appendChild(dist);
+      }
+      if (f.concelho) {
+        let conc = document.createElement('div');
+        conc.textContent = 'Concelho: ' + f.concelho;
+        document.querySelector('.profile-info').appendChild(conc);
+      }
+      if (f.categoria) {
+        let cat = document.createElement('div');
+        cat.textContent = 'Categoria: ' + f.categoria;
+        document.querySelector('.profile-info').appendChild(cat);
+      }
+      if (f.certificado) {
+        let cert = document.createElement('div');
+        cert.textContent = 'Certificado: ' + f.certificado;
+        document.querySelector('.profile-info').appendChild(cert);
+      }
+      if (f.distrito) {
+        let dist = document.createElement('div');
+        dist.textContent = 'Distrito: ' + f.distrito;
+        document.querySelector('.profile-info').appendChild(dist);
+      }
+      if (f.concelho) {
+        let conc = document.createElement('div');
+        conc.textContent = 'Concelho: ' + f.concelho;
+        document.querySelector('.profile-info').appendChild(conc);
+      }
+    }
+    // Se não houver tipo, não preenche os dados (erro já mostrado pelo template)
+  });
+
+// Favoritar/desfavoritar
+const btnFav = document.getElementById('btn-favorito');
+btnFav.onclick = function() {
+  fetch('api/favoritar.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'fotografo_email=' + encodeURIComponent(getFotografoEmail())
+  })
+  .then(r => r.json())
+  .then(resp => {
+    if (resp.sucesso) {
+      btnFav.textContent = 'Remover dos Favoritos';
+    }
+  });
 };
 
-addBtn.onclick = () => {
-  portfolioData.push({
-    img:'https://picsum.photos/400/400?random='+Math.random(),
-    nome:'', desc:''
-  });
-  renderPortfolio();
+// Enviar mensagem (exemplo: redirecionar para página de mensagens)
+document.getElementById('btn-mensagem').onclick = function() {
+  window.location.href = 'mensagens.html?para=' + encodeURIComponent(getFotografoEmail());
 };
-
-window.addEventListener('DOMContentLoaded', () => {
-  addBtn.style.display = 'none';
-  renderPortfolio();
-});
 </script>
-
-<style>
-
-</style>
-    <!-- SERVIÇOS -->
-    <div id="servicos" class="tab-panel">
-      
-      <ul class="services">
-        
-        <li>🧑‍💼 Retratos Profissionais</li>
-        <li>🏢 Fotografia Corporativa</li>
-      </ul>
-    </div>
-    <!-- AVALIAÇÕES -->
-    <div id="avaliacoes" class="tab-panel">
-      
-      <div class="review">
-        <p>Fotos incríveis, recomendo.</p>
-        <span>— Mariana Gomes</span>
-      </div>
-    </div>
-  </section>
-    </main>
-<script>
-  // Alternância de abas do perfil
-  document.addEventListener('DOMContentLoaded', function() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Remove ativo de todos os botões e painéis
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabPanels.forEach(panel => panel.classList.remove('active'));
-        // Ativa o botão e painel correspondente
-        btn.classList.add('active');
-        const tab = btn.getAttribute('data-tab');
-        document.getElementById(tab).classList.add('active');
-      });
-    });
-  });
-</script>
-
 
     </main>
     

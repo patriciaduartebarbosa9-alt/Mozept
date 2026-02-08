@@ -1,0 +1,103 @@
+{{< layout}}
+{{$main}}
+<main class="profile-page">
+  <section class="profile-card">
+    <img id="avatar" src="https://i.pravatar.cc/80" class="avatar" alt="Avatar do Fotógrafo">
+    <div class="profile-info">
+      <h2 id="nome">Nome do Fotógrafo</h2>
+      <p id="especialidade">Especialidade</p>
+      <div class="meta">
+        <span id="email">Email</span><br>
+        <span id="portfolio">Portfólio</span>
+      </div>
+      <!-- Exibir certificado, distrito, concelho -->
+    </div>
+    <button id="btn-favorito" class="edit-btn">Adicionar aos Favoritos</button>
+    <button id="btn-mensagem" class="edit-btn" style="background:#eee; color:#7b0000; margin-left:12px;">Enviar Mensagem</button>
+  </section>
+</main>
+<script>
+// Exemplo: obter email do fotógrafo pela query string
+function getFotografoEmail() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('email');
+}
+
+// Preencher dados do fotógrafo
+fetch('api/fotografo_publico.php?email=' + encodeURIComponent(getFotografoEmail()))
+  .then(r => r.json())
+  .then(f => {
+    if (f.tipo) {
+      document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
+      document.getElementById('especialidade').textContent = f.especialidade || 'Especialidade não disponível';
+      document.getElementById('email').textContent = f.email || 'Email não disponível';
+      document.getElementById('portfolio').textContent = f.portfolio || 'Portfólio não disponível';
+      if (f.foto_perfil) {
+        // Corrigir caminho para uploads
+        document.getElementById('avatar').src = '/uploads/' + f.foto_perfil;
+      } else {
+        document.getElementById('avatar').src = 'https://i.pravatar.cc/80';
+      }
+      // Exibir certificado, distrito, concelho, categoria
+      if (f.certificado) {
+        let cert = document.createElement('div');
+        cert.textContent = 'Certificado: ' + f.certificado;
+        document.querySelector('.profile-info').appendChild(cert);
+      }
+      if (f.distrito) {
+        let dist = document.createElement('div');
+        dist.textContent = 'Distrito: ' + f.distrito;
+        document.querySelector('.profile-info').appendChild(dist);
+      }
+      if (f.concelho) {
+        let conc = document.createElement('div');
+        conc.textContent = 'Concelho: ' + f.concelho;
+        document.querySelector('.profile-info').appendChild(conc);
+      }
+      if (f.categoria) {
+        let cat = document.createElement('div');
+        cat.textContent = 'Categoria: ' + f.categoria;
+        document.querySelector('.profile-info').appendChild(cat);
+      }
+      if (f.certificado) {
+        let cert = document.createElement('div');
+        cert.textContent = 'Certificado: ' + f.certificado;
+        document.querySelector('.profile-info').appendChild(cert);
+      }
+      if (f.distrito) {
+        let dist = document.createElement('div');
+        dist.textContent = 'Distrito: ' + f.distrito;
+        document.querySelector('.profile-info').appendChild(dist);
+      }
+      if (f.concelho) {
+        let conc = document.createElement('div');
+        conc.textContent = 'Concelho: ' + f.concelho;
+        document.querySelector('.profile-info').appendChild(conc);
+      }
+    }
+    // Se não houver tipo, não preenche os dados (erro já mostrado pelo template)
+  });
+
+// Favoritar/desfavoritar
+const btnFav = document.getElementById('btn-favorito');
+btnFav.onclick = function() {
+  fetch('api/favoritar.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'fotografo_email=' + encodeURIComponent(getFotografoEmail())
+  })
+  .then(r => r.json())
+  .then(resp => {
+    if (resp.sucesso) {
+      btnFav.textContent = 'Remover dos Favoritos';
+    }
+  });
+};
+
+// Enviar mensagem (exemplo: redirecionar para página de mensagens)
+document.getElementById('btn-mensagem').onclick = function() {
+  window.location.href = 'mensagens.html?para=' + encodeURIComponent(getFotografoEmail());
+};
+</script>
+{{/main}}
+{{/layout}}
