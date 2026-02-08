@@ -43,13 +43,21 @@ require_once 'config.php';
                  return localStorage.getItem('userId');
              };
              // Propagar o id do utilizador nos links de navegação
+             // Corrigir para não sobrescrever userId ao navegar para perfil de outro usuário
              document.addEventListener('DOMContentLoaded', function() {
                  const uid = localStorage.getItem('userId');
                  if (uid) {
                      document.querySelectorAll('nav.nav a').forEach(function(link) {
                          const url = new URL(link.href, window.location.origin);
-                         url.searchParams.set('id', uid);
-                         link.href = url.pathname + url.search;
+                         // Só propaga id se for página privada (mensagens, reserva, perfil, etc.)
+                         if (url.pathname.includes('perfil.html') || url.pathname.includes('mensagens.html') || url.pathname.includes('reserva.html')) {
+                             url.searchParams.set('id', uid);
+                             link.href = url.pathname + url.search;
+                         } else {
+                             // Para páginas públicas, remove id
+                             url.searchParams.delete('id');
+                             link.href = url.pathname + url.search;
+                         }
                      });
                  }
                  // Adicionar evento de logout se existir botão/link com id="logout-btn"
@@ -57,7 +65,6 @@ require_once 'config.php';
                  if (logoutBtn) {
                      logoutBtn.addEventListener('click', function(e) {
                          localStorage.removeItem('userId');
-                         // Opcional: redirecionar para login
                          window.location.href = 'login.html';
                      });
                  }
@@ -83,8 +90,15 @@ require_once 'config.php';
              if (uid) {
                  document.querySelectorAll('nav.nav a').forEach(function(link) {
                      const url = new URL(link.href, window.location.origin);
-                     url.searchParams.set('id', uid);
-                     link.href = url.pathname + url.search;
+                     // Só propaga id se for página privada (mensagens, reserva, perfil, etc.)
+                     if (url.pathname.includes('perfil.html') || url.pathname.includes('mensagens.html') || url.pathname.includes('reserva.html')) {
+                         url.searchParams.set('id', uid);
+                         link.href = url.pathname + url.search;
+                     } else {
+                         // Para páginas públicas, remove id
+                         url.searchParams.delete('id');
+                         link.href = url.pathname + url.search;
+                     }
                  });
              }
          });

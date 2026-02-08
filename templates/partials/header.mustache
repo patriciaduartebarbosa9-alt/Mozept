@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="/assets/css/styles.css">
 <header class="header">
     <div class="logo">{{site.title}}</div>
@@ -52,7 +51,8 @@
           logoutBtn.addEventListener('click', function(e) {
             e.preventDefault();
             if (confirm('Tem a certeza que deseja terminar sessão?')) {
-              // Aqui pode adicionar lógica para terminar sessão no backend se necessário
+              localStorage.removeItem('userId');
+              sessionStorage.removeItem('userId');
               window.location.href = '{{navPrefix}}registo.html';
             }
           });
