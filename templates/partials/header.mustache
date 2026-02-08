@@ -3,7 +3,7 @@
     <div class="logo">{{site.title}}</div>
 
     <nav class="nav">
-        <a href="{{navPrefix}}index.html"{{#isHome}} class="active"{{/isHome}}> Inicial</a>
+        <a href="{{navPrefix}}index.html"{{#isHome}} class="active"{{/isHome}}>Inicial</a>
         <a href="{{navPrefix}}reserva.html"{{#isReserva}} class="active"{{/isReserva}}>Reservar</a>
         <a href="{{navPrefix}}mensagens.html"{{#isMensagens}} class="active"{{/isMensagens}}>Mensagens</a>
         <a href="{{navPrefix}}blog.html"{{#isBlog}} class="active"{{/isBlog}}>Blog</a>
@@ -15,15 +15,17 @@
             <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
         </button>
         <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
+                  
+                  <button id="btn-logout" style="display: block; width: 100%; padding: 10px 16px; background: none; border: none; text-align: left; color: #ab2a2a; cursor: pointer;">Terminar Sessão</button>
+                  {{^user.authenticated}}
+                    <a href="{{navPrefix}}perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Ver Perfil</a>
+                    <a href="{{navPrefix}}registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
+                    
+                  {{/user.authenticated}}
                   {{#user.authenticated}}
                     <a href="#" id="ver-perfil-link" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Ver Perfil</a>
                     <hr style="margin: 0;">
                     <button id="btn-delete-account" style="display: block; width: 100%; padding: 10px 16px; background: none; border: none; text-align: left; color: #7b0000; cursor: pointer;">Apagar Conta</button>
-                    <button id="btn-logout" style="display: block; width: 100%; padding: 10px 16px; background: none; border: none; text-align: left; color: #262626; cursor: pointer;">Terminar Sessão</button>
-                  {{/user.authenticated}}
-                  {{^user.authenticated}}
-                    <a href="{{navPrefix}}registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
-                    <a href="{{navPrefix}}perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
                   {{/user.authenticated}}
         </div>
     </div>
@@ -36,6 +38,20 @@
           dropdown.style.display = 'none';
         } else {
           dropdown.style.display = dropdown.classList.contains('show') ? 'block' : 'none';
+        }
+      });
+
+      // Terminar sessão com confirmação
+      document.addEventListener('DOMContentLoaded', function() {
+        var logoutBtn = document.getElementById('btn-logout');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Tem a certeza que deseja terminar sessão?')) {
+              // Aqui pode adicionar lógica para terminar sessão no backend se necessário
+              window.location.href = '{{navPrefix}}registo.html';
+            }
+          });
         }
       });
     </script>

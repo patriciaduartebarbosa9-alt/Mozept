@@ -7,7 +7,7 @@ require_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Entrar</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -22,59 +22,13 @@ require_once 'config.php';
         <meta name="twitter:title" content="">
         <meta name="twitter:description" content="">
         <meta name="twitter:image" content="">
-    <!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">    
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
-
-    
      <link rel="stylesheet" href="assets/css/styles.css">
        
     
-  </head>
+</head>
 <body class="">
-    <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
-    <header class="header">
-        <div class="logo">Moze</div>
-    
-        <nav class="nav">
-            <a href="index.html"> Inicial</a>
-            <a href="reserva.html">Reservar</a>
-            <a href="mensagens.html">Mensagens</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html">Sobre Nós</a>
-        </nav>
-    
-        <div class="profile-menu-container" style="position: relative;">
-            <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil" onclick="document.getElementById('profile-dropdown').classList.toggle('show')">
-                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
-            </button>
-            <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
-                        <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
-                        <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
-            </div>
-        </div>
-        <script>
-          document.addEventListener('click', function(event) {
-            var dropdown = document.getElementById('profile-dropdown');
-            var btn = document.getElementById('profile-btn');
-            if (!btn.contains(event.target)) {
-              dropdown.classList.remove('show');
-              dropdown.style.display = 'none';
-            } else {
-              dropdown.style.display = dropdown.classList.contains('show') ? 'block' : 'none';
-            }
-          });
-        </script>
-    </header>
-    
-    <script>
-        const headerConfig = {
-            navPrefix: '',
-            userType: '',
-            userId: null
-        };
-    </script>
-    <script src=""></script>    
     <main>
         
 <main class="register-main">
@@ -131,48 +85,11 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
 </script>
 
     </main>
-    
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo"><small>&copy;</small>Moze</div>
-            </div>
-            <div class="footer-section">
-                <h3>Empresa</h3>
-                <ul class="footer-links">
-                    <li><a href="about.html">Sobre nós</a></li>
-                    <li><a href="contact.html">Contatos</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos e Condições</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Redes Sociais</h3>
-                <ul class="footer-social">
-                    <li><a href="https://www.instagram.com/moze.capture/">Instagram</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Linkedin</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <div class="footer-newsletter">Subscreva se à nossa Newsletter</div>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Insira o seu e-mail" required>
-                    <button type="submit" class="newsletter-btn">&#8594;</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Moze. All rights reserved.</p>
-        </div>
-    </footer>    <!-- Bootstrap JS Bundle -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
     <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
        
-      
-   </body>
+</body>
 </html>

@@ -9,5 +9,8 @@
   "loginLink": {
     "label": "Já tem conta? Fazer login",
     "url": "login.html"
+  },
+  "user": {
+    "authenticated": true
   }
 }

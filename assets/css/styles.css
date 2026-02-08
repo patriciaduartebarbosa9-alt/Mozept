@@ -1,3 +1,13 @@
+/* Header nav active tab rectangle */
+.nav a.active {
+  background: #870000;
+  color: #fff !important;
+  border-radius: 16px;
+  padding: 12px 32px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
 /* === REGISTO ESCOLHA (registo.mustache) === */
 .register-main {
   min-height: 100vh;

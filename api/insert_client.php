@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'Email inválido';
     } else {
         // Ligação à BD
-            $host = 'sql100.infinityfree.com';
-            $username = 'if0_40999093';
-            $password = 'mozept123';
-            $database = 'if0_40999093_moze';
+        $host = 'sql100.infinityfree.com';
+        $username = 'if0_40999093';
+        $password = 'mozept123';
+        $database = 'if0_40999093_moze';
 
-        $conn = mysqli_connect($host, $user, $pass, $db);
+        $conn = mysqli_connect($host, $username, $password, $database);
 
         if (!$conn) {
             $erro = 'Erro ao conectar à base de dados';

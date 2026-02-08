@@ -4,9 +4,9 @@
       ".github": {},
       ".htaccess": {
         "type": "-",
-        "size": 63,
+        "size": 46,
         "lmtime": 0,
-        "modified": false
+        "modified": true
       },
       ".vscode": {},
       "404.html": {
@@ -49,9 +49,9 @@
       },
       "about.html": {
         "type": "-",
-        "size": 18833,
+        "size": 18874,
         "lmtime": 1770207842587.078,
-        "modified": false
+        "modified": true
       },
       "api": {
         "config.php": {
@@ -318,9 +318,9 @@
       },
       "blog.html": {
         "type": "-",
-        "size": 13259,
+        "size": 13300,
         "lmtime": 1770207842620.8318,
-        "modified": false
+        "modified": true
       },
       "child.html": {
         "type": "-",
@@ -374,15 +374,15 @@
       },
       "contact.html": {
         "type": "-",
-        "size": 8822,
+        "size": 8863,
         "lmtime": 1770207842635.8596,
-        "modified": false
+        "modified": true
       },
       "edit-profile.html": {
         "type": "-",
-        "size": 14210,
+        "size": 14251,
         "lmtime": 1770207842641.937,
-        "modified": false
+        "modified": true
       },
       "erro404.html": {
         "type": "-",
@@ -398,28 +398,28 @@
       },
       "gallery-api-1.html": {
         "type": "-",
-        "size": 6528,
+        "size": 6569,
         "lmtime": 1770207842645.938,
-        "modified": false
+        "modified": true
       },
       "gallery-api.html": {
         "type": "-",
-        "size": 6526,
+        "size": 6567,
         "lmtime": 1770207842647.937,
-        "modified": false
+        "modified": true
       },
       "gallery.html": {
         "type": "-",
-        "size": 7592,
+        "size": 7633,
         "lmtime": 1770207842651.9736,
-        "modified": false
+        "modified": true
       },
       "htdocs": {},
       "index.html": {
         "type": "-",
-        "size": 12540,
+        "size": 12581,
         "lmtime": 1770207842655.486,
-        "modified": false
+        "modified": true
       },
       "index.php": {
         "type": "-",
@@ -435,15 +435,15 @@
       },
       "login.html": {
         "type": "-",
-        "size": 7844,
+        "size": 7885,
         "lmtime": 1770207842661.0044,
-        "modified": false
+        "modified": true
       },
       "mensagens.html": {
         "type": "-",
-        "size": 12540,
+        "size": 12581,
         "lmtime": 1770207842664.0034,
-        "modified": false
+        "modified": true
       },
       "mustache-website.code-workspace": {
         "type": "-",
@@ -472,15 +472,15 @@
       },
       "perfil.html": {
         "type": "-",
-        "size": 12704,
+        "size": 13236,
         "lmtime": 1770207842669.0034,
-        "modified": false
+        "modified": true
       },
       "perfilcliente.html": {
         "type": "-",
-        "size": 8803,
+        "size": 8844,
         "lmtime": 1770207842677.38,
-        "modified": false
+        "modified": true
       },
       "products": {
         "product1.html": {
@@ -498,15 +498,15 @@
       },
       "products.html": {
         "type": "-",
-        "size": 10517,
+        "size": 10558,
         "lmtime": 1770207842695.9294,
-        "modified": false
+        "modified": true
       },
       "projects.html": {
         "type": "-",
-        "size": 18120,
+        "size": 18161,
         "lmtime": 1770207842700.9978,
-        "modified": false
+        "modified": true
       },
       "registar.html": {
         "type": "-",
@@ -516,27 +516,27 @@
       },
       "registarcliente.html": {
         "type": "-",
-        "size": 7930,
+        "size": 7971,
         "lmtime": 1770207842703.995,
-        "modified": false
+        "modified": true
       },
       "registarfotografo.html": {
         "type": "-",
-        "size": 9784,
+        "size": 9735,
         "lmtime": 1770207842707.9973,
-        "modified": false
+        "modified": true
       },
       "registo.html": {
         "type": "-",
-        "size": 6420,
+        "size": 6461,
         "lmtime": 1770207842712.146,
-        "modified": false
+        "modified": true
       },
       "reserva.html": {
         "type": "-",
-        "size": 15384,
+        "size": 15425,
         "lmtime": 1770207842718.6582,
-        "modified": false
+        "modified": true
       },
       "settings.json": {
         "type": "-",

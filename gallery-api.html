@@ -25,6 +25,7 @@ require_once 'config.php';
     <!-- Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
+   
 
     
      <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/gallery-slider.css">
@@ -37,7 +38,7 @@ require_once 'config.php';
         <div class="logo">Moze</div>
     
         <nav class="nav">
-            <a href="index.html"> Inicial</a>
+            <a href="index.html">Inicial</a>
             <a href="reserva.html">Reservar</a>
             <a href="mensagens.html">Mensagens</a>
             <a href="blog.html">Blog</a>
@@ -49,8 +50,11 @@ require_once 'config.php';
                 <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
             </button>
             <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
+                      
+                      <button id="btn-logout" style="display: block; width: 100%; padding: 10px 16px; background: none; border: none; text-align: left; color: #ab2a2a; cursor: pointer;">Terminar Sessão</button>
+                        <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Ver Perfil</a>
                         <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
-                        <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Perfil</a>
+                        
             </div>
         </div>
         <script>
@@ -62,6 +66,20 @@ require_once 'config.php';
               dropdown.style.display = 'none';
             } else {
               dropdown.style.display = dropdown.classList.contains('show') ? 'block' : 'none';
+            }
+          });
+    
+          // Terminar sessão com confirmação
+          document.addEventListener('DOMContentLoaded', function() {
+            var logoutBtn = document.getElementById('btn-logout');
+            if (logoutBtn) {
+              logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Tem a certeza que deseja terminar sessão?')) {
+                  // Aqui pode adicionar lógica para terminar sessão no backend se necessário
+                  window.location.href = 'registo.html';
+                }
+              });
             }
           });
         </script>
