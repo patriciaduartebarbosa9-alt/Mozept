@@ -42,7 +42,7 @@ require_once 'config.php';
         <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
         <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
       </div>
-      <form class="register-form" id="login-form">
+        <form class="register-form" id="login-form">
         <label>Email*
           <input type="email" name="email" placeholder="email" required>
         </label>
@@ -54,6 +54,7 @@ require_once 'config.php';
         </label>
         <button type="submit" class="register-btn">Entrar</button>
       </form>
+      <div id="login-error" style="color:#b00;margin-top:12px;"></div>
     </div>
     <div class="register-welcome">
       <h1>Olá!</h1>
@@ -63,6 +64,7 @@ require_once 'config.php';
   </div>
 </main>
 <script>
+
 function togglePassword() {
   const pwd = document.getElementById('login-password');
   const icon = document.querySelector('.toggle-password i');
@@ -76,12 +78,28 @@ function togglePassword() {
     icon.classList.add('fa-eye');
   }
 }
-// Redireciona para index.html ao submeter o formulário
-document.getElementById('login-form').addEventListener('submit', function(e) {
+
+document.getElementById('login-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  // Aqui você pode adicionar validação/autenticação real
-  window.location.href = 'index.html';
+  const email = this.email.value.trim();
+  const password = this.password.value;
+  const errorDiv = document.getElementById('login-error');
+  errorDiv.textContent = '';
+
+  const res = await fetch('login.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
+  if (data.status === 'success') {
+    // Redireciona para index.html com o id do utilizador
+    window.location.href = 'index.html?id=' + encodeURIComponent(data.data.id);
+  } else {
+    errorDiv.textContent = data.message || 'Erro ao fazer login.';
+  }
 });
+
 </script>
 
     </main>
@@ -91,5 +109,6 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"></script>
     <script src="http://localhost/Mustache-website/assets/js/main.js"></script>
        
-</body>
+      
+   </body>
 </html>

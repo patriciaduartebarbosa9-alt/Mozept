@@ -1,13 +1,13 @@
 {{<layout}}
 {{$main}}
-        <section class="reservar-hero" style="background:#fdfcf9;min-height:calc(100vh - 80px);display:flex;align-items:flex-start;justify-content:center;padding-top:32px;">
-            <div class="container" style="max-width:600px;width:100%;margin:auto;">
+        <section class="reservar-hero" style="background:#fdfcf9;min-height:100vh;display:flex;align-items:center;justify-content:center;">
+            <div class="container" style="max-width:420px;width:100%;margin:auto;">
                 <div class="hero-content" style="padding:32px 0;">
                     <h1 style="font-size:2.6rem;font-weight:700;margin-bottom:32px;line-height:1.1;">Encontre aqui o seu fotografo</h1>
                     <form id="search-form" class="search-form" style="display:flex;flex-direction:column;gap:18px;">
                                                 <div style="display:flex;gap:12px;">
                                                     <div style="flex:1;">
-                                                        <select id="distrito" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:18px 24px;font-size:1.1rem;">
+                                                        <select id="distrito" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
                                                             <option value="">Distrito</option>
                                                             <option value="aveiro">Aveiro</option>
                                                             <option value="beja">Beja</option>
@@ -32,21 +32,21 @@
                                                         </select>
                                                     </div>
                                                     <div style="flex:1;">
-                                                        <select id="concelho" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:18px 24px;font-size:1.1rem;" disabled>
+                                                        <select id="concelho" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;" disabled>
                                                             <option value="">Concelho</option>
                                                         </select>
                                                     </div>
                                                 </div>
                         <div style="display:flex;gap:12px;">
                             <div style="position:relative;flex:1;">
-                                <input type="date" placeholder="Data" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:18px 24px;font-size:1.1rem;">
+                                <input type="date" placeholder="Data" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
                             </div>
                             <div style="position:relative;flex:1;">
-                                <input type="time" placeholder="Hora" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:18px 24px;font-size:1.1rem;">
+                                <input type="time" placeholder="Hora" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
                             </div>
                         </div>
                         <div style="position:relative;">
-                            <select style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:18px 24px;font-size:1.1rem;">
+                            <select style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
                                 <option value="">Categoria</option>
                                 <option value="casamento">Casamento</option>
                                 <option value="evento">Evento</option>
@@ -65,41 +65,45 @@ const concelhosPorDistrito = {
     porto: ["Porto", "Gondomar", "Maia", "Matosinhos", "Paredes", "Valongo", "Vila do Conde", "Vila Nova de Gaia", "Santo Tirso", "Trofa", "Felgueiras", "Lousada", "Paços de Ferreira", "Penafiel"],
 };
 
-const distritoSelect = document.getElementById('distrito');
-const concelhoSelect = document.getElementById('concelho');
+            const distritoSelect = document.getElementById('distrito');
+            const concelhoSelect = document.getElementById('concelho');
 
-distritoSelect.addEventListener('change', function() {
-    const distrito = this.value;
-    concelhoSelect.innerHTML = '<option value="">Concelho</option>';
-    if (concelhosPorDistrito[distrito]) {
-        concelhoSelect.disabled = false;
-        concelhosPorDistrito[distrito].forEach(function(concelho) {
-            const opt = document.createElement('option');
-            opt.value = concelho.toLowerCase().replace(/ /g, '-');
-            opt.textContent = concelho;
-            concelhoSelect.appendChild(opt);
-        });
-    } else {
-        concelhoSelect.disabled = true;
-    }
-});
-</script>
-                </div>
-            </div>
-        </section>
+            distritoSelect.addEventListener('change', function() {
+                const distrito = this.value;
+                concelhoSelect.innerHTML = '<option value="">Concelho</option>';
+                if (concelhosPorDistrito[distrito]) {
+                    concelhoSelect.disabled = false;
+                    concelhosPorDistrito[distrito].forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c; // valor igual ao texto
+                        opt.textContent = c;
+                        concelhoSelect.appendChild(opt);
+                    });
+                } else {
+                    concelhoSelect.disabled = true;
+                }
+            });
+            </script>
+        </div>
+    </div>
+</section>
 
 <!-- Resultados de Fotógrafos -->
 <section id="results-section" class="results hidden" style="display:flex;align-items:center;justify-content:center;min-height:60vh;">
     <div class="container" style="max-width:700px;width:100%;margin:auto;">
-        <h2 style="text-align:center;">Fotógrafos disponíveis</h2>
         <div id="fotografos-grid" class="fotografos-grid"></div>
-        <script>
-                async function fetchFotografos() {
-                    const res = await fetch('/templates/data/products.json');
-                    if (!res.ok) return [];
-                    const data = await res.json();
-                    return data.fotografos || [];
-                }
+
+<script>
+async function fetchFotografo(filtros) {   // singular
+    const res = await fetch('reserva.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(filtros)
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.status === 'success' ? data.data : [];
+}
 
                 function renderFotografoCard(f) {
                     return `
@@ -112,7 +116,7 @@ distritoSelect.addEventListener('change', function() {
                                         <div style="color:#555;font-size:0.98rem;">${f.concelho} • ${f.nota} <span style='color:#7b0000;'>★</span></div>
                                     </div>
                                 </div>
-                                <a href="perfilpublico.html" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Ver perfil</a>
+                                <a href="#" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Ver perfil</a>
                             </div>
                             <div style="display:flex;gap:8px;margin-top:14px;">
                                 ${(f.galeria||[]).map(img => `<img src="${img}" alt="" style="height:80px;width:120px;object-fit:cover;border-radius:8px;">`).join('')}
@@ -121,14 +125,30 @@ distritoSelect.addEventListener('change', function() {
                     `;
                 }
 
-                document.getElementById('search-form').addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    document.getElementById('results-section').classList.remove('hidden');
-                    const fotografos = await fetchFotografos();
-                    document.getElementById('fotografos-grid').innerHTML = fotografos.map(renderFotografoCard).join('');
-                });
-                </script>
-        </div>
+document.getElementById('search-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    document.getElementById('results-section').classList.remove('hidden');
+
+    const filtros = {
+        distrito: distritoSelect.value,
+        concelho: concelhoSelect.value,
+        categoria: document.getElementById('categoria').value
+    };
+
+    const fotografo = await fetchFotografo(filtros);   // singular
+    const grid = document.getElementById('fotografos-grid');
+    grid.innerHTML = '';
+
+    if (fotografo.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;">Nenhum fotografo encontrado.</p>';
+        return;
+    }
+
+    grid.innerHTML = fotografo.map(renderFotografoCard).join('');
+});
+</script>
+
+    </div>
 </section>
 
 {{/main}}
