@@ -7,5 +7,9 @@
     { "label": "Mensagem", "url": "/mensagens.html" },
     { "label": "Blog", "url": "/blog.html" },
     { "label": "Sobre", "url": "/about.html" }
-]
+  ],
+  "user": {
+    "authenticated": true,
+    "id": "1"
+  }
 }

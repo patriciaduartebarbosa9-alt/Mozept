@@ -62,8 +62,8 @@ document.getElementById('login-form').addEventListener('submit', async function(
   });
   const data = await res.json();
   if (data.status === 'success') {
-    // Redireciona para index.html com o id do utilizador
-    window.location.href = 'index.html?id=' + encodeURIComponent(data.data.id);
+    // Redireciona para perfil.html com o id do utilizador
+    window.location.href = 'perfil.html?id=' + encodeURIComponent(data.data.id);
   } else {
     errorDiv.textContent = data.message || 'Erro ao fazer login.';
   }

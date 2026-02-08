@@ -19,7 +19,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Dados principais
-    $stmt = $pdo->prepare('SELECT f.nome, u.email, f.imagemperfil, f.Distrito, f.Concelho, f.Categoria, f.idportfolio
+    $stmt = $pdo->prepare('SELECT f.nome, u.email, f.imagemperfil, f.Distrito, f.Concelho, f.Categoria
         FROM utilizador u
         LEFT JOIN fotografo f ON u.email = f.email
         WHERE u.id = ?');
@@ -30,7 +30,16 @@ try {
         exit;
     }
 
-    // Avaliações removidas
+    // Buscar imagens do portfólio
+    $portfolioImgs = [];
+    $stmtPort = $pdo->prepare('SELECT imagem FROM portfolio WHERE idfotografo = ?');
+    $stmtPort->execute([$id]);
+    while ($row = $stmtPort->fetch(PDO::FETCH_ASSOC)) {
+        if (!empty($row['imagem'])) {
+            $portfolioImgs[] = $row['imagem'];
+        }
+    }
+    $dados['portfolio'] = $portfolioImgs;
 
     echo json_encode($dados);
 } catch (Exception $e) {

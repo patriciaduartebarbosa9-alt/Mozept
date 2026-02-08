@@ -47,14 +47,68 @@ require_once 'config.php';
     
         <div class="profile-menu-container" style="position: relative;">
             <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil" onclick="document.getElementById('profile-dropdown').classList.toggle('show')">
-                <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+                <img id="header-avatar" src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+              <script>
+              // Mostrar/ocultar 'Ver Perfil' dinamicamente
+              document.addEventListener('DOMContentLoaded', function() {
+                var perfilLink = document.getElementById('ver-perfil-link');
+                var userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+                if (perfilLink) {
+                  if (!userId) {
+                    perfilLink.style.display = 'none';
+                  } else {
+                    perfilLink.style.display = 'block';
+                  }
+                }
+              });
+              // Propagar o id nos links de navegação para páginas privadas
+              document.addEventListener('DOMContentLoaded', function() {
+                var userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+                if (userId) {
+                  document.querySelectorAll('nav.nav a').forEach(function(link) {
+                    var url = new URL(link.href, window.location.origin);
+                    // Só propaga id se for página privada
+                    if (url.pathname.includes('perfil.html') || url.pathname.includes('mensagens.html') || url.pathname.includes('reserva.html')) {
+                      url.searchParams.set('id', userId);
+                      link.href = url.pathname + url.search;
+                    } else {
+                      // Para páginas públicas, remove id
+                      url.searchParams.delete('id');
+                      link.href = url.pathname + url.search;
+                    }
+                  });
+                }
+              });
+              // Buscar imagem de perfil da BD em tempo real para o header
+              document.addEventListener('DOMContentLoaded', function() {
+                var img = document.getElementById('header-avatar');
+                // Função para obter o ID do utilizador autenticado
+                function getUserId() {
+                  return localStorage.getItem('userId') || sessionStorage.getItem('userId');
+                }
+                var userId = getUserId();
+                if (img && userId) {
+                  fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(userId))
+                    .then(async r => {
+                      const text = await r.text();
+                      try {
+                        const f = JSON.parse(text);
+                        if (f.imagemperfil) {
+                          img.src = f.imagemperfil;
+                        }
+                      } catch (e) {
+                        // Se erro, mantém imagem padrão
+                      }
+                    });
+                }
+              });
+              </script>
             </button>
             <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
                       
                       <button id="btn-logout" style="display: block; width: 100%; padding: 10px 16px; background: none; border: none; text-align: left; color: #ab2a2a; cursor: pointer;">Terminar Sessão</button>
-                        <a href="perfil.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Ver Perfil</a>
-                        <a href="registo.html" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Registar</a>
-                        
+                        <a href="#" id="ver-perfil-link" style="display: block; padding: 10px 16px; color: #262626; text-decoration: none;">Ver Perfil</a>
+                        <hr style="margin: 0;">
             </div>
         </div>
         <script>
@@ -80,6 +134,19 @@ require_once 'config.php';
                   sessionStorage.removeItem('userId');
                   window.location.href = 'registo.html';
                 }
+              });
+            }
+            // Corrigir link Ver Perfil para propagar id
+            var perfilLink = document.getElementById('ver-perfil-link');
+            var userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+            if (perfilLink) {
+              perfilLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!userId) {
+                  window.location.href = 'login.html';
+                  return;
+                }
+                window.location.href = 'perfil.html?id=' + userId;
               });
             }
           });
@@ -212,20 +279,20 @@ document.getElementById('search-form').addEventListener('submit', async e => {
 
   const resultados = await fetchFotografo(filtros);
   const grid = document.getElementById('fotografos-grid');
-  grid.innerHTML = resultados.length
+    grid.innerHTML = resultados.length
     ? resultados.map(f => `
-        <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-                <div style="display:flex;align-items:center;gap:16px;">
-                    <img src="${f.imagemperfil ? '/uploads/' + f.imagemperfil : 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
-                    <div>
-                        <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
-                        <div style="color:#555;font-size:0.98rem;">${f.Concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
-                    </div>
-                </div>
-                <a href="perfilfotografo-publico.html?id=${encodeURIComponent(f.id)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Visitar perfil</a>
+      <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <img src="${f.imagemperfil ? f.imagemperfil : 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+            <div>
+              <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
+              <div style="color:#555;font-size:0.98rem;">${f.Concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
             </div>
+          </div>
+          <a href="perfilfotografo-publico.html?id=${encodeURIComponent(f.id)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Visitar perfil</a>
         </div>
+      </div>
     `).join('')
     : '<p>Nenhum fotografo encontrado.</p>';
 });
@@ -280,14 +347,17 @@ document.getElementById('search-form').addEventListener('submit', async e => {
          (function() {
              const params = new URLSearchParams(window.location.search);
              const userId = params.get('id');
-             if (userId) {
+             // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
+             const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+             const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
+             if (userId && isPriv) {
                  localStorage.setItem('userId', userId);
              }
              window.getUserId = function() {
                  return localStorage.getItem('userId');
              };
              // Propagar o id do utilizador nos links de navegação
-             // Corrigir para não sobrescrever userId ao navegar para perfil de outro usuário
+             // Corrigir: nunca sobrescrever userId do localStorage ao navegar para páginas públicas
              document.addEventListener('DOMContentLoaded', function() {
                  const uid = localStorage.getItem('userId');
                  if (uid) {
@@ -321,7 +391,10 @@ document.getElementById('search-form').addEventListener('submit', async e => {
      (function() {
          const params = new URLSearchParams(window.location.search);
          const userId = params.get('id');
-         if (userId) {
+         // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
+         const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+         const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
+         if (userId && isPriv) {
              localStorage.setItem('userId', userId);
          }
          // Se não houver id na query mas existe em localStorage, garantir que está disponível

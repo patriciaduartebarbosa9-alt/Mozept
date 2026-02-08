@@ -1,235 +1,164 @@
 {{< layout}}
 {{$main}}
+
 <main class="profile-page">
-  <!-- PERFIL -->
+
   <section class="profile-card">
-    <img id="avatar" src="https://i.pravatar.cc/80?img=32" class="avatar" alt="Avatar">
+    <img id="avatar" src="https://i.pravatar.cc/80?img=32" class="avatar">
+
     <div class="profile-info">
-      <h2 id="nome">Nome do Fotógrafo</h2>
-      <p id="descricao">Descrição</p>
+      <h2 id="nome">A carregar...</h2>
+      <p id="descricao"></p>
+
       <div class="meta">
-        <span id="avaliacoes">⭐</span>
+        <span id="avaliacoes"></span>
         <span id="localizacao"></span>
       </div>
     </div>
-    <button class="edit-btn" onclick="window.location.href='edit-profile.html?id=' + getUserId()">Editar Perfil</button>
+
+    <button id="edit-btn" class="edit-btn">Editar Perfil</button>
   </section>
-  <!-- TABS -->
+
   <section class="tabs">
-    <button class="tab-btn active" id="portfolio-tab-btn" data-tab="portfolio">Portfólio</button>
+    <button class="tab-btn active" data-tab="portfolio">Portfólio</button>
     <button class="tab-btn" data-tab="servicos">Serviços</button>
     <button class="tab-btn" data-tab="avaliacoes">Avaliações</button>
   </section>
-  <!-- CONTEÚDO DAS TABS -->
+
   <section class="tab-content">
-    <!-- PORTFÓLIO -->
     <div id="portfolio" class="tab-panel active">
-      <div style="display:flex; justify-content:center; background:#fcfaf7; border-radius:0 0 24px 24px; padding:32px 0;">
-        <div class="portfolio portfolio-grid" id="portfolio-items" style="background:transparent; padding:0; border-radius:0;"></div>
-      </div>
+      <div id="portfolio-items"></div>
     </div>
-    <!-- SERVIÇOS -->
+
     <div id="servicos" class="tab-panel">
-      <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
-      <ul class="services" id="services-list"></ul>
+      <ul id="services-list"></ul>
     </div>
-    <!-- AVALIAÇÕES -->
+
     <div id="avaliacoes" class="tab-panel">
       <div id="reviews-list"></div>
     </div>
   </section>
+
 </main>
+
 <script>
-// Função para obter o ID do usuário logado (exemplo: localStorage ou cookie)
-function getUserId() {
-  // Ajuste conforme sua lógica de autenticação
-  return localStorage.getItem('userId') || sessionStorage.getItem('userId');
-}
-
-// Buscar dados do perfil via API
-const userId = getUserId();
-let perfilId = userId;
+/* =========================
+   VERIFICAÇÃO DE SESSÃO
+========================= */
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('id')) {
-  const paramId = urlParams.get('id');
-  if (paramId && paramId !== userId) {
-    perfilId = paramId;
-  }
-}
-fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(perfilId))
-  .then(async r => {
-    const text = await r.text();
-    try {
-      const f = JSON.parse(text);
-      if (f.nome) {
-        document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
-        document.getElementById('descricao').textContent = f.servicos || 'Descrição não disponível';
-        document.getElementById('avaliacoes').textContent = f.avaliacoes ? `⭐ ${f.avaliacoes}` : '';
-        document.getElementById('localizacao').textContent = (f.distrito && f.concelho) ? `${f.distrito}, ${f.concelho}` : '';
-        if (f.imagemperfil) {
-          document.getElementById('avatar').src = f.imagemperfil;
-        }
-        // Serviços (tab)
-        const servicesList = document.getElementById('services-list');
-        let servicosHtml = '';
-        if (f.servicos && f.servicos.trim() !== '') {
-          f.servicos.split(',').forEach(s => {
-            if (s.trim()) servicosHtml += `<li>${s.trim()}</li>`;
-          });
-        }
-        if (f.categoria) {
-          servicosHtml += `<li><strong>Categoria:</strong> ${f.categoria}</li>`;
-        }
-        servicesList.innerHTML = servicosHtml || '<li>Sem serviços registados.</li>';
-        // Portfólio (tab)
-        const portfolioItems = document.getElementById('portfolio-items');
-        let hasPortfolio = false;
-        if (typeof f.idportfolio === 'string' && f.idportfolio.trim() !== '' && f.idportfolio !== '0') {
-          hasPortfolio = true;
-          const urls = f.idportfolio.split(',');
-          portfolioItems.innerHTML = urls.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
-        } else if (Array.isArray(f.idportfolio) && f.idportfolio.length > 0) {
-          hasPortfolio = true;
-          portfolioItems.innerHTML = f.idportfolio.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
-        } else if (typeof f.idportfolio === 'number' && f.idportfolio !== 0) {
-          hasPortfolio = true;
-          portfolioItems.innerHTML = `<img src="${String(f.idportfolio).trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`;
-        }
-        if (!hasPortfolio) {
-          portfolioItems.innerHTML = '<span style="color:#888">Sem portfólio registado.</span>';
-        }
-        // Avaliações (tab)
-        const reviewsList = document.getElementById('reviews-list');
-        if (f.avaliacoes && Array.isArray(f.avaliacoes)) {
-          reviewsList.innerHTML = f.avaliacoes.map(av => `<div class="review"><p>${av.texto}</p><span>— ${av.autor}</span></div>`).join('');
-        } else {
-          reviewsList.innerHTML = '<span style="color:#888">Sem avaliações.</span>';
-        }
-      } else if (f.erro) {
-        document.getElementById('nome').textContent = f.erro;
-      }
-    } catch (e) {
-      document.getElementById('nome').textContent = 'Erro ao carregar perfil. Contacte o suporte.';
-      console.error('Resposta inválida:', text);
-    }
-  });
+let userId = urlParams.get('id') || localStorage.getItem('userId') || sessionStorage.getItem('userId');
 
-// Alternância de abas do perfil (igual ao público)
+// Se não há id na URL, mas existe no localStorage/sessionStorage, redireciona para perfil.html?id=ID
+if (!urlParams.get('id') && userId) {
+  window.location.href = 'perfil.html?id=' + encodeURIComponent(userId);
+}
+
+// Se não há id em nenhum lugar, mostra erro ou redireciona para login
+if (!userId) {
+  document.getElementById('nome').textContent = 'Erro: sessão não encontrada.';
+  // window.location.href = 'login.html'; // Descomente se quiser redirecionar
+} else {
+  // Salva id no localStorage para persistência
+  localStorage.setItem('userId', userId);
+  console.log('ID usado:', userId);
+  fetch('api/get_user_type.php?id=' + encodeURIComponent(userId))
+    .then(r => r.json())
+    .then(resp => {
+      console.log('Resposta get_user_type:', resp);
+      if (resp.erro) {
+        document.getElementById('nome').textContent = 'Erro: ' + resp.erro;
+        return;
+      }
+      // 👉 CLIENTE: redireciona para perfilcliente
+      if (resp.tipo === 'cliente') {
+        window.location.href = 'perfilcliente.html?id=' + userId;
+        return;
+      }
+      // 👉 FOTÓGRAFO CONTINUA
+      carregarPerfil(userId);
+    })
+    .catch((err) => {
+      document.getElementById('nome').textContent = 'Erro de sessão.';
+    });
+}
+
+
+/* =========================
+   CARREGAR PERFIL
+========================= */
+function carregarPerfil(userId) {
+  const params = new URLSearchParams(window.location.search);
+  const perfilId = params.get('id') || userId;
+
+  fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(perfilId))
+    .then(r => r.json())
+    .then(f => {
+
+      if (f.erro) {
+        document.getElementById('nome').textContent = f.erro;
+        return;
+      }
+
+      document.getElementById('nome').textContent = f.nome;
+      document.getElementById('descricao').textContent = f.descricao || '';
+      document.getElementById('avaliacoes').textContent =
+        f.avaliacao ? `⭐ ${f.avaliacao}` : '';
+      document.getElementById('localizacao').textContent =
+        f.distrito && f.concelho ? `${f.distrito}, ${f.concelho}` : '';
+
+      if (f.imagemperfil) {
+        document.getElementById('avatar').src = f.imagemperfil;
+      }
+
+      // botão editar
+      const editBtn = document.getElementById('edit-btn');
+      if (perfilId != userId) {
+        editBtn.style.display = 'none';
+      } else {
+        editBtn.onclick = () => {
+          window.location.href = 'edit-profile.html';
+        };
+      }
+
+      // serviços
+      const services = document.getElementById('services-list');
+      services.innerHTML = '';
+      if (f.Categoria) {
+        services.innerHTML = `<li> <strong>${f.Categoria}</strong></li>`;
+      }
+      if (f.servicos) {
+        f.servicos.split(',').forEach(s => {
+          services.innerHTML += `<li>${s.trim()}</li>`;
+        });
+      } else if (!f.Categoria) {
+        services.innerHTML = '<li>Sem serviços.</li>';
+      }
+
+      // portfólio
+      const portfolio = document.getElementById('portfolio-items');
+      portfolio.innerHTML = '';
+      if (Array.isArray(f.portfolio)) {
+        f.portfolio.forEach(img => {
+          portfolio.innerHTML += `<img src="${img}" style="max-width:180px;margin:8px;border-radius:12px;">`;
+        });
+      } else {
+        portfolio.innerHTML = '<span style="color:#888">Sem portfólio.</span>';
+      }
+    });
+}
+
+/* =========================
+   TABS
+========================= */
 document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(tc => tc.classList.remove('active'));
-    this.classList.add('active');
-    document.getElementById(this.dataset.tab).classList.add('active');
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
   });
 });
-
-// Botão Editar Perfil só aparece se perfilId === userId
-const editBtn = document.querySelector('.edit-btn');
-if (editBtn && perfilId !== userId) {
-  editBtn.style.display = 'none';
-}
 </script>
 
-<style>
-
-</style>
-    <!-- SERVIÇOS -->
-    <div id="servicos" class="tab-panel">
-      <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
-      <ul class="services" id="services-list"></ul>
-    </div>
-    <!-- AVALIAÇÕES -->
-    <div id="avaliacoes" class="tab-panel">
-      <div id="reviews-list"></div>
-    </div>
-  </section>
-    </main>
-<script>
-  // Alternância de abas do perfil
-  document.addEventListener('DOMContentLoaded', function() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-
-        
-        // Função para obter o ID do usuário logado (exemplo: localStorage ou cookie)
-        function getUserId() {
-          // Ajuste conforme sua lógica de autenticação
-          return localStorage.getItem('userId') || sessionStorage.getItem('userId');
-        }
-
-        // Buscar dados do perfil via API
-        fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(getUserId()))
-          .then(async r => {
-            const text = await r.text();
-            try {
-              const f = JSON.parse(text);
-              if (f.nome) {
-                document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
-                document.getElementById('descricao').textContent = f.servicos || 'Descrição não disponível';
-                document.getElementById('avaliacoes').textContent = f.avaliacoes ? `⭐ ${f.avaliacoes}` : '';
-                document.getElementById('localizacao').textContent = (f.Distrito && f.Concelho) ? `${f.Distrito}, ${f.Concelho}` : '';
-                if (f.imagemperfil) {
-                  document.getElementById('avatar').src = f.imagemperfil;
-                }
-                // Serviços (tab)
-                const servicesList = document.getElementById('services-list');
-                let servicosHtml = '';
-                if (f.servicos && f.servicos.trim() !== '') {
-                  f.servicos.split(',').forEach(s => {
-                    if (s.trim()) servicosHtml += `<li>${s.trim()}</li>`;
-                  });
-                }
-                if (f.Categoria) {
-                  servicosHtml += `<li><strong>Categoria:</strong> ${f.Categoria}</li>`;
-                }
-                servicesList.innerHTML = servicosHtml || '<li>Sem serviços registados.</li>';
-                // Portfólio (tab)
-                const portfolioItems = document.getElementById('portfolio-items');
-                let hasPortfolio = false;
-                if (typeof f.idportfolio === 'string' && f.idportfolio.trim() !== '' && f.idportfolio !== '0') {
-                  hasPortfolio = true;
-                  const urls = f.idportfolio.split(',');
-                  portfolioItems.innerHTML = urls.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
-                } else if (Array.isArray(f.idportfolio) && f.idportfolio.length > 0) {
-                  hasPortfolio = true;
-                  portfolioItems.innerHTML = f.idportfolio.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
-                } else if (typeof f.idportfolio === 'number' && f.idportfolio !== 0) {
-                  hasPortfolio = true;
-                  portfolioItems.innerHTML = `<img src="${String(f.idportfolio).trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`;
-                }
-                if (!hasPortfolio) {
-                  portfolioItems.innerHTML = '<span style="color:#888">Sem portfólio registado.</span>';
-                }
-                // Avaliações (tab)
-                const reviewsList = document.getElementById('reviews-list');
-                if (f.avaliacoes && Array.isArray(f.avaliacoes)) {
-                  reviewsList.innerHTML = f.avaliacoes.map(av => `<div class="review"><p>${av.texto}</p><span>— ${av.autor}</span></div>`).join('');
-                } else {
-                  reviewsList.innerHTML = '<span style="color:#888">Sem avaliações.</span>';
-                }
-              } else if (f.erro) {
-                document.getElementById('nome').textContent = f.erro;
-              }
-            } catch (e) {
-              document.getElementById('nome').textContent = 'Erro ao carregar perfil. Contacte o suporte.';
-              console.error('Resposta inválida:', text);
-            }
-          });
-
-        // Alternância de abas do perfil (igual ao público)
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-panel').forEach(tc => tc.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById(this.dataset.tab).classList.add('active');
-          });
-        });
-      
-        </script>
-
-          {{/main}}
+{{/main}}
 {{/layout}}

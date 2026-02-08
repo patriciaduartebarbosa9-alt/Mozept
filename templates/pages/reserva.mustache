@@ -116,20 +116,20 @@ document.getElementById('search-form').addEventListener('submit', async e => {
 
   const resultados = await fetchFotografo(filtros);
   const grid = document.getElementById('fotografos-grid');
-  grid.innerHTML = resultados.length
+    grid.innerHTML = resultados.length
     ? resultados.map(f => `
-        <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-                <div style="display:flex;align-items:center;gap:16px;">
-                    <img src="${f.imagemperfil ? '/uploads/' + f.imagemperfil : 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
-                    <div>
-                        <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
-                        <div style="color:#555;font-size:0.98rem;">${f.Concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
-                    </div>
-                </div>
-                <a href="perfilfotografo-publico.html?id=${encodeURIComponent(f.id)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Visitar perfil</a>
+      <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <img src="${f.imagemperfil ? f.imagemperfil : 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+            <div>
+              <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
+              <div style="color:#555;font-size:0.98rem;">${f.Concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
             </div>
+          </div>
+          <a href="perfilfotografo-publico.html?id=${encodeURIComponent(f.id)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Visitar perfil</a>
         </div>
+      </div>
     `).join('')
     : '<p>Nenhum fotografo encontrado.</p>';
 });

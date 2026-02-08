@@ -71,7 +71,7 @@ fetch('api/fotografo_publico.php?id=' + encodeURIComponent(getFotografoId()))
         document.getElementById('email').textContent = f.email || 'Email não disponível';
         document.getElementById('portfolio').textContent = f.idportfolio || 'Portfólio não disponível';
         if (f.imagemperfil) {
-          document.getElementById('avatar').src = '/uploads/' + f.imagemperfil;
+          document.getElementById('avatar').src = f.imagemperfil;
         } else {
           document.getElementById('avatar').src = 'https://i.pravatar.cc/80';
         }
