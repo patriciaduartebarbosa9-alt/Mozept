@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="/assets/css/styles.css">
 <header class="header">
     <div class="logo">{{site.title}}</div>
@@ -13,6 +14,9 @@
     <div class="profile-menu-container" style="position: relative;">
         <button class="profile-btn" id="profile-btn" aria-label="Menu de Perfil" onclick="document.getElementById('profile-dropdown').classList.toggle('show')">
             <img src="https://i.pravatar.cc/64?img=12" alt="Perfil" class="profile-avatar">
+            {{#user.authenticated}}
+            <span style="margin-left:8px; font-weight:500; color:#7b0000;">ID: {{user.id}}</span>
+            {{/user.authenticated}}
         </button>
         <div class="profile-dropdown" id="profile-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); min-width: 180px; z-index: 1000;">
                   
@@ -61,7 +65,7 @@
     const headerConfig = {
         navPrefix: '{{navPrefix}}',
         userType: '{{user.type}}',
-        userId: {{#user.authenticated}}{{user.id}}{{/user.authenticated}}{{^user.authenticated}}null{{/user.authenticated}}
+        userId: '{{#user.authenticated}}{{user.id}}{{/user.authenticated}}{{^user.authenticated}}null{{/user.authenticated}}'
     };
 </script>
 <script src="{{headerJs}}"></script>

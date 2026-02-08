@@ -33,6 +33,7 @@ require_once 'config.php';
     
   </head>
 <body class="">
+    
     <link rel="stylesheet" href="http://localhost/Mustache-website/assets/css/styles.css">
     <header class="header">
         <div class="logo">Moze</div>
@@ -89,185 +90,141 @@ require_once 'config.php';
         const headerConfig = {
             navPrefix: '',
             userType: '',
-            userId: null
+            userId: 'null'
         };
     </script>
     <script src=""></script>    
     <main>
         
-<script>
-    const headerConfig = {
-        navPrefix: '',
-        userType: '',
-        userId: null
-    };
-</script>
 <main class="profile-page">
   <!-- PERFIL -->
   <section class="profile-card">
-    <img src="https://i.pravatar.cc/80?img=32" class="avatar" alt="Avatar">
+    <img id="avatar" src="https://i.pravatar.cc/80?img=32" class="avatar" alt="Avatar">
     <div class="profile-info">
-      <h2>Rodrigo Silva</h2>
-      <p>Fotógrafo Profissional Especializado em Casamentos e Eventos</p>
+      <h2 id="nome">Nome do Fotógrafo</h2>
+      <p id="descricao">Descrição</p>
       <div class="meta">
-        <span>⭐ 4.9 (127 avaliações)</span>
-        <span>Mirandela, Portugal</span>
+        <span id="avaliacoes">⭐</span>
+        <span id="localizacao"></span>
       </div>
     </div>
-    <button class="edit-btn" onclick="window.location.href='edit-profile.html'">Editar Perfil</button>
+    <button class="edit-btn" onclick="window.location.href='edit-profile.html?id=' + getUserId()">Editar Perfil</button>
   </section>
   <!-- TABS -->
   <section class="tabs">
-    <button class="tab-btn" id="portfolio-tab-btn" data-tab="portfolio">Portfólio</button>
+    <button class="tab-btn active" id="portfolio-tab-btn" data-tab="portfolio">Portfólio</button>
     <button class="tab-btn" data-tab="servicos">Serviços</button>
     <button class="tab-btn" data-tab="avaliacoes">Avaliações</button>
   </section>
   <!-- CONTEÚDO DAS TABS -->
   <section class="tab-content">
     <!-- PORTFÓLIO -->
-<div id="portfolio" class="tab-panel active">
-  <button class="edit-btn" id="edit-portfolio-btn" data-edit="portfolio">
-    Editar Portfólio
-  </button>
-
-  <button class="edit-btn" id="add-portfolio-item"
-    style="background:#eee; color:#7b0000; margin-left:12px; display:none;">
-    Adicionar
-  </button>
-
-  <div style="display:flex; justify-content:center; background:#fcfaf7;
-              border-radius:0 0 24px 24px; padding:32px 0;">
-    <div class="portfolio portfolio-grid" id="portfolio-items"
-         style="background:transparent; padding:0; border-radius:0;">
+    <div id="portfolio" class="tab-panel active">
+      <div style="display:flex; justify-content:center; background:#fcfaf7; border-radius:0 0 24px 24px; padding:32px 0;">
+        <div class="portfolio portfolio-grid" id="portfolio-items" style="background:transparent; padding:0; border-radius:0;"></div>
+      </div>
     </div>
-  </div>
-</div>
-
+    <!-- SERVIÇOS -->
+    <div id="servicos" class="tab-panel">
+      <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
+      <ul class="services" id="services-list"></ul>
+    </div>
+    <!-- AVALIAÇÕES -->
+    <div id="avaliacoes" class="tab-panel">
+      <div id="reviews-list"></div>
+    </div>
+  </section>
+</main>
 <script>
-
-// Esconde portfólio se userType for cliente
-document.addEventListener('DOMContentLoaded', function() {
-  const userType = localStorage.getItem('userType');
-  const portfolioTabBtn = document.getElementById('portfolio-tab-btn');
-  const portfolioPanel = document.getElementById('portfolio');
-  if (userType === 'cliente') {
-    if (portfolioTabBtn) portfolioTabBtn.style.display = 'none';
-    if (portfolioPanel) portfolioPanel.style.display = 'none';
-  }
-});
-
-let portfolioEditMode = false;
-const editBtn = document.getElementById('edit-portfolio-btn');
-const addBtn = document.getElementById('add-portfolio-item');
-const portfolioItems = document.getElementById('portfolio-items');
-
-let portfolioData = [
-  {img:'https://picsum.photos/400/400?1', nome:'Projeto 1', desc:'Descrição 1'},
-  {img:'https://picsum.photos/400/400?2', nome:'Projeto 2', desc:'Descrição 2'},
-  {img:'https://picsum.photos/400/400?3', nome:'Projeto 3', desc:'Descrição 3'},
-  {img:'https://picsum.photos/400/400?4', nome:'Projeto 4', desc:'Descrição 4'},
-  {img:'https://picsum.photos/400/400?5', nome:'Projeto 5', desc:'Descrição 5'},
-  {img:'https://picsum.photos/400/400?6', nome:'Projeto 6', desc:'Descrição 6'}
-];
-
-function renderPortfolio() {
-  portfolioItems.innerHTML = '';
-
-  portfolioData.forEach((item, idx) => {
-    const div = document.createElement('div');
-    div.className = 'portfolio-item';
-    div.style = 'position:relative; text-align:center;';
-
-    if (portfolioEditMode) {
-      div.innerHTML = `
-        <div style="position:relative; display:inline-block; margin-bottom:16px;">
-          <label style="cursor:pointer;">
-            <input type="file" accept="image/*" style="display:none;"
-                   data-idx="${idx}" class="portfolio-img-input">
-            <img src="${item.img}">
-          </label>
-
-          <button type="button" class="delete-img-btn"
-                  style="position:absolute; top:8px; right:8px;
-                  background:#fff; border:none; border-radius:50%;
-                  width:32px; height:32px; cursor:pointer;">
-            🗑
-          </button>
-        </div>
-
-        <input type="text" value="${item.nome}"
-               class="portfolio-name"
-               style="width:100%; margin:10px 0; padding:8px;
-               border-radius:6px; border:1px solid #ccc;">
-
-        <textarea class="portfolio-desc"
-                  style="width:100%; padding:8px;
-                  border-radius:6px; border:1px solid #ccc;">
-          ${item.desc}
-        </textarea>
-
-        <button type="button" class="remove-portfolio-item"
-                style="margin-top:8px;">
-          Remover
-        </button>
-      `;
-
-      div.querySelector('.delete-img-btn').onclick = () => {
-        portfolioData.splice(idx, 1);
-        renderPortfolio();
-      };
-
-      div.querySelector('.portfolio-img-input').onchange = function () {
-        if (this.files[0]) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            portfolioData[idx].img = e.target.result;
-            renderPortfolio();
-          };
-          reader.readAsDataURL(this.files[0]);
-        }
-      };
-
-      div.querySelector('.portfolio-name').oninput =
-        e => portfolioData[idx].nome = e.target.value;
-
-      div.querySelector('.portfolio-desc').oninput =
-        e => portfolioData[idx].desc = e.target.value;
-
-      div.querySelector('.remove-portfolio-item').onclick = () => {
-        portfolioData.splice(idx, 1);
-        renderPortfolio();
-      };
-
-    } else {
-      div.innerHTML = `<img src="${item.img}">`;
-    }
-
-    portfolioItems.appendChild(div);
-  });
+// Função para obter o ID do usuário logado (exemplo: localStorage ou cookie)
+function getUserId() {
+  // Ajuste conforme sua lógica de autenticação
+  return localStorage.getItem('userId') || sessionStorage.getItem('userId');
 }
 
-editBtn.onclick = () => {
-  portfolioEditMode = !portfolioEditMode;
-  addBtn.style.display = portfolioEditMode ? 'inline-block' : 'none';
-  editBtn.textContent = portfolioEditMode
-    ? 'Concluir Edição'
-    : 'Editar Portfólio';
-  renderPortfolio();
-};
-
-addBtn.onclick = () => {
-  portfolioData.push({
-    img:'https://picsum.photos/400/400?random='+Math.random(),
-    nome:'', desc:''
+// Buscar dados do perfil via API
+const userId = getUserId();
+let perfilId = userId;
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('id')) {
+  const paramId = urlParams.get('id');
+  if (paramId && paramId !== userId) {
+    perfilId = paramId;
+  }
+}
+fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(perfilId))
+  .then(async r => {
+    const text = await r.text();
+    try {
+      const f = JSON.parse(text);
+      if (f.nome) {
+        document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
+        document.getElementById('descricao').textContent = f.servicos || 'Descrição não disponível';
+        document.getElementById('avaliacoes').textContent = f.avaliacoes ? `⭐ ${f.avaliacoes}` : '';
+        document.getElementById('localizacao').textContent = (f.distrito && f.concelho) ? `${f.distrito}, ${f.concelho}` : '';
+        if (f.imagemperfil) {
+          document.getElementById('avatar').src = f.imagemperfil;
+        }
+        // Serviços (tab)
+        const servicesList = document.getElementById('services-list');
+        let servicosHtml = '';
+        if (f.servicos && f.servicos.trim() !== '') {
+          f.servicos.split(',').forEach(s => {
+            if (s.trim()) servicosHtml += `<li>${s.trim()}</li>`;
+          });
+        }
+        if (f.categoria) {
+          servicosHtml += `<li><strong>Categoria:</strong> ${f.categoria}</li>`;
+        }
+        servicesList.innerHTML = servicosHtml || '<li>Sem serviços registados.</li>';
+        // Portfólio (tab)
+        const portfolioItems = document.getElementById('portfolio-items');
+        let hasPortfolio = false;
+        if (typeof f.idportfolio === 'string' && f.idportfolio.trim() !== '' && f.idportfolio !== '0') {
+          hasPortfolio = true;
+          const urls = f.idportfolio.split(',');
+          portfolioItems.innerHTML = urls.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
+        } else if (Array.isArray(f.idportfolio) && f.idportfolio.length > 0) {
+          hasPortfolio = true;
+          portfolioItems.innerHTML = f.idportfolio.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
+        } else if (typeof f.idportfolio === 'number' && f.idportfolio !== 0) {
+          hasPortfolio = true;
+          portfolioItems.innerHTML = `<img src="${String(f.idportfolio).trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`;
+        }
+        if (!hasPortfolio) {
+          portfolioItems.innerHTML = '<span style="color:#888">Sem portfólio registado.</span>';
+        }
+        // Avaliações (tab)
+        const reviewsList = document.getElementById('reviews-list');
+        if (f.avaliacoes && Array.isArray(f.avaliacoes)) {
+          reviewsList.innerHTML = f.avaliacoes.map(av => `<div class="review"><p>${av.texto}</p><span>— ${av.autor}</span></div>`).join('');
+        } else {
+          reviewsList.innerHTML = '<span style="color:#888">Sem avaliações.</span>';
+        }
+      } else if (f.erro) {
+        document.getElementById('nome').textContent = f.erro;
+      }
+    } catch (e) {
+      document.getElementById('nome').textContent = 'Erro ao carregar perfil. Contacte o suporte.';
+      console.error('Resposta inválida:', text);
+    }
   });
-  renderPortfolio();
-};
 
-window.addEventListener('DOMContentLoaded', () => {
-  addBtn.style.display = 'none';
-  renderPortfolio();
+// Alternância de abas do perfil (igual ao público)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(tc => tc.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById(this.dataset.tab).classList.add('active');
+  });
 });
+
+// Botão Editar Perfil só aparece se perfilId === userId
+const editBtn = document.querySelector('.edit-btn');
+if (editBtn && perfilId !== userId) {
+  editBtn.style.display = 'none';
+}
 </script>
 
 <style>
@@ -276,23 +233,11 @@ window.addEventListener('DOMContentLoaded', () => {
     <!-- SERVIÇOS -->
     <div id="servicos" class="tab-panel">
       <button class="edit-btn" data-edit="servicos">Editar Serviços</button>
-      <ul class="services">
-        <li>📸 Casamentos</li>
-        <li>🎉 Eventos</li>
-        <li>🧑‍💼 Retratos Profissionais</li>
-        <li>🏢 Fotografia Corporativa</li>
-      </ul>
+      <ul class="services" id="services-list"></ul>
     </div>
     <!-- AVALIAÇÕES -->
     <div id="avaliacoes" class="tab-panel">
-      <div class="review">
-        <p>Excelente profissional, super atento.</p>
-        <span>— Ana Silva</span>
-      </div>
-      <div class="review">
-        <p>Fotos incríveis, recomendo.</p>
-        <span>— João Costa</span>
-      </div>
+      <div id="reviews-list"></div>
     </div>
   </section>
     </main>
@@ -303,19 +248,86 @@ window.addEventListener('DOMContentLoaded', () => {
     const tabPanels = document.querySelectorAll('.tab-panel');
     tabBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        // Remove ativo de todos os botões e painéis
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabPanels.forEach(panel => panel.classList.remove('active'));
-        // Ativa o botão e painel correspondente
-        btn.classList.add('active');
-        const tab = btn.getAttribute('data-tab');
-        document.getElementById(tab).classList.add('active');
-      });
-    });
-  });
-</script>
 
+        
+        // Função para obter o ID do usuário logado (exemplo: localStorage ou cookie)
+        function getUserId() {
+          // Ajuste conforme sua lógica de autenticação
+          return localStorage.getItem('userId') || sessionStorage.getItem('userId');
+        }
 
+        // Buscar dados do perfil via API
+        fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(getUserId()))
+          .then(async r => {
+            const text = await r.text();
+            try {
+              const f = JSON.parse(text);
+              if (f.nome) {
+                document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
+                document.getElementById('descricao').textContent = f.servicos || 'Descrição não disponível';
+                document.getElementById('avaliacoes').textContent = f.avaliacoes ? `⭐ ${f.avaliacoes}` : '';
+                document.getElementById('localizacao').textContent = (f.Distrito && f.Concelho) ? `${f.Distrito}, ${f.Concelho}` : '';
+                if (f.imagemperfil) {
+                  document.getElementById('avatar').src = f.imagemperfil;
+                }
+                // Serviços (tab)
+                const servicesList = document.getElementById('services-list');
+                let servicosHtml = '';
+                if (f.servicos && f.servicos.trim() !== '') {
+                  f.servicos.split(',').forEach(s => {
+                    if (s.trim()) servicosHtml += `<li>${s.trim()}</li>`;
+                  });
+                }
+                if (f.Categoria) {
+                  servicosHtml += `<li><strong>Categoria:</strong> ${f.Categoria}</li>`;
+                }
+                servicesList.innerHTML = servicosHtml || '<li>Sem serviços registados.</li>';
+                // Portfólio (tab)
+                const portfolioItems = document.getElementById('portfolio-items');
+                let hasPortfolio = false;
+                if (typeof f.idportfolio === 'string' && f.idportfolio.trim() !== '' && f.idportfolio !== '0') {
+                  hasPortfolio = true;
+                  const urls = f.idportfolio.split(',');
+                  portfolioItems.innerHTML = urls.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
+                } else if (Array.isArray(f.idportfolio) && f.idportfolio.length > 0) {
+                  hasPortfolio = true;
+                  portfolioItems.innerHTML = f.idportfolio.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
+                } else if (typeof f.idportfolio === 'number' && f.idportfolio !== 0) {
+                  hasPortfolio = true;
+                  portfolioItems.innerHTML = `<img src="${String(f.idportfolio).trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`;
+                }
+                if (!hasPortfolio) {
+                  portfolioItems.innerHTML = '<span style="color:#888">Sem portfólio registado.</span>';
+                }
+                // Avaliações (tab)
+                const reviewsList = document.getElementById('reviews-list');
+                if (f.avaliacoes && Array.isArray(f.avaliacoes)) {
+                  reviewsList.innerHTML = f.avaliacoes.map(av => `<div class="review"><p>${av.texto}</p><span>— ${av.autor}</span></div>`).join('');
+                } else {
+                  reviewsList.innerHTML = '<span style="color:#888">Sem avaliações.</span>';
+                }
+              } else if (f.erro) {
+                document.getElementById('nome').textContent = f.erro;
+              }
+            } catch (e) {
+              document.getElementById('nome').textContent = 'Erro ao carregar perfil. Contacte o suporte.';
+              console.error('Resposta inválida:', text);
+            }
+          });
+
+        // Alternância de abas do perfil (igual ao público)
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(tc => tc.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById(this.dataset.tab).classList.add('active');
+          });
+        });
+      
+        </script>
+
+          
     </main>
     
     

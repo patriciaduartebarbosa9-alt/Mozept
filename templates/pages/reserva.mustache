@@ -1,144 +1,139 @@
-{{<layout}}
-{{$main}}
+{{< layout }}
+  {{$main}}
+
 <section class="reservar-hero" style="background:#fdfcf9;min-height:100vh;display:flex;align-items:center;justify-content:center;">
-    <div class="container" style="max-width:420px;width:100%;margin:auto;">
-        <div class="hero-content" style="padding:32px 0;">
-            <h1 style="font-size:2.6rem;font-weight:700;margin-bottom:32px;line-height:1.1;">Encontre aqui o seu fotografo</h1>
-            <form id="search-form" class="search-form" style="display:flex;flex-direction:column;gap:18px;">
-                <div style="display:flex;gap:12px;">
-                    <div style="flex:1;">
-                        <select id="distrito" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
-                            <option value="">Distrito</option>
-                            <option value="aveiro">Aveiro</option>
-                            <option value="beja">Beja</option>
-                            <option value="braga">Braga</option>
-                            <option value="braganca">Bragança</option>
-                            <option value="castelobranco">Castelo Branco</option>
-                            <option value="coimbra">Coimbra</option>
-                            <option value="evora">Évora</option>
-                            <option value="faro">Faro</option>
-                            <option value="guarda">Guarda</option>
-                            <option value="leiria">Leiria</option>
-                            <option value="lisboa">Lisboa</option>
-                            <option value="portalegre">Portalegre</option>
-                            <option value="porto">Porto</option>
-                            <option value="santarem">Santarém</option>
-                            <option value="setubal">Setúbal</option>
-                            <option value="vianacastelo">Viana do Castelo</option>
-                            <option value="vilareal">Vila Real</option>
-                            <option value="viseu">Viseu</option>
-                            <option value="acores">Açores</option>
-                            <option value="madeira">Madeira</option>
-                        </select>
-                    </div>
-                    <div style="flex:1;">
-                        <select id="concelho" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;" disabled>
-                            <option value="">Concelho</option>
-                        </select>
-                    </div>
-                </div>
-                <div style="position:relative;">
-                    <select id="categoria" style="width:100%;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;font-size:1rem;">
-                        <option value="">Categoria</option>
-                        <option value="casamento">Casamento</option>
-                        <option value="evento">Evento</option>
-                        <option value="retrato">Retrato</option>
-                        <option value="produto">Produto</option>
-                    </select>
-                </div>
-                <button type="submit" style="background:#7b0000;color:#fff;font-size:1.1rem;font-weight:500;border:none;border-radius:8px;padding:12px 0;margin-top:8px;cursor:pointer;">Ver preços</button>
-            </form>
+  <div class="container" style="max-width:420px;width:100%;margin:auto;">
+    <div class="hero-content" style="padding:32px 0;">
+      <h1 style="font-size:2.6rem;font-weight:700;margin-bottom:32px;line-height:1.1;">
+        Encontre aqui o seu fotografo
+      </h1>
 
-            <script>
-            // Concelhos por distrito
-            const concelhosPorDistrito = {
-                aveiro: ["Aveiro","Águeda","Anadia","Arouca","Castelo de Paiva","Espinho","Estarreja","Ílhavo","Mealhada","Murtosa","Oliveira de Azeméis","Oliveira do Bairro","Ovar","Santa Maria da Feira","São João da Madeira","Sever do Vouga","Vagos","Vale de Cambra"],
-                lisboa: ["Lisboa","Amadora","Cascais","Loures","Mafra","Odivelas","Sintra","Vila Franca de Xira","Oeiras","Alenquer","Arruda dos Vinhos","Azambuja","Cadaval","Lourinhã","Sobral de Monte Agraço","Torres Vedras"],
-                porto: ["Porto","Gondomar","Maia","Matosinhos","Paredes","Valongo","Vila do Conde","Vila Nova de Gaia","Santo Tirso","Trofa","Felgueiras","Lousada","Paços de Ferreira","Penafiel"]
-            };
+      <form id="search-form" style="display:flex;flex-direction:column;gap:18px;">
+        <div style="display:flex;gap:12px;">
+          <select id="distrito" style="flex:1;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;">
+            <option value="">Distrito</option>
+            <option value="aveiro">Aveiro</option>
+            <option value="braga">Braga</option>
+            <option value="lisboa">Lisboa</option>
+            <option value="porto">Porto</option>
+          </select>
 
-            const distritoSelect = document.getElementById('distrito');
-            const concelhoSelect = document.getElementById('concelho');
-
-            distritoSelect.addEventListener('change', function() {
-                const distrito = this.value;
-                concelhoSelect.innerHTML = '<option value="">Concelho</option>';
-                if (concelhosPorDistrito[distrito]) {
-                    concelhoSelect.disabled = false;
-                    concelhosPorDistrito[distrito].forEach(c => {
-                        const opt = document.createElement('option');
-                        opt.value = c; // valor igual ao texto
-                        opt.textContent = c;
-                        concelhoSelect.appendChild(opt);
-                    });
-                } else {
-                    concelhoSelect.disabled = true;
-                }
-            });
-            </script>
+          <select id="concelho" style="flex:1;background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;" disabled>
+            <option value="">Concelho</option>
+          </select>
         </div>
+
+        <select id="categoria" style="background:#f2f2f2;border:none;border-radius:8px;padding:14px 16px;">
+          <option value="">Categoria</option>
+          <option value="casamento">Casamento</option>
+          <option value="evento">Evento</option>
+          <option value="retrato">Retrato</option>
+          <option value="produto">Produto</option>
+        </select>
+
+        <button type="submit" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:12px;">
+          Ver preços
+        </button>
+      </form>
     </div>
+  </div>
 </section>
 
-<!-- Resultados de Fotógrafos -->
-<section id="results-section" class="results hidden" style="display:flex;align-items:center;justify-content:center;min-height:60vh;">
-    <div class="container" style="max-width:700px;width:100%;margin:auto;">
-        <div id="fotografos-grid" class="fotografos-grid"></div>
+<section id="results-section" style="display:none;min-height:60vh;">
+  <div class="container" style="max-width:700px;margin:auto;">
+    <div id="fotografos-grid"></div>
+  </div>
+</section>
 
 <script>
-async function fetchFotografo(filtros) {   // singular
+const concelhosPorDistrito = {
+  aveiro: ["Aveiro","Águeda","Anadia"],
+  lisboa: ["Lisboa","Amadora","Sintra"],
+  porto: ["Porto","Maia","Vila Nova de Gaia"]
+};
+
+const distritoSelect = document.getElementById('distrito');
+const concelhoSelect = document.getElementById('concelho');
+
+distritoSelect.addEventListener('change', () => {
+  const distrito = distritoSelect.value;
+  concelhoSelect.innerHTML = '<option value="">Concelho</option>';
+
+  if (concelhosPorDistrito[distrito]) {
+    concelhoSelect.disabled = false;
+    concelhosPorDistrito[distrito].forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      concelhoSelect.appendChild(opt);
+    });
+  } else {
+    concelhoSelect.disabled = true;
+  }
+});
+
+async function fetchFotografo(filtros) {
+  const res = await fetch('reserva.php', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify(filtros)
+  });
+  try {
     const res = await fetch('reserva.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(filtros)
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filtros)
     });
     if (!res.ok) return [];
-    const data = await res.json();
-    return data.status === 'success' ? data.data : [];
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      console.log('Filtros enviados:', filtros);
+      console.log('Debug da resposta:', data.debug);
+      return data.status === 'success' ? data.data : [];
+    } catch (e) {
+      console.error('Resposta não é JSON:', text);
+      return [];
+    }
+  } catch (err) {
+    console.error('Erro no fetch:', err);
+    return [];
+  }
+    console.log('Filtros enviados:', filtros);
+    console.log('Debug da resposta:', data.debug);
+  return data.status === 'success' ? data.data : [];
 }
 
-function renderFotografoCard(f) {
-    return `
+document.getElementById('search-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  document.getElementById('results-section').style.display = 'block';
+
+  const filtros = {
+    distrito: distritoSelect.options[distritoSelect.selectedIndex].text,
+    concelho: concelhoSelect.options[concelhoSelect.selectedIndex].text,
+    categoria: document.getElementById('categoria').value
+  };
+
+  const resultados = await fetchFotografo(filtros);
+  const grid = document.getElementById('fotografos-grid');
+  grid.innerHTML = resultados.length
+    ? resultados.map(f => `
         <div class="fotografo-card" style="background:#fff;border-radius:16px;padding:18px 18px 12px 18px;box-shadow:0 2px 8px #0001;margin-bottom:24px;max-width:640px;display:block;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <div style="display:flex;align-items:center;gap:16px;">
-                    <img src="${f.imagem || 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
+                    <img src="${f.imagemperfil ? '/uploads/' + f.imagemperfil : 'assets/img/default.jpg'}" alt="${f.nome}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;">
                     <div>
                         <div style="font-weight:600;font-size:1.08rem;">${f.nome}</div>
-                        <div style="color:#555;font-size:0.98rem;">${f.concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
+                        <div style="color:#555;font-size:0.98rem;">${f.Concelho} • ${f.avaliacao || 0} <span style="color:#7b0000;">★</span></div>
                     </div>
                 </div>
-                <a href="perfilfotografo-publico.html?email=${encodeURIComponent(f.email)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Ver perfil</a>
+                <a href="perfilfotografo-publico.html?id=${encodeURIComponent(f.id)}" style="background:#7b0000;color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:500;font-size:1rem;text-decoration:none;">Visitar perfil</a>
             </div>
         </div>
-    `;
-}
-
-document.getElementById('search-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    document.getElementById('results-section').classList.remove('hidden');
-
-    const filtros = {
-        distrito: distritoSelect.value,
-        concelho: concelhoSelect.value,
-        categoria: document.getElementById('categoria').value
-    };
-
-    const fotografo = await fetchFotografo(filtros);   // singular
-    const grid = document.getElementById('fotografos-grid');
-    grid.innerHTML = '';
-
-    if (fotografo.length === 0) {
-        grid.innerHTML = '<p style="text-align:center;">Nenhum fotografo encontrado.</p>';
-        return;
-    }
-
-    grid.innerHTML = fotografo.map(renderFotografoCard).join('');
+    `).join('')
+    : '<p>Nenhum fotografo encontrado.</p>';
 });
 </script>
 
-    </div>
-</section>
-
-{{/main}}
+  {{/main}}
 {{/layout}}

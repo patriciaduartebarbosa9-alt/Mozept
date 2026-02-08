@@ -1,6 +1,7 @@
 {{< layout}}
 {{$main}}
 <main class="profile-page">
+  <!-- PERFIL -->
   <section class="profile-card">
     <img id="avatar" src="https://i.pravatar.cc/80" class="avatar" alt="Avatar do Fotógrafo">
     <div class="profile-info">
@@ -10,72 +11,104 @@
         <span id="email">Email</span><br>
         <span id="portfolio">Portfólio</span>
       </div>
-      <!-- Exibir certificado, distrito, concelho -->
+      <div id="extra-info"></div>
     </div>
     <button id="btn-favorito" class="edit-btn">Adicionar aos Favoritos</button>
     <button id="btn-mensagem" class="edit-btn" style="background:#eee; color:#7b0000; margin-left:12px;">Enviar Mensagem</button>
   </section>
+  <!-- TABS -->
+  <section class="tabs">
+    <button class="tab-btn active" id="portfolio-tab-btn" data-tab="portfolio">Portfólio</button>
+    <button class="tab-btn" data-tab="servicos">Serviços</button>
+    <button class="tab-btn" data-tab="avaliacoes">Avaliações</button>
+  </section>
+  <!-- CONTEÚDO DAS TABS -->
+  <section class="tab-content">
+    <!-- PORTFÓLIO -->
+    <div id="portfolio" class="tab-panel active">
+      <div style="display:flex; justify-content:center; background:#fcfaf7; border-radius:0 0 24px 24px; padding:32px 0;">
+        <div class="portfolio portfolio-grid" id="portfolio-items" style="background:transparent; padding:0; border-radius:0;"></div>
+      </div>
+    </div>
+    <!-- SERVIÇOS -->
+    <div id="servicos" class="tab-panel">
+      <ul class="services" id="services-list"></ul>
+    </div>
+    <!-- AVALIAÇÕES -->
+    <div id="avaliacoes" class="tab-panel">
+      <div class="review">
+        <p>Excelente profissional, super atento.</p>
+        <span>— Ana Silva</span>
+      </div>
+      <div class="review">
+        <p>Fotos incríveis, recomendo.</p>
+        <span>— João Costa</span>
+      </div>
+    </div>
+  </section>
+  <!-- VOLTA AO PERFIL PRIVADO -->
+  <section class="back-link-section">
+    <a href="perfil.html?id=" + (localStorage.getItem('userId') || sessionStorage.getItem('userId')) + '" class="back-link">Voltar ao Meu Perfil</a>'
+  </section>
 </main>
 <script>
-// Exemplo: obter email do fotógrafo pela query string
-function getFotografoEmail() {
+// Obter ID do fotógrafo pela query string
+function getFotografoId() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('email');
+  return params.get('id');
 }
 
 // Preencher dados do fotógrafo
-fetch('api/fotografo_publico.php?email=' + encodeURIComponent(getFotografoEmail()))
-  .then(r => r.json())
-  .then(f => {
-    if (f.tipo) {
-      document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
-      document.getElementById('especialidade').textContent = f.especialidade || 'Especialidade não disponível';
-      document.getElementById('email').textContent = f.email || 'Email não disponível';
-      document.getElementById('portfolio').textContent = f.portfolio || 'Portfólio não disponível';
-      if (f.foto_perfil) {
-        // Corrigir caminho para uploads
-        document.getElementById('avatar').src = '/uploads/' + f.foto_perfil;
-      } else {
-        document.getElementById('avatar').src = 'https://i.pravatar.cc/80';
+
+fetch('api/fotografo_publico.php?id=' + encodeURIComponent(getFotografoId()))
+  .then(async r => {
+    const text = await r.text();
+    try {
+      const f = JSON.parse(text);
+      if (f.nome) {
+        document.getElementById('nome').textContent = f.nome || 'Nome não disponível';
+        document.getElementById('especialidade').textContent = f.servicos || 'Serviços não disponível';
+        document.getElementById('email').textContent = f.email || 'Email não disponível';
+        document.getElementById('portfolio').textContent = f.idportfolio || 'Portfólio não disponível';
+        if (f.imagemperfil) {
+          document.getElementById('avatar').src = '/uploads/' + f.imagemperfil;
+        } else {
+          document.getElementById('avatar').src = 'https://i.pravatar.cc/80';
+        }
+        // Extra info (certificado, distrito, concelho, categoria)
+        let extra = '';
+        if (f.certificado) extra += `<div>Certificado: ${f.certificado}</div>`;
+        if (f.Distrito) extra += `<div>Distrito: ${f.Distrito}</div>`;
+        if (f.Concelho) extra += `<div>Concelho: ${f.Concelho}</div>`;
+        document.getElementById('extra-info').innerHTML = extra;
+        // Serviços (tab)
+        const servicesList = document.getElementById('services-list');
+        let servicosHtml = '';
+        if (f.servicos) {
+          f.servicos.split(',').forEach(s => {
+            servicosHtml += `<li>${s.trim()}</li>`;
+          });
+        }
+        if (f.Categoria) {
+          servicosHtml += `<li><strong>Categoria:</strong> ${f.Categoria}</li>`;
+        }
+        servicesList.innerHTML = servicosHtml || '<li>Sem serviços registados.</li>';
+        // Portfólio (tab)
+        const portfolioItems = document.getElementById('portfolio-items');
+        if (f.idportfolio) {
+          // Exemplo: se idportfolio for uma lista de URLs separadas por vírgula
+          const urls = f.idportfolio.split(',');
+          portfolioItems.innerHTML = urls.map(url => `<img src="${url.trim()}" style="max-width:180px;max-height:180px;margin:8px;border-radius:12px;">`).join('');
+        } else {
+          portfolioItems.innerHTML = '<span style="color:#888">Sem portfólio registado.</span>';
+        }
+      } else if (f.erro) {
+        document.getElementById('nome').textContent = f.erro;
       }
-      // Exibir certificado, distrito, concelho, categoria
-      if (f.certificado) {
-        let cert = document.createElement('div');
-        cert.textContent = 'Certificado: ' + f.certificado;
-        document.querySelector('.profile-info').appendChild(cert);
-      }
-      if (f.distrito) {
-        let dist = document.createElement('div');
-        dist.textContent = 'Distrito: ' + f.distrito;
-        document.querySelector('.profile-info').appendChild(dist);
-      }
-      if (f.concelho) {
-        let conc = document.createElement('div');
-        conc.textContent = 'Concelho: ' + f.concelho;
-        document.querySelector('.profile-info').appendChild(conc);
-      }
-      if (f.categoria) {
-        let cat = document.createElement('div');
-        cat.textContent = 'Categoria: ' + f.categoria;
-        document.querySelector('.profile-info').appendChild(cat);
-      }
-      if (f.certificado) {
-        let cert = document.createElement('div');
-        cert.textContent = 'Certificado: ' + f.certificado;
-        document.querySelector('.profile-info').appendChild(cert);
-      }
-      if (f.distrito) {
-        let dist = document.createElement('div');
-        dist.textContent = 'Distrito: ' + f.distrito;
-        document.querySelector('.profile-info').appendChild(dist);
-      }
-      if (f.concelho) {
-        let conc = document.createElement('div');
-        conc.textContent = 'Concelho: ' + f.concelho;
-        document.querySelector('.profile-info').appendChild(conc);
-      }
+    } catch (e) {
+      document.getElementById('nome').textContent = 'Erro ao carregar perfil. Contacte o suporte.';
+      console.error('Resposta inválida:', text);
     }
-    // Se não houver tipo, não preenche os dados (erro já mostrado pelo template)
   });
 
 // Favoritar/desfavoritar
@@ -84,7 +117,7 @@ btnFav.onclick = function() {
   fetch('api/favoritar.php', {
     method: 'POST',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: 'fotografo_email=' + encodeURIComponent(getFotografoEmail())
+    body: 'fotografo_id=' + encodeURIComponent(getFotografoId())
   })
   .then(r => r.json())
   .then(resp => {
@@ -94,10 +127,21 @@ btnFav.onclick = function() {
   });
 };
 
-// Enviar mensagem (exemplo: redirecionar para página de mensagens)
+// Enviar mensagem
 document.getElementById('btn-mensagem').onclick = function() {
-  window.location.href = 'mensagens.html?para=' + encodeURIComponent(getFotografoEmail());
+  window.location.href = 'mensagens.html?para=' + encodeURIComponent(getFotografoId());
 };
+// Tabs switching logic
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(tc => tc.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById(this.dataset.tab).classList.add('active');
+  });
+});
+// Remove o botão 'Voltar ao Meu Perfil' do perfilfotografo-publico
+// (Remova o trecho de código que adiciona o botão back-link)
 </script>
 {{/main}}
 {{/layout}}
