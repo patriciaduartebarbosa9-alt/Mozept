@@ -82,22 +82,41 @@ require_once 'config.php';
               // Buscar imagem de perfil da BD em tempo real para o header
               document.addEventListener('DOMContentLoaded', function() {
                 var img = document.getElementById('header-avatar');
-                // Função para obter o ID do utilizador autenticado
                 function getUserId() {
                   return localStorage.getItem('userId') || sessionStorage.getItem('userId');
                 }
                 var userId = getUserId();
                 if (img && userId) {
-                  fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(userId))
-                    .then(async r => {
-                      const text = await r.text();
-                      try {
-                        const f = JSON.parse(text);
-                        if (f.imagemperfil) {
-                          img.src = f.imagemperfil;
-                        }
-                      } catch (e) {
-                        // Se erro, mantém imagem padrão
+                  // Buscar tipo de usuário
+                  fetch('api/get_user_type.php?id=' + encodeURIComponent(userId))
+                    .then(r => r.json())
+                    .then(resp => {
+                      if (resp.tipo === 'cliente') {
+                        fetch('api/get_cliente_by_id.php?id=' + encodeURIComponent(userId))
+                          .then(r => r.json())
+                          .then(cliente => {
+                            console.log('Resultado fetch cliente:', cliente);
+                            if (cliente && cliente.imagem) {
+                              img.src = 'assets/images/' + cliente.imagem;
+                            } else {
+                              img.src = 'assets/images/default.png';
+                            }
+                          });
+                      } else {
+                        fetch('api/fotografo_perfil.php?id=' + encodeURIComponent(userId))
+                          .then(async r => {
+                            const text = await r.text();
+                            try {
+                              const f = JSON.parse(text);
+                              if (f.imagemperfil) {
+                                img.src = f.imagemperfil;
+                              } else {
+                                img.src = 'assets/images/default.png';
+                              }
+                            } catch (e) {
+                              img.src = 'assets/images/default.png';
+                            }
+                          });
                       }
                     });
                 }
@@ -347,8 +366,8 @@ document.getElementById('search-form').addEventListener('submit', async e => {
          (function() {
              const params = new URLSearchParams(window.location.search);
              const userId = params.get('id');
-             // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
-             const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+             // Só atualizar localStorage se a página for perfil.html, edit-fotografo.html, reserva.html, mensagens.html
+             const privPages = ['perfil.html', 'edit-fotografo.html', 'reserva.html', 'mensagens.html'];
              const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
              if (userId && isPriv) {
                  localStorage.setItem('userId', userId);
@@ -391,8 +410,8 @@ document.getElementById('search-form').addEventListener('submit', async e => {
      (function() {
          const params = new URLSearchParams(window.location.search);
          const userId = params.get('id');
-         // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
-         const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+         // Só atualizar localStorage se a página for perfil.html, edit-fotografo.html, reserva.html, mensagens.html
+         const privPages = ['perfil.html', 'edit-fotografo.html', 'reserva.html', 'mensagens.html'];
          const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
          if (userId && isPriv) {
              localStorage.setItem('userId', userId);

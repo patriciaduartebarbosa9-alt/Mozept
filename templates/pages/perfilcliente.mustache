@@ -3,17 +3,21 @@
 
 <div class="profile-container">
   <div class="client-card">
-    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="client-avatar" alt="Avatar">
-    <div class="client-info">
-      <div class="client-title">Pedro Tavares</div>
-      <div class="client-desc">Aluno de Multimédia na EsACT</div>
-      <div class="client-meta">
-        <span class="client-rating">★ 4.2(3 avaliações)</span>
-        <span class="client-location">Mirandela, Portugal</span>
+    <div class="client-info" style="display: flex; align-items: center; gap: 16px;">
+      {{#imagem}}
+        <img src="assets/images/{{imagem}}" class="client-avatar" alt="Avatar">
+      {{/imagem}}
+      {{^imagem}}
+        <img src="assets/images/default.png" class="client-avatar" alt="Avatar">
+      {{/imagem}}
+      <div>
+        <div class="client-title"></div>
+      </div>
+      <button class="fav-edit-btn" style="background: #7b0000; color: #fff; border-radius: 8px; padding: 8px 24px; border: none; cursor: pointer;" onclick="window.location.href='edit-cliente.html'">Editar Perfil</button>
+    </div>
       </div>
     </div>
-  </div>
-
+    </div>
 
 
   <!-- Tabs Únicas (Favoritos, Histórico, Avaliações) -->
@@ -25,36 +29,75 @@
     <div class="tabs-cards-content">
       <div id="tab-favoritos" class="tab-cards-panel active">
         <div class="fav-card">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" class="fav-avatar" alt="Avatar">
+
+          <img src="assets/images/{{imagem}}" class="fav-avatar" alt="Avatar">
           <div class="fav-info">
-            <div class="fav-title">Pedro Tavares</div>
-            <div class="fav-desc">Aluno de Multimédia na EsACT</div>
-            <div class="fav-meta">
-              <span class="fav-rating">★ 4.2(3 avaliações)</span>
-              <span class="fav-location">Mirandela, Portugal</span>
-            </div>
+            <div class="fav-title">Suzana</div>
           </div>
-          <button class="fav-contact-btn">Contactar</button>
+          <button class="fav-contact-btn" onclick="window.location.href='mensagens.html'">Contactar</button>
         </div>
       </div>
       <div id="tab-historico" class="tab-cards-panel">
         <div class="fav-card">
           <img src="https://randomuser.me/api/portraits/men/85.jpg" class="fav-avatar" alt="Avatar">
           <div class="fav-info">
-            <div class="fav-title">RODRIGO SILVA</div>
+            <div class="fav-title">Suzana</div>
             <div class="fav-desc">Fotógrafo Profissional Especializado em Casamentos e Eventos</div>
             <div class="fav-meta">
               <span class="fav-rating">★ 4.9(127 avaliações)</span>
               <span class="fav-location">Mirandela, Portugal</span>
             </div>
           </div>
-          <button class="fav-contact-btn">Contactar</button>
+          <button class="fav-contact-btn" style="margin-left: 32px; margin-top: 12px;">Contactar</button>
         </div>
       </div>
     </div>
-  </div>
 
 <script>
+// Preencher dados do cliente id=2 no cartão favorito
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('api/get_cliente_by_id.php?id=2')
+    .then(r => r.json())
+    .then(cliente => {
+      if (cliente.erro) return;
+      console.log('Cliente retornado:', cliente);
+      // Garantir que o nome é preenchido
+      const favTitle = document.querySelector('.fav-title');
+      if (favTitle) favTitle.textContent = cliente.nome || 'Nome não disponível';
+      // Garantir imagem
+      const favAvatar = document.querySelector('.fav-avatar');
+      if (favAvatar) favAvatar.src = cliente.imagem ? 'assets/images/' + cliente.imagem : 'assets/images/default.png';
+      // Avaliação
+      const favRating = document.querySelector('.fav-rating');
+      if (favRating) favRating.textContent = cliente.avaliacao || '';
+      // Localização
+      const favLocation = document.querySelector('.fav-location');
+      if (favLocation) favLocation.textContent = cliente.localizacao || '';
+    });
+});
+// Carregar dados do cliente dinamicamente
+document.addEventListener('DOMContentLoaded', function() {
+  // Obter email do usuário logado
+  let userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+  if (!userId) return;
+  fetch('api/get_user_email.php?id=' + userId)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.email) return;
+      fetch('api/get_cliente.php?email=' + encodeURIComponent(data.email))
+        .then(r => r.json())
+        .then(cliente => {
+          if (cliente.erro) return;
+          // Atualizar nome
+          document.querySelectorAll('.client-title').forEach(e => e.textContent = cliente.nome || '');
+          // Atualizar imagem
+          let img = document.querySelector('.client-avatar');
+          if (img && cliente.imagem) {
+            img.src = 'assets/images/' + cliente.imagem;
+          }
+        });
+    });
+});
 document.addEventListener('DOMContentLoaded', function() {
   // Tabs secundárias (Favoritos, Histórico)
   const tabBtns = document.querySelectorAll('.tab-btn-sub');
@@ -80,6 +123,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <style>
+/* Fav card layout melhorado */
+/* Fav card layout melhorado */
+.fav-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+  padding: 32px 48px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #0001;
+  margin: 32px auto;
+  max-width: 700px;
+  min-width: 420px;
+}
+.fav-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.fav-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.fav-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.fav-meta {
+  font-size: 0.95rem;
+  color: #555;
+  display: flex;
+  gap: 12px;
+}
+.fav-contact-btn {
+  background: #7b0000;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 32px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  align-self: flex-start;
+}
 
 </style>
 

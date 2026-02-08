@@ -36,8 +36,8 @@ require_once 'config.php';
          (function() {
              const params = new URLSearchParams(window.location.search);
              const userId = params.get('id');
-             // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
-             const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+             // Só atualizar localStorage se a página for perfil.html, edit-fotografo.html, reserva.html, mensagens.html
+             const privPages = ['perfil.html', 'edit-fotografo.html', 'reserva.html', 'mensagens.html'];
              const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
              if (userId && isPriv) {
                  localStorage.setItem('userId', userId);
@@ -80,8 +80,8 @@ require_once 'config.php';
      (function() {
          const params = new URLSearchParams(window.location.search);
          const userId = params.get('id');
-         // Só atualizar localStorage se a página for perfil.html, edit-profile.html, reserva.html, mensagens.html
-         const privPages = ['perfil.html', 'edit-profile.html', 'reserva.html', 'mensagens.html'];
+         // Só atualizar localStorage se a página for perfil.html, edit-fotografo.html, reserva.html, mensagens.html
+         const privPages = ['perfil.html', 'edit-fotografo.html', 'reserva.html', 'mensagens.html'];
          const isPriv = privPages.some(p => window.location.pathname.endsWith(p));
          if (userId && isPriv) {
              localStorage.setItem('userId', userId);

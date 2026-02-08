@@ -55,7 +55,3 @@ output/                # generated static site
 ```
 
 ---
-
-*Edit this instruction guide for any project-specific nuances or edge cases.*
-
-Feedback? Please suggest additions or clarifications.*
